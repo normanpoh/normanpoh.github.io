@@ -1,0 +1,15 @@
+[
+
+{"date": "Sun, 24 Dec 2017 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["resume"],
+"title": "About me",
+"url": "/blog/2017/12/24/me.html"},
+
+{"date": "Sat, 23 Dec 2017 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["resume"],
+"title": "Publications",
+"url": "/blog/2017/12/23/publications.html"},
+
+false]

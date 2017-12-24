@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>The blog of Norman Poh</title>
+ <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
+ <link href="http://normanpoh.github.com"/>
+ <updated>2017-12-24T11:01:36+00:00</updated>
+ <id>http://normanpoh.github.com</id>
+ <author>
+   <name>Norman Poh</name>
+   <email>normanpoh@ieee.org</email>
+ </author>
+
+ 
+ <entry>
+   <title>About me</title>
+   <link href="http://normanpoh.github.com/blog/2017/12/24/me.html"/>
+   <updated>2017-12-24T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2017/12/24/me</id>
+   <content type="html">&lt;h2 id=&quot;profile&quot;&gt;Profile&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;Norman is a Data Scientist with 
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var dt = new Date();
+    document.write(dt.getYear()+1900 - 2006); 
+&lt;/script&gt; 
+years of research experience, in both the academia and commerce.&lt;/p&gt;
+
+&lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;PhD in Machine Learning and Information Fusion, &lt;a href=&quot;https://www.epfl.ch/&quot;&gt;École polytechnique fédérale de Lausanne&lt;/a&gt;, Switzerland, 2006.&lt;/li&gt;
+  &lt;li&gt;Diplôme d’Études Approfondies (DEA) en Informatique, &lt;a href=&quot;https://en.unistra.fr&quot;&gt;Louis Pasteur University&lt;/a&gt;, France, 2002.&lt;/li&gt;
+  &lt;li&gt;BSc in Computer Science, &lt;a href=&quot;http://www.cs.usm.my&quot;&gt;Universiti Sains Malaysia&lt;/a&gt;, 1999.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;experience&quot;&gt;Experience&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Quintiles IMS Holdings, Inc. - Senior Data Scientist&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Quintiles IMS Holdings, Inc., is an American multinational company serving the combined
+industries of health information technologies and clinical research.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Norman was engaged to provide technical leadership to a team of junior data scientists in
+designing machine learning algorithms that can harness the value of QuintilesIMS’s Real
+World Evidence to improve retrospective clinical studies, under-diagnosis of rare diseases,
+personalized treatment response profiles, disease progression predictions, and clinical
+decision-support tools.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;University of Surrey - Senior Lecturer in Computational Intelligence&lt;/strong&gt;
+The University of Surrey is a leading university located within the county town of Guildford,
+Surrey. Key achievements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Contributed to four modules and designed two full modules.&lt;/li&gt;
+  &lt;li&gt;Led a healthcare analytics research team involving two postdoctoral researchers,
+ensuring high quality research outputs with impact and their career development.&lt;/li&gt;
+  &lt;li&gt;Successfully piloted the Peer-Assisted Learning Scheme, enabling better student
+support and engagement.&lt;/li&gt;
+  &lt;li&gt;Provided pastoral care to second-year students, preparing them for placement and
+career development.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;MRC - Principal Investigator&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;MRC provide New Investigator Research Grant schemes that support clinical and nonclinical researchers while they are establishing themselves as independent principal
+investigators. Key achievements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Norman led a team of two post-doctoral researchers to tackle the long-term
+modelling of Chronic Kidney Disease (CKD).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Outputs included a novel algorithm to detect acute kidney injury, to model CKD
+progression, and to stratify CKD patients.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Clinical Informatics Research Group (Clininf) - Team Coordinator&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Clinif offer training programmes related to routine data analysis and statistics. Norman was
+engaged to provide scientific leadership in processing, extracting and representing health
+records. Key achievements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Served as a project manager for a number of projects, ensuring timely delivery of
+research outputs through a coordinated team effort.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;CVSSP - Senior Research Fellow&lt;/strong&gt;
+Centre for Vision, Speech and Signal Processing (CVSSP) is an internationally recognised leader in audio-visual machine perception research. Norman was initially engaged as a
+Research Fellow and later promoted to Senior Research Fellow. Key achievements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Produced award-winning research papers on biometrics, advancing research in
+multimodal biometrics fusion, dynamic fusion based on biometric sample quality.&lt;/li&gt;
+  &lt;li&gt;Collaborated with researchers in Europe and Asia.&lt;/li&gt;
+  &lt;li&gt;Team leader for the FP7 MOBIO and BEAT projects&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Publications</title>
+   <link href="http://normanpoh.github.com/blog/2017/12/23/publications.html"/>
+   <updated>2017-12-23T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2017/12/23/publications</id>
+   <content type="html">&lt;h2 id=&quot;complete-publication-list&quot;&gt;Complete publication list&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://scholar.google.co.uk/citations?user=6CjzwfEAAAAJ&amp;amp;hl&quot;&gt;Google Scholar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.researchgate.net/profile/Norman_Poh&quot;&gt;Researchgate&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/publications.php?submenu=0&quot;&gt;University of Surrey homepage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;journal-papers&quot;&gt;Journal papers&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Juha Ylioinas, Norman Poh, Jukka Holappa, Matti Pietikäinen, Data-driven Techniques for Smoothing Histograms of Local Binary Patterns, Pattern Recognition 60: 734-747, 2016. &lt;a href=&quot;http://www.sciencedirect.com/science/article/pii/S0031320316301467&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;S. Yu, Y. Ai, B. Xu, Y. Zhou, W. Li, Q. Liao, and N. Poh. Two Strategies to Optimize the Decisions in Signature Verification with the Presence of Spoofing Attacks, Information Sciences 352: 188-202, 2016. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/InfoScience2016_NP_OptScoreLiveness.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;G. Guo, H. Wechsle, S. Shan, and N. Poh. Guest Editorial Special Issue on Mobile Biometrics. IET Biometrics 5(1): 1-2, 2016. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/IET_Biometrics_mobile.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Norman Poh and  Michael Schuckers, Biometrics Statistics: a Foreword and Introduction to the Special Issue, IET Biometrics, 4(4): 206–208, 2015. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/Biometrics_statistics_A_foreword_and_introduction.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N Poh, R. Blanco-Gonzalo, R. Wong, R Sanchez-Reillo, The Blind-subject Face Database, IET Biometrics 5 (1), 20-27, 2016. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/BSFB--IET2015.docx&quot;&gt;docx&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh and C-H. Chan, Generalizing DET Curves across Application Scenarios, IEEE Trans. on Information Forensics and Security, 10(10), 2171-2181, 2015 &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/Generalized_DET_curves_with_factors15.pdf&quot;&gt;pdf&lt;/a&gt; &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/Generalized_DET_curves_with_factors15_Appendix.pdf&quot;&gt;Appendix&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;S. Tirunagari, N. Poh, D. Windridge, A. Iorliam, N.k Suki, and A. T.S. Ho, Detection of Face Spoofing Using Visual Dynamics, IEEE Trans. on Information Forensics and Security, Special Issue on Biometric Spoofing and Countermeasures, 10(4), 762-777, 2015. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_TIFS_face_antispoofing.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, J. Kittler, C-H. Chan, and M. Pandit, An Algorithm to Estimate the Biometric Performance Change Over Time, IET Biometrics 4(4), pg. 236-245, 2015 &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_eer_trend_mmbio_journal_v1.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;M. Tistarelli, Y. Sun, and N. Poh, On the Use of Discriminative Cohort Score Normalization for Unconstrained Face Recognition, IEEE Trans. on Information Forensics and Security, accepted, 2014. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/yunlian_TIFS2014.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, A. Ross, W. Li, and J. Kittler, A User-Specific and Selective Multimodal Biometric Fusion Strategy by Ranking Subjects, Pattern Recognition 46(12): 3341-57, 2013. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_zoo.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;W. Li, Y. Zhou, N. Poh, F. Zhou, and Q. Liao, Feature Denoising Using Joint Sparse Representation for In-car Speech Recognition, in IEEE Signal Processing Letters, 2013. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/li_SPL13_feature_denoise.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, A. Rattani, and F. Roli, Critical analysis of adaptive biometric systems, IET Biometrics, 1(4):179–187, 2012. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/poh_IET2012.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;P. Tresadern, T. F. Cootes, N. Poh, P. Matejka, A. Hadid, C. Levy, C. McCool, and S. Marcel. Mobile Biometrics: Combined Face and Voice Verification for a Mobile Platform, Pervasive Computing, IEEE 12, no. 1 (2013): 79-87. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/tresadern_PervComp2012_draft.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;A. Merati, N. Poh and J. Kittler, User-Specific Cohort Selection and Score Normalization for Biometric Systems, IEEE Trans. on Information Forensics and Security, 7(4):1270-1277, 2012.  &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_BNq_unified_accepted_TPAMI.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh and J. Kittler, A Unified Framework for Biometric Expert Fusion Incorporating Quality Measures, IEEE Trans. on Pattern Analysis and Machine Intelligence, 34(1):3-18, 2012. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_BNq_unified_accepted_TPAMI.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, J Kittler, C. H. Chan, S. Marcel, C. Mc Cool, E.A.Rua  L. A. Castro, M. Villegas, R. Paredes, V. Struc, N. Pavesic, A.A. Salah, H. Fang, and N. Costen, An evaluation of video-to-video face verification, IEEE Trans. on Information Forensics and Security, 5(4), 781-801, 2010. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_icb2009_journal_aas.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, D. Windridge, V. Mottl, A. Tatarchuk, and A. Eliseyev. Addressing Missing Values in Kernel-based Multimodal Biometric Fusion Using Neutral Point Substitution. IEEE Trans. on Information Forensics and Security, 5(3):461–469, 2010. &lt;a href=&quot;http://www.ee.surrey.ac.uk/CVSSP/Publications/papers/Poh-IFS-2010_npoint.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, T. Bourlai, and J. Kittler, A Multimodal Biometric Test Bed for Quality-dependent, Cost-sensitive and Client-specific Score-level Fusion Algorithms, in Pattern Recognition Journal, vol. 43, no. 3, pp. 1094–1105, 2009. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_ds2.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, T. Bourlai, and J. Kittler,  Quality-based Score Normalisation with Device Qualitative Information for Multimodal Biometric Fusion, IEEE Trans. on Systems, Man, Cybernatics Part B : Systems and Humans, 40(539-554), 2010. &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_xdevice_double.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh, T. Bourlai, J. Kittler, L. Allano, F. Alonso-Fernandez, O. Ambekar, J. Baker, B. Dorizzi, O. Fatukasi, J. Fierrez, H. Ganster, J. Ortega-Garcia, D. Maurer, A. A Salah, T. Scheidat, and C. Vielhauer, Benchmarking Quality-dependent and Cost-sensitive Multimodal Biometric Fusion Algorithms, IEEE Trans. on Information Forensics and Security, 4(4), pp. 849–866, 2009.  &lt;a href=&quot;http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/data/norman_ds2_result.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh and J. Kittler, Incorporating Variation of Model-specific Score Distribution in Speaker Verification Systems, IEEE Trans. Audio, Speech and Language Processing, 16(3):594-606, 2008.  &lt;a href=&quot;ftp://ftp.idiap.ch/pub/reports/2005/rr05-60.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh and S. Bengio, Performance Generalization in Biometric Authentication Using Joint User-specific and Sample Bootstraps , IEEE Trans. on Pattern Analysis and Machine Intelligence, 29(3):492-498, March 2007. &lt;a href=&quot;ftp://ftp.idiap.ch/pub/reports/2005/rr05-60.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh and S. Bengio, How Do Correlation and Variance of Base Classifiers Affect Fusion in Biometric Authentication Tasks?, in IEEE Trans. on Signal Processing, Vol. 53(11), pages 4384-4396, Nov 2005. &lt;a href=&quot;ftp://ftp.idiap.ch/pub/reports/2004/rr04-18.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;N. Poh and S. Bengio, Database, Protocol and Tools for Evaluating Score-Level Fusion Algorithms in Biometric Authentication in Pattern Recognition Journal, Vol. 39, Issue 2, pages 223-233, Feb 2006 (Honorable mention in the Pattern Recognition Journal Best Paper Award 2006). &lt;a href=&quot;ftp://ftp.idiap.ch/pub/reports/2004/rr04-44.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;iframe src=&quot;https://scholar.google.co.uk/citations?user=6CjzwfEAAAAJ&amp;amp;hl=en&amp;amp;oi=ao&quot;&gt;&lt;/iframe&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>
