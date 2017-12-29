@@ -4,13 +4,47 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2017-12-24T11:01:36+00:00</updated>
+ <updated>2017-12-29T09:53:42+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>How to install VWWare Workstation Player and update it with the latest VMWare Tools</title>
+   <link href="http://normanpoh.github.com/blog/2017/12/29/vmware-tools-update.html"/>
+   <updated>2017-12-29T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2017/12/29/vmware-tools-update</id>
+   <content type="html">&lt;h3 id=&quot;installing-vmware-workstation-in-windows-host-os&quot;&gt;Installing VMWare Workstation in Windows’ host OS&lt;/h3&gt;
+&lt;p&gt;First, download the latest version of VMWare Workstation from the &lt;a href=&quot;https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1410|product_downloads&quot;&gt;link&lt;/a&gt;. The latest version is “VMWare Workstation Player 14”.&lt;/p&gt;
+
+&lt;p&gt;Then, install it in your host machine&lt;/p&gt;
+
+&lt;h3 id=&quot;updating-your-vmware-workstation-with-the-latest-vmware-tools&quot;&gt;Updating your VMWare Workstation with the latest VMWare Tools&lt;/h3&gt;
+&lt;p&gt;For training, I normally prepare the VMWare Ubuntu image. If you have prepared this yourself, you may want to update your image with the latest VMWare Tools. These tools allow you to resize your screen in a window’s host machine and to access to your local drive mount point which is &lt;code&gt;/mnt/hgfs/C&lt;/code&gt; if you share your C drive.&lt;/p&gt;
+
+&lt;p&gt;In preparing this guide, I have followed the VMware Doc on &lt;a href=&quot;https://docs.vmware.com/en/VMware-Workstation-Player-for-Windows/14.0/com.vmware.player.win.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html&quot;&gt;Manually Installing VMware Tools on a Linux Virtual Machine&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;procedure&quot;&gt;Procedure&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;On the host, from the Workstation Player menu bar, select Player &amp;gt; Manage &amp;gt; Install VMware Tools. If an earlier version of VMware Tools is installed, the menu item is Update VMware Tools.&lt;/li&gt;
+  &lt;li&gt;In the virtual machine, open a terminal window.  Type the following commands&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; 
+tar zxpf /media/user/VMware&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Tools/VMwareTools-10.2.0-7259539.tar.gz 
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; vmware-tools-distrib/
+sudo ./vmware-install.pl &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, you can remove the distribution source itself&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt;
+rm -rvf /media/user/VMware&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Tools&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>About me</title>
