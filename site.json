@@ -1,10 +1,34 @@
 [
 
+{"date": "Sun, 31 Dec 2017 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["biometrics","tutorial"],
+"title": "Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition",
+"url": "/blog/2017/12/31/hill-climbing.html"},
+
+{"date": "Sun, 31 Dec 2017 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["biometrics","tutorial"],
+"title": "Tutorial: An alternative biometric experimental protocol",
+"url": "/blog/2017/12/31/alternative-biometric-protocol.html"},
+
 {"date": "Fri, 29 Dec 2017 00:00:00 +0000",
 "categories": ["blog"],
 "tags": ["virtual-machine"],
 "title": "How to install VWWare Workstation Player and update it with the latest VMWare Tools",
 "url": "/blog/2017/12/29/vmware-tools-update.html"},
+
+{"date": "Fri, 29 Dec 2017 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["biometrics","tutorial"],
+"title": "Tutorial: Optimize fingerprint minutiae quality",
+"url": "/blog/2017/12/29/optimize-fprint-minutiae-quality.html"},
+
+{"date": "Fri, 29 Dec 2017 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["biometrics","tutorial"],
+"title": "Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix",
+"url": "/blog/2017/12/29/generate-pairwise-fprint-scores.html"},
 
 {"date": "Sun, 24 Dec 2017 00:00:00 +0000",
 "categories": ["blog"],

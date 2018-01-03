@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norman Poh - Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition</title>
+  <meta name="author" content="Norman Poh" />
+  <meta name="description" content="The blog of Norman Poh" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2017/12/31/hill-climbing.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="Norman Poh" href="http://normanpoh.github.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+   <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1> </h1> 
+  <a href="/">
+    
+    <img src="/assets/norman_round.png" id="logo" alt="Norman's photo" width="200"/>
+    
+  </a>
+  <h2><a href="/">Norman Poh</a></h2>
+  <div id="bio">
+    <p>Senior lecturer, data scientist, consultant</p> 
+	<hr> 
+	<ul>
+	  <li><a href="http://www.snf.ch/en/funding/careers/postdoc-mobility">Swiss NSF Advanced Researcher Fellow</a></li>
+	  <li><a href="https://www.mrc.ac.uk/funding/how-we-fund-research/new-investigator-research-grant/">MRC NIRG Investigator</a> </li> 
+	  <li><a href="https://www.heacademy.ac.uk"> HEA Fellow</a></li>
+	  <li><a href="https://www.surrey.ac.uk"> Researcher of the year 2011, University of Surrey </a></li>
+	</ul>  
+	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
+	<hr>   
+    <p>Ask me about biometrics, healthcare, and predictive analytics </p>
+  </div>
+  <div id="social">
+    Follow me:
+<div id="stalker">
+  
+  <a title="normanpoh on Github" href="https://github.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+  <a title="normanpoh on gitlab" href="https://gitlab.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Norman Poh on LinkedIn" href="https://www.linkedin.com/in/normanpoh">
+    <i class="fa fa-linkedin-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+
+  </div>
+
+  <div id="tags">
+    <span >
+  
+  
+  
+    <a href="/tag/biometrics.html" rel="tag">
+      biometrics 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/resume.html" rel="tag">
+      resume 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/tutorial.html" rel="tag">
+      tutorial 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/virtual-machine.html" rel="tag">
+      virtual-machine 
+  
+    .
+    
+    </a>
+  
+
+</span>
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  December 31, 2017
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition</h1>
+
+<div id="post">
+  <h3 id="purpose">Purpose</h3>
+<p>When an attacker has access to an SDK, for instance, using the same SDK as the system he attempts to target, he can carry out hill-climbing attack or wolf attack.</p>
+
+<p><strong>Hill climbing</strong> iteratively reconstructs an image (or feature) starting from an unrelated probe sample by sending modified versions. By gradually improving the result, the attacker can eventually compromise the system security. Hill climbing can be used to bypass either the sensor or the feature extractor.</p>
+
+<p><strong>Wolf attack</strong> differs from hill climbing in that instead of synthesizing new samples, wolf attack starts with a large database of biometric samples and attempts to find the closest match.</p>
+
+<p>In this tutorial, we shall combine wolf attack with hill climbing attack to demonstrate the potential vulnerability of a minutiae-based fingerprint recognition system to these attacks.</p>
+
+<p>A wolf according to <a href="https://pdfs.semanticscholar.org/8d35/c69bb93bca9dfcc8ec82ab0547c0f5ad60f3.pdf">Doddington’s original paper</a> is a biometric sample belonging to different person than the target user (victim) that can produce very a high similarity score.</p>
+
+<p>However, not all target user (victim) is succeptible to a wolf attack. In partivcular, the biometric traits of subjects who are more unique would be more resistant to the wolf attack. It is, therefore, sensible to combine both attacks by first introducing the wolf attack first followed by hill climbing in order to further expose the potency of this threat.</p>
+
+<h3 id="approach">Approach</h3>
+<p>We shall continue from a previous <a href="/blog/2017/12/29/generate-pairwise-fprint-scores.html">post</a> in which a database of fingerprint <code>features</code> have been prepared using NIST’s fingerprint matcher <code>mindct</code>.</p>
+
+<p>A text file named <code>filelist_xyt.txt</code> contains all the processed files in  <code>.xyt</code>  format. This file list serves as a gallery of zero-effort attack from which potential wolves can be identified.</p>
+
+<h3 id="procedures">Procedures</h3>
+<p>Let us suppose that the target biometric reference being attacked is <code>file2attack.xyt</code>. The following codes in Oracle and Matlab/Octave invokes <code>bozorth3</code> to match <code>file2attack.xyt</code> against the gallery <code>filelist_xyt.txt</code>; the result of which is stored in <code>file2attack.scores</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c1"># bash</span>
+bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">% Matlab or Ocatave</span>
+<span class="n">cmd</span> <span class="p">=</span> <span class="s">&#39;bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&#39;</span><span class="p">;</span>
+<span class="n">unix</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span></code></pre></figure>
+
+<p>The next lines of codes below then load the scores, sort them and plot the sorted scores.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
+<span class="n">wolf_scores</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">);</span>
+<span class="n">filelist</span> <span class="p">=</span> <span class="n">textread</span><span class="p">(</span>&quot;<span class="n">filelist_xyt</span><span class="p">.</span><span class="n">txt</span>&quot;<span class="p">,</span> &quot;<span class="c">%s&quot;);</span>
+
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+<span class="n">best_xyt</span> <span class="p">=</span> <span class="n">filelist</span><span class="p">{</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c">%% plot the scores</span>
+<span class="n">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> &quot;<span class="n">defaultaxesfontsize</span>&quot;<span class="p">,</span> <span class="mi">16</span><span class="p">)</span> 
+<span class="n">plot</span><span class="p">(</span><span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;200 Attempts (sorted)&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Similarity scores&#39;</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/assets/hill-climb/wolf_attack.png" alt="hill climbing output scores" style="width: 100%;" /></p>
+
+<h5 id="how-do-the-minutiae-look-like">How do the minutiae look like?</h5>
+<p>To answer this question, I have written a function <code>display_xyt</code> to display the minutiae. Because it is an image, we have to reverse the x-axis; and the function does this for you.  This function also takes in the magnitude variable, <code>mag</code>, which controls the length of the arrow for visualisation purpose only.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span><span class="nf">display_xyt</span><span class="p">(</span>xyt, mag, img<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">||</span><span class="nb">isempty</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
+    <span class="n">mag</span><span class="p">=</span><span class="mi">10</span><span class="p">;</span>
+  <span class="n">endif</span>
+  
+  <span class="k">if</span> <span class="n">nargin</span><span class="o">==</span><span class="mi">3</span>
+    <span class="c">%reverse the x-axis first before plotting</span>
+    <span class="n">img</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">img</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,:,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">img</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">img</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,:,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">img</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">img</span><span class="p">(</span><span class="k">end</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,:,</span> <span class="mi">3</span><span class="p">);</span>
+
+    <span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">clf</span><span class="p">;</span>
+  <span class="n">endif</span>
+  <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">xyt</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xyt</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="s">&#39;markersize&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="k">for</span> <span class="n">t</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">xyt</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">([</span><span class="n">xyt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="n">xyt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span> <span class="n">mag</span> <span class="o">*</span> <span class="nb">cos</span><span class="p">(</span><span class="n">xyt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span> <span class="mi">180</span> <span class="o">*</span><span class="nb">pi</span><span class="p">)],</span> <span class="c">...</span>
+      <span class="p">[</span><span class="n">xyt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="n">xyt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">mag</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">xyt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span> <span class="mi">180</span> <span class="o">*</span><span class="nb">pi</span><span class="p">)],</span> <span class="s">&#39;r-&#39;</span><span class="p">);</span>
+  <span class="k">end</span>
+<span class="n">endfunction</span></code></pre></figure>
+
+<p>Simply call this function for a given minutia template and its corresponding image. For example, if <code>140_1.png</code> is the best wolf, read the <code>xyt</code> features and its image and display the</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+<span class="n">best_xyt</span> <span class="p">=</span> <span class="n">filelist</span><span class="p">{</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="n">img</span> <span class="p">=</span> <span class="n">imread</span><span class="p">(</span><span class="s">&#39;/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/</span>
+<span class="s">TrainingItaldataLive/140_1.png&#39;</span><span class="p">);</span>
+<span class="n">xyt</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&#39;features/140_1.xyt&#39;</span><span class="p">);</span>
+
+<span class="n">display_xyt</span><span class="p">(</span><span class="n">xyt</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span><span class="mi">20</span><span class="p">,</span> <span class="n">img</span><span class="p">);</span></code></pre></figure>
+
+<h5 id="carrying-out-the-hill-climbing-attack">Carrying out the hill climbing attack</h5>
+
+<p>In order to carry out the hill-climbing attack, we shall define a supporting function which interfaces with NIST’s <code>bozorth3</code> matcher. This function takes in a fingerprint template in <code>.xyt</code> which has four features per minutiae, namely row, column, orientation and quality and then outputs a <em>set</em> of slightly modified templates with some pertubation as controlled by <code>pertube</code>.</p>
+
+<p>The function below, <code>evolve_sample</code> below simply produces 30 novel fingerprint templates, each of which differs by simultaneous change in the row and column of a minutiae. Note that this is just one of the many possible ways to <em>evolve</em> novel fingerprint templates. You can add or remove a minutia or change the orientation of the minutia. This is left as a hands-on exercise.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>[scores, samples] <span class="p">=</span><span class="w"> </span><span class="nf">evolve_sample</span><span class="p">(</span>xyt, pertube, temperature<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">noise</span> <span class="p">=</span> <span class="n">randi</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pertube</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">xyt</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">pertube</span><span class="p">;</span>
+
+  <span class="n">samples</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">xyt</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+  
+  <span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">2</span> <span class="o">||</span> <span class="nb">isempty</span><span class="p">(</span><span class="n">pertube</span><span class="p">),</span>
+    <span class="n">pertube</span><span class="p">=</span><span class="mi">10</span><span class="p">;</span>
+  <span class="n">endif</span>
+  <span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">3</span> <span class="o">||</span> <span class="nb">isempty</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
+    <span class="n">temperature</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">endif</span>
+  
+  <span class="n">ii</span> <span class="p">=</span> <span class="nb">find</span><span class="p">(</span><span class="n">xyt</span><span class="p">(:,</span><span class="mi">4</span><span class="p">)</span><span class="o">&gt;</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span>
+  
+  <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+    <span class="n">noise_</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">xyt</span><span class="p">),</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">noise_</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">noise</span><span class="p">(</span><span class="nb">i</span><span class="p">,:);</span>
+    <span class="n">xyt_noisy</span> <span class="p">=</span> <span class="n">xyt</span><span class="p">(</span><span class="n">ii</span><span class="p">,:)</span> <span class="o">+</span> <span class="n">noise_</span><span class="p">;</span>
+    <span class="n">samples</span><span class="p">{</span><span class="nb">i</span><span class="p">}</span> <span class="p">=</span> <span class="n">xyt_noisy</span><span class="p">;</span>
+    <span class="n">dlmwrite</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;features/generated%03d.xyt&#39;</span><span class="p">,</span><span class="nb">i</span><span class="p">),</span> <span class="n">xyt_noisy</span> <span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">txt</span><span class="p">=</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;features/generated%03d.xyt\n&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">ii</span><span class="p">));</span>
+  <span class="n">f_</span> <span class="p">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#39;filelist_generated.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">);</span>
+  <span class="n">fprintf</span><span class="p">(</span><span class="n">f_</span><span class="p">,</span> <span class="s">&#39;%s&#39;</span><span class="p">,</span><span class="n">txt</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">f_</span><span class="p">);</span>
+
+  <span class="n">cmd</span> <span class="p">=</span> <span class="s">&#39;bozorth3 -o output.scores -p file2attack.xyt -G filelist_generated.txt&#39;</span><span class="p">;</span>
+  <span class="c">%cmd = &#39;bozorth3 -p file2attack.xyt -G filelist_generated.txt&#39;;</span>
+  <span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">msg</span><span class="p">]</span> <span class="p">=</span> <span class="n">unix</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+  <span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&#39;output.scores&#39;</span><span class="p">);</span>
+<span class="n">endfunction</span></code></pre></figure>
+
+<p>If you have noticed, we have not made use of the <code>temperature</code> parameter in anyway. You could, for instance, control the amount (magnitude) of pertubation in this way. The algorithm used here is reminiscent of <strong>simulated annealing</strong>.</p>
+
+<p>We now need to write the core function which consists of maintaining, say, 100 generations. In each generation, we need to cap the maximum number of candidates that we can evaluate in order to reduce the computation complexity. This is set to 500.</p>
+
+<p>The steps taken are as follow:</p>
+
+<h5 id="allocate-memory-to-hold-the-output-of-100-generations">1. Allocate memory to hold the output of 100 generations</h5>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">xyt_generation</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">fitness</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span></code></pre></figure>
+
+<h5 id="select-the-top-3-wolf-templates-as-ancestors-to-first-generation-of-fingerprint-candidates">2. Select the top 3 wolf templates as ancestors to first generation of fingerprint candidates.</h5>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
+<span class="n">filelist</span> <span class="p">=</span> <span class="n">textread</span><span class="p">(</span>&quot;<span class="n">filelist_xyt</span><span class="p">.</span><span class="n">txt</span>&quot;<span class="p">,</span> &quot;<span class="c">%s&quot;);</span>
+
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+
+<span class="n">xyt_candidates</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">f</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+  <span class="n">xyt_candidates</span><span class="p">{</span><span class="n">f</span><span class="p">}</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="n">filelist</span><span class="p">{</span><span class="n">index</span><span class="p">(</span><span class="n">f</span><span class="p">)});</span>
+<span class="k">end</span><span class="p">;</span>
+<span class="n">xyt_generation</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="p">=</span> <span class="n">xyt_candidates</span><span class="p">;</span>
+
+<span class="n">scores_prev</span> <span class="p">=</span> <span class="n">scores</span><span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">));</span></code></pre></figure>
+
+<h5 id="begin-the-evolution">3. Begin the evolution</h5>
+
+<p>At the beginning of the loop, the algorithm takes all the candidates of current generation and evaluates their fitness in terms of  similirity score. Once the fitness values are evaluated, only the top 500 candidates are kept, to be ready for next round of evolution; and the process repeats this way until the desired number of generations is reached (100 in this case). Below is the code fragments that implement this idea.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">pertube</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">temperature</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="n">g</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#39;round %d - top score %1.3f (pop size %d)\n&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">scores_prev</span><span class="p">),</span> <span class="nb">length</span><span class="p">(</span><span class="n">scores_prev</span><span class="p">));</span>
+  <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+  
+  <span class="n">fitness</span><span class="p">{</span><span class="n">g</span><span class="p">}</span> <span class="p">=</span> <span class="n">scores_prev</span><span class="p">;</span>
+  <span class="k">for</span> <span class="n">c</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">xyt_generation</span><span class="p">{</span><span class="n">g</span><span class="p">}),</span>
+    <span class="p">[</span><span class="n">scores</span><span class="p">,</span> <span class="n">samples</span><span class="p">]</span> <span class="p">=</span> <span class="n">evolve_sample</span><span class="p">(</span><span class="n">xyt_generation</span><span class="p">{</span><span class="n">g</span><span class="p">}{</span><span class="n">c</span><span class="p">},</span> <span class="n">pertube</span><span class="p">,</span> <span class="n">temperature</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="n">c</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">next_gen</span> <span class="p">=</span> <span class="n">samples</span><span class="p">;</span>
+        <span class="n">fitness_curr</span> <span class="p">=</span> <span class="n">scores</span><span class="p">;</span>
+      <span class="k">else</span>
+        <span class="n">next_gen</span> <span class="p">=</span> <span class="p">[</span><span class="n">next_gen</span><span class="p">;</span> <span class="n">samples</span> <span class="p">];</span>
+        <span class="n">fitness_curr</span> <span class="p">=</span> <span class="p">[</span><span class="n">fitness_curr</span><span class="p">;</span> <span class="n">scores</span><span class="p">];</span>
+    <span class="n">endif</span>
+  <span class="n">endfor</span>
+    
+  <span class="p">[</span><span class="n">scores_</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">fitness_curr</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+  <span class="n">n</span> <span class="p">=</span> <span class="n">min</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="nb">length</span><span class="p">(</span><span class="n">scores_</span><span class="p">));</span>
+  
+  <span class="c">%keep to the top candidates (up to 500)</span>
+  <span class="n">xyt_generation</span><span class="p">{</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="p">=</span> <span class="n">next_gen</span><span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">));</span>
+  <span class="n">scores_prev</span> <span class="p">=</span> <span class="n">scores_</span><span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">));</span>
+  
+<span class="n">endfor</span>
+
+<span class="n">save</span> <span class="n">working</span><span class="p">.</span><span class="n">mat</span> <span class="n">fitness</span> <span class="n">xyt_generation</span></code></pre></figure>
+
+<p>The last statement saves the key variables. <code>xyt_genration</code> stores all the top candidates (up to 500) whereas <code>fitness</code> stores the candidates’ fitness value.</p>
+
+<h5 id="analyse-the-score-evolution">4. Analyse the score evolution</h5>
+
+<p>We shall analyse the number of (capped) candidates in each generation.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">count</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fitness</span><span class="p">)</span>
+
+<span class="n">max_iter</span> <span class="p">=</span>  <span class="n">min</span><span class="p">(</span><span class="nb">find</span><span class="p">(</span><span class="n">count</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">maxfit</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">max_iter</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">g</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">max_iter</span>
+  <span class="n">maxfit</span><span class="p">(</span><span class="n">g</span><span class="p">)=</span><span class="n">max</span><span class="p">(</span><span class="n">fitness</span><span class="p">{</span><span class="n">g</span><span class="p">});</span>
+<span class="n">endfor</span>
+<span class="n">count</span> <span class="p">=</span> <span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">maxfit</span><span class="p">));</span></code></pre></figure>
+
+<p>Then, plot the best scores along with the wolf scores for comparison.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">close</span> <span class="n">all</span><span class="p">;</span> <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">wolf_scores</span><span class="p">),</span> <span class="nb">numel</span><span class="p">(</span><span class="n">wolf_scores</span><span class="p">)</span><span class="o">+</span><span class="n">cumsum</span><span class="p">(</span><span class="n">count</span><span class="o">&#39;</span><span class="p">)],</span> <span class="p">[</span><span class="n">wolf_scores</span><span class="p">;</span> <span class="n">maxfit</span><span class="p">]);</span>
+<span class="n">axis_</span> <span class="p">=</span> <span class="n">axis</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">axis_</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">),</span> <span class="s">&#39;k--&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;# of attempts&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Similarity scores&#39;</span><span class="p">)</span></code></pre></figure>
+
+<p><img src="/assets/hill-climb/hillclimbing_attack.png" alt="hill climbing output scores" style="width: 100%;" /></p>
+
+<p>What do we observe here? The wolf attack is more efficient compared to the hill-climbing attack in this case. There is certainly room for improvement here for the hill climbing attack.</p>
+
+<p>So, what improvements can we make here?</p>
+
+<h5 id="visualize-the-best-candidates-in-each-generation">5. Visualize the best candidates in each generation</h5>
+
+<p>We can also plot the top candidate from one generation to another.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">close</span> <span class="n">all</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">g</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">max_iter</span>
+  <span class="p">[</span><span class="o">~</span><span class="p">,</span> <span class="n">index</span><span class="p">]=</span><span class="n">sort</span><span class="p">(</span><span class="n">fitness</span><span class="p">{</span><span class="n">g</span><span class="p">},</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+  <span class="n">xyt</span> <span class="p">=</span> <span class="n">xyt_generation</span><span class="p">{</span><span class="n">g</span><span class="p">}{</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)};</span>
+  <span class="n">clf</span><span class="p">;</span>
+  <span class="n">display_xyt</span><span class="p">(</span><span class="n">xyt</span><span class="p">);</span>
+  <span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">640</span> <span class="mi">0</span> <span class="mi">480</span><span class="p">]);</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">&#39;-djpg&#39;</span><span class="p">,</span> <span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;%02d.jpg&#39;</span><span class="p">,</span> <span class="n">g</span><span class="p">));</span>
+<span class="n">endfor</span></code></pre></figure>
+
+<p><img src="/assets/hill-climb/wolf_attack_fprint.gif" alt="Fingerprint images superimposed with minutiae" style="width: 100%;" /></p>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>31 Dec 2017 &raquo;</span> <a href="/blog/2017/12/31/alternative-biometric-protocol.html">Tutorial: An alternative biometric experimental protocol</a>
+    </li>
+    
+    <li>
+      <span>29 Dec 2017 &raquo;</span> <a href="/blog/2017/12/29/vmware-tools-update.html">How to install VWWare Workstation Player and update it with the latest VMWare Tools</a>
+    </li>
+    
+    <li>
+      <span>29 Dec 2017 &raquo;</span> <a href="/blog/2017/12/29/optimize-fprint-minutiae-quality.html">Tutorial: Optimize fingerprint minutiae quality</a>
+    </li>
+    
+  </ul>
+
+  <h3>Tags :</h3>
+  <span>
+    
+      <a href="/tag/biometrics.html" rel="tag"> 
+         biometrics 
+        
+          ,
+        
+      </a>
+
+      <a href="/tag/tutorial.html" rel="tag"> 
+         tutorial 
+        
+        .
+        
+      </a>
+
+  </span>
+</div>
+
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Norman Poh, 2018 &mdash; built with 
+<a href="http://jekyllrb.com/">Jekyll</a> using 
+<a href="https://github.com/swanson/lagom">Lagom theme </a> and 
+<a href="https://github.com/Khan/KaTeX"> Katex </a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-111544249-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+
+$("script[type='math/tex']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<span class=\"inline-equation\">" + 
+           katex.renderToString(tex) +
+           "</span>";
+});
+
+$("script[type='math/tex; mode=display']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<div class=\"equation\">" + 
+           katex.renderToString("\\displaystyle "+tex) +
+           "</div>";
+});
+
+</script>
+
+
+</body>
+</html>
