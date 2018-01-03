@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-03T06:34:09+00:00</updated>
+ <updated>2018-01-03T22:25:59+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -611,13 +611,16 @@ mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;ul&gt;
   &lt;li&gt;a fingerprint database. Download the &lt;a href=&quot;http://livdet.org&quot;&gt;LivDET 2011 database&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;the &lt;a href=&quot;https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis&quot;&gt;NIST Biometric Image Software (NBIS)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;In my setup, I have a host Windows machine and run Ubuntu 16.04 using VMWare. If you use this setup, you should read &lt;a href=&quot;/blog/2017/12/29/vmware-tools-update.html&quot;&gt;my previous post&lt;/a&gt; which sets up the environment correctly.&lt;/li&gt;
+  &lt;li&gt;In my setup, I have a host Windows machine and run Ubuntu 16.04 using VMWare. If you use this setup, you should read &lt;a href=&quot;/blog/2017/12/29/vmware-tools-update.html&quot;&gt;my previous post&lt;/a&gt; which sets up the environment correctly. You can, of course, use VirtualBox to achieve the same result; or even mix the two, e.g., create VMWare image and then run it in VirtualBox.&lt;/li&gt;
   &lt;li&gt;For performance, you should get the git clone the &lt;code&gt;wer&lt;/code&gt; function using &lt;code&gt;git clone git@gitlab.com:normanpoh/DETconf_octave.git&lt;/code&gt; or else visit &lt;a href=&quot;https://gitlab.com/normanpoh/DETconf_octave&quot;&gt;this link&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Once you have fulfilled the above requirements, you can then follow the instructions set out below.&lt;/p&gt;
 
 &lt;p&gt;I will be using a combination of bash and Octave scripts in order to plot the performance curves. Once you understand how this works, you can, of course, use different biometric software and modalities.&lt;/p&gt;
+
+&lt;h3 id=&quot;intended-audience&quot;&gt;Intended audience&lt;/h3&gt;
+&lt;p&gt;I have written this tutorial for researchers who are interested to start working in biometrics but are not fully confident with using &lt;code&gt;bash&lt;/code&gt; and &lt;code&gt;Octave&lt;/code&gt; or &lt;code&gt;Matlab&lt;/code&gt;. With this in mind, every step has been carefully written so that they can follow, whilst learning the strengths or features that the scripts can offer.&lt;/p&gt;
 
 &lt;h3 id=&quot;procedure&quot;&gt;Procedure&lt;/h3&gt;
 &lt;p&gt;We shall use a publicly available fingerprint database to illustrate how you can use NIST’s fingerprint matching &lt;code&gt;bozorth3&lt;/code&gt; to generate an exhaustive pair-wise comparison score matrix.&lt;/p&gt;
@@ -633,14 +636,23 @@ mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# In bash:&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;# Set the input file directory where all the fingerprint images are stored&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Set the input file directory where all the fingerprint images in .png format are stored. In my case, they are stored in; yours will certainly be different&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;fdir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/TrainingItaldataLive
 
 &lt;span class=&quot;c1&quot;&gt;# Set the output directory where features are stored&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;outdir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;nv&quot;&gt;outdir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;features
+
+&lt;span class=&quot;c1&quot;&gt;# Set the file list variable&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;flist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;filelist.txt
+
+&lt;span class=&quot;c1&quot;&gt;# List all the files and store them in $file&lt;/span&gt;
+ls &lt;span class=&quot;nv&quot;&gt;$fd&lt;/span&gt;ir &amp;gt; filelist.txt &lt;span class=&quot;c1&quot;&gt;#List all the files&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Create the output directory&lt;/span&gt;
+mkdir $outdir&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h5 id=&quot;extract-the-features&quot;&gt;2.Extract the features&lt;/h5&gt;
-&lt;p&gt;To extract the features, below I assume that the fingerprint images are stored in &lt;code&gt;.png&lt;/code&gt; format; so the command &lt;code&gt;convert&lt;/code&gt; is used.&lt;/p&gt;
+&lt;p&gt;To extract the features, below I assume that the fingerprint images are stored in &lt;code&gt;.png&lt;/code&gt; format; so the command &lt;code&gt;convert&lt;/code&gt; is used to convert the images to &lt;code&gt;.wsq&lt;/code&gt;. The code below simply loops through all the files and extract the fingerprint features using NIST’s &lt;code&gt;mindtct&lt;/code&gt; program.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# In bash:&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
@@ -654,7 +666,7 @@ mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
   mindtct out.wsq $outdir/&lt;span class=&quot;nv&quot;&gt;$f&lt;/span&gt;name
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;All the features are now can be found in the directory &lt;code&gt;$outdir&lt;/code&gt; (i.e., &lt;code&gt;features&lt;/code&gt; in the example above).&lt;/p&gt;
+&lt;p&gt;All the features can now be found in the directory &lt;code&gt;$outdir&lt;/code&gt; (i.e., &lt;code&gt;features&lt;/code&gt; in the example above).&lt;/p&gt;
 
 &lt;p&gt;To check the output, type &lt;code&gt;ls features/*.xyt | head&lt;/code&gt;. The database contains &lt;code&gt;&amp;lt;user-id&amp;gt;_&amp;lt;attempt-id&amp;gt;.png&lt;/code&gt;; so the processed output contains &lt;code&gt;&amp;lt;finger-id&amp;gt;_&amp;lt;attempt-id&amp;gt;.xyt&lt;/code&gt;. There are 200 unique fingers and for each finger, there are 5 attempts; so thare are a total of 1000 fingerprint images.&lt;/p&gt;
 
@@ -686,29 +698,37 @@ features/101_5.xyt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;span class=&quot;n&quot;&gt;cellfun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(@(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;fclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Let’s write two functions to get the user and session indices, respectively.&lt;/p&gt;
+&lt;p&gt;Let’s write two functions to get the user and session indices, respectively. These 2 pieces of information are often needed in order to extract genuine and impostor scores as will become clear later.&lt;/p&gt;
+
+&lt;p&gt;In order to extract the information, I have chosen to achieve this by processing the filenames in order to illustrate how you can use text processing in Octave. In practice, you should modify the scripts to suite your needs.&lt;/p&gt;
+
+&lt;p&gt;Recall that each role in the &lt;code&gt;filelist_xyt.txt&lt;/code&gt; has the following format: &lt;code&gt;features/&lt;/code&gt;&lt;user-id&gt;`_`&lt;attempt-id&gt;`.xyt`, e.g., `features/100_1.xyt` so to extract the user (unique finger) id, we split the string into two parts by &#39;/&#39; to get the second part `100_1.xyt` and then furtther split this string by `_` to get to the first part of the string, i.e., `100`.&lt;/attempt-id&gt;&lt;/user-id&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;c&quot;&gt;%% Let&amp;#39;s process the user&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;out &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;x&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;p&gt;Using the same methodology, we create the &lt;code&gt;get_session&lt;/code&gt; function.&lt;/p&gt;
 
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;out &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get_session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;x&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;out &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get_session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;x&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;span class=&quot;c&quot;&gt;% Try this&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;numel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;p&gt;Here’s how you apply the function.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;numel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;span class=&quot;c&quot;&gt;%or use cellfun to do the same&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cellfun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &amp;quot;&lt;span class=&quot;n&quot;&gt;UniformOutput&lt;/span&gt;&amp;quot;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;p&gt;Writing the &lt;code&gt;for&lt;/code&gt; loop is not usually a very efficient way of doing this. Since the variable fname is a &lt;code&gt;cell&lt;/code&gt; type, we can use the &lt;code&gt;cellfun&lt;/code&gt; and then further define an &lt;em&gt;annonymous function&lt;/em&gt; applied to each cell. In our case, this function is &lt;code&gt;@(x) get_user(x)&lt;/code&gt; which reads, &lt;code&gt;apply each cell &lt;/code&gt;x&lt;code&gt; using the function &lt;/code&gt;get_user`’.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cellfun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &amp;quot;&lt;span class=&quot;n&quot;&gt;UniformOutput&lt;/span&gt;&amp;quot;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cellfun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &amp;quot;&lt;span class=&quot;n&quot;&gt;UniformOutput&lt;/span&gt;&amp;quot;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The variable &lt;code&gt;user&lt;/code&gt; will be used later to distinguish between genuine and impostor scores.&lt;/p&gt;
@@ -752,15 +772,17 @@ features/101_5.xyt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2017-12-29-generate--pairwise-fprint-scores/matrix_scores1.png&quot; alt=&quot;wer&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;These scores are not symmetrical but really they should since comparing samples A and B should be the same as comparing B and A. In minutia-based fingerprint matching, this is not true but can be enforced using the codes below.&lt;/p&gt;
+&lt;p&gt;Minutiae-based similarity scores are &lt;strong&gt;not symmetrical&lt;/strong&gt; but really they should since comparing samples A and B should be the same as comparing B and A. To enforece this property, we can use codes below, which take the upper triangular matrix of the scores and add it to the &lt;strong&gt;transposed version&lt;/strong&gt; of the lower triangular matrix, and then take the average of the two.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;n&quot;&gt;scores_sym&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;triu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;triu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;n&quot;&gt;scores_sym&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;triu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;tril&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
 
 &lt;span class=&quot;c&quot;&gt;% now display&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;imagesc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;100.5&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;100.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2017-12-29-generate--pairwise-fprint-scores/matrix_scores_sym.png&quot; alt=&quot;wer&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Because of the above matrix operations (&lt;code&gt;triu&lt;/code&gt; and &lt;code&gt;tril&lt;/code&gt;), the lower triangular matrix has zero values everywhere.&lt;/p&gt;
 
 &lt;p&gt;We can create a function &lt;code&gt;get_symmetric_scores&lt;/code&gt; to do this.&lt;/p&gt;
 
@@ -805,9 +827,6 @@ features/101_5.xyt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;span class=&quot;n&quot;&gt;imagesc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask_imp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;%% get the scores&lt;/span&gt;
-
-
-
 &lt;span class=&quot;n&quot;&gt;imp_scores&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask_imp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;gen_scores&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask_gen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -841,6 +860,8 @@ features/101_5.xyt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
   &lt;span class=&quot;n&quot;&gt;gen_scores&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask_gen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In the above code, &lt;code&gt;scores(mask_imp==1)&lt;/code&gt; selects the elements in the score matrix where the &lt;code&gt;mask_imp&lt;/code&gt; is true. This conveniently returns a column vector of impostor scores which is the formwat we need. Recall that &lt;code&gt;scores&lt;/code&gt; is a score matrix; and not a column vector but by using the subsetting operation &lt;code&gt;scores(mask_imp==1)&lt;/code&gt; returns a column vector. So the matrix has been &lt;em&gt;linearlised&lt;/em&gt; implicitly.&lt;/p&gt;
 
 &lt;p&gt;Having obtained the genuine and impostor score vectors, we can now plot the performance using the &lt;code&gt;wer&lt;/code&gt; function, which gives us the equal error rate (EER) of the system.&lt;/p&gt;
 
@@ -879,17 +900,20 @@ may result in -Inf due to &lt;script type=&quot;math/tex&quot;&gt; \log  ( 0 ) &
 &lt;script type=&quot;math/tex&quot;&gt; y_{ub}=0 &lt;/script&gt; but 
 &lt;script type=&quot;math/tex&quot;&gt; y_{ub}=-1 &lt;/script&gt;; and so as its uppper bound which is to be set to a sufficiently large number by trial and error.&lt;/p&gt;
 
-&lt;p&gt;It is implemented using the function below &lt;code&gt;get_gen_logit&lt;/code&gt; below.&lt;/p&gt;
+&lt;p&gt;It is implemented using the function below &lt;code&gt;logit_transform&lt;/code&gt; function below.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;output&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get_gen_logit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;scores, max_scores&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;%we add one to avoid -Inf&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;output&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;logit_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;scores, max_scores&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nargin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;max_scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_scores&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;%we add one to avoid -Inf&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;  \max(y) &lt;/script&gt;
 is the maximum value the fingerprint similarity score $y$. We can set this to be slightly larger than the maximal observable score, which is 400 in this case. We then apply the function to the genine and impostor scores and then replot the performance curves using &lt;code&gt;wer&lt;/code&gt;.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;n&quot;&gt;imp_logit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gen_logit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imp_scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;gen_logit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gen_logit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gen_scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;n&quot;&gt;imp_logit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logit_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imp_scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gen_logit&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logit_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gen_scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;tic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;eer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imp_logit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gen_logit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[],&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -900,14 +924,20 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
 
 &lt;p&gt;&lt;img src=&quot;/assets/2017-12-29-generate--pairwise-fprint-scores/wer2_logit.png&quot; alt=&quot;wer&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;As can be observed the score distributions look a lot more sensible but the performance should remains the same.&lt;/p&gt;
+&lt;p&gt;As can be observed the score distributions look a lot more sensible but the performance should remains the same. Why? Because the generalised logit transform operator is a one-to-one order-preserving transformation, i.e., the orders of the scores before and after the transformation does not change.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary-and-where-do-you-go-from-here&quot;&gt;Summary and where do you go from here&lt;/h3&gt;
 
 &lt;p&gt;In short, this tutorial shows you how to work with NIST’s &lt;code&gt;bozorth3&lt;/code&gt; software to generate scores which you can then analyse using the &lt;code&gt;wer&lt;/code&gt; function in order to plot the system performance.&lt;/p&gt;
 
-&lt;p&gt;In the next tutorial, I will show you how to optimize the system performance by adjusting the fingerprint minutia quality. The DET curve below shows the performance gain we could obtain if we retain only the minutiae with sufficiently high quality.&lt;/p&gt;
+&lt;p&gt;In the &lt;a href=&quot;/blog/2017/12/29/optimize-fprint-minutiae-quality.html&quot;&gt;next tutorial&lt;/a&gt;, I will show you how to optimize the system performance by adjusting the fingerprint minutia quality. The DET curve below shows the performance gain we could obtain if we retain only the minutiae with sufficiently high quality.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2017-12-29-generate--pairwise-fprint-scores/wer_quality_optimised.png&quot; alt=&quot;wer&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
+&lt;p&gt;In addition, on reflection, you may have noticed that we have used all samples in a database to generate the genuine and impostor scores. So, if there are 
+&lt;script type=&quot;math/tex&quot;&gt; J &lt;/script&gt; users and each has
+&lt;script type=&quot;math/tex&quot;&gt; S &lt;/script&gt; samples, then a total of 
+&lt;script type=&quot;math/tex&quot;&gt; \frac 1 2 JS(JS-1) &lt;/script&gt; matching is needed (ignoring the symmetrised score operation). If we deal with millions of users, this can not only be prohibitive large, but also that the proportion of impostor scores relatively to the genuine scores becomes very disporportionate. You may also be interested in an &lt;a href=&quot;/blog/2017/12/31/alternative-biometric-protocol.html&quot;&gt;alternative biometric experimental protocol&lt;/a&gt; that can deal with this situation.&lt;/p&gt;
 </content>
  </entry>
  

@@ -153,13 +153,16 @@
 <ul>
   <li>a fingerprint database. Download the <a href="http://livdet.org">LivDET 2011 database</a>.</li>
   <li>the <a href="https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis">NIST Biometric Image Software (NBIS)</a></li>
-  <li>In my setup, I have a host Windows machine and run Ubuntu 16.04 using VMWare. If you use this setup, you should read <a href="/blog/2017/12/29/vmware-tools-update.html">my previous post</a> which sets up the environment correctly.</li>
+  <li>In my setup, I have a host Windows machine and run Ubuntu 16.04 using VMWare. If you use this setup, you should read <a href="/blog/2017/12/29/vmware-tools-update.html">my previous post</a> which sets up the environment correctly. You can, of course, use VirtualBox to achieve the same result; or even mix the two, e.g., create VMWare image and then run it in VirtualBox.</li>
   <li>For performance, you should get the git clone the <code>wer</code> function using <code>git clone git@gitlab.com:normanpoh/DETconf_octave.git</code> or else visit <a href="https://gitlab.com/normanpoh/DETconf_octave">this link</a>.</li>
 </ul>
 
 <p>Once you have fulfilled the above requirements, you can then follow the instructions set out below.</p>
 
 <p>I will be using a combination of bash and Octave scripts in order to plot the performance curves. Once you understand how this works, you can, of course, use different biometric software and modalities.</p>
+
+<h3 id="intended-audience">Intended audience</h3>
+<p>I have written this tutorial for researchers who are interested to start working in biometrics but are not fully confident with using <code>bash</code> and <code>Octave</code> or <code>Matlab</code>. With this in mind, every step has been carefully written so that they can follow, whilst learning the strengths or features that the scripts can offer.</p>
 
 <h3 id="procedure">Procedure</h3>
 <p>We shall use a publicly available fingerprint database to illustrate how you can use NIST’s fingerprint matching <code>bozorth3</code> to generate an exhaustive pair-wise comparison score matrix.</p>
@@ -175,14 +178,23 @@
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c1"># In bash:</span>
 
-<span class="c1"># Set the input file directory where all the fingerprint images are stored</span>
+<span class="c1"># Set the input file directory where all the fingerprint images in .png format are stored. In my case, they are stored in; yours will certainly be different</span>
 <span class="nv">fdir</span><span class="o">=</span>/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/TrainingItaldataLive
 
 <span class="c1"># Set the output directory where features are stored</span>
-<span class="nv">outdir</span><span class="o">=</span>features</code></pre></figure>
+<span class="nv">outdir</span><span class="o">=</span>features
+
+<span class="c1"># Set the file list variable</span>
+<span class="nv">flist</span><span class="o">=</span>filelist.txt
+
+<span class="c1"># List all the files and store them in $file</span>
+ls <span class="nv">$fd</span>ir &gt; filelist.txt <span class="c1">#List all the files</span>
+
+<span class="c1"># Create the output directory</span>
+mkdir $outdir</code></pre></figure>
 
 <h5 id="extract-the-features">2.Extract the features</h5>
-<p>To extract the features, below I assume that the fingerprint images are stored in <code>.png</code> format; so the command <code>convert</code> is used.</p>
+<p>To extract the features, below I assume that the fingerprint images are stored in <code>.png</code> format; so the command <code>convert</code> is used to convert the images to <code>.wsq</code>. The code below simply loops through all the files and extract the fingerprint features using NIST’s <code>mindtct</code> program.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c1"># In bash:</span>
 <span class="nv">c</span><span class="o">=</span>0
@@ -196,7 +208,7 @@
   mindtct out.wsq $outdir/<span class="nv">$f</span>name
 <span class="k">done</span></code></pre></figure>
 
-<p>All the features are now can be found in the directory <code>$outdir</code> (i.e., <code>features</code> in the example above).</p>
+<p>All the features can now be found in the directory <code>$outdir</code> (i.e., <code>features</code> in the example above).</p>
 
 <p>To check the output, type <code>ls features/*.xyt | head</code>. The database contains <code>&lt;user-id&gt;_&lt;attempt-id&gt;.png</code>; so the processed output contains <code>&lt;finger-id&gt;_&lt;attempt-id&gt;.xyt</code>. There are 200 unique fingers and for each finger, there are 5 attempts; so thare are a total of 1000 fingerprint images.</p>
 
@@ -228,29 +240,37 @@ features/101_5.xyt</code></pre></figure>
 <span class="n">cellfun</span><span class="p">(@(</span><span class="n">x</span><span class="p">)</span> <span class="n">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span> <span class="s">&#39;%s\n&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">);</span>
 <span class="n">fclose</span><span class="p">(</span><span class="n">fid</span><span class="p">);</span></code></pre></figure>
 
-<p>Let’s write two functions to get the user and session indices, respectively.</p>
+<p>Let’s write two functions to get the user and session indices, respectively. These 2 pieces of information are often needed in order to extract genuine and impostor scores as will become clear later.</p>
+
+<p>In order to extract the information, I have chosen to achieve this by processing the filenames in order to illustrate how you can use text processing in Octave. In practice, you should modify the scripts to suite your needs.</p>
+
+<p>Recall that each role in the <code>filelist_xyt.txt</code> has the following format: <code>features/</code><user-id>`_`<attempt-id>`.xyt`, e.g., `features/100_1.xyt` so to extract the user (unique finger) id, we split the string into two parts by '/' to get the second part `100_1.xyt` and then furtther split this string by `_` to get to the first part of the string, i.e., `100`.</attempt-id></user-id></p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%% Let&#39;s process the user</span>
 <span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">);</span>
   <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;_&#39;</span><span class="p">);</span>
   <span class="n">out</span> <span class="p">=</span> <span class="n">str2double</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">1</span><span class="p">});</span>
-<span class="n">endfunction</span>
+<span class="n">endfunction</span></code></pre></figure>
 
+<p>Using the same methodology, we create the <code>get_session</code> function.</p>
 
-<span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_session</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_session</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">);</span>
   <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;_&#39;</span><span class="p">);</span>
+  <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;.&#39;</span><span class="p">);</span>
   <span class="n">out</span> <span class="p">=</span> <span class="n">str2double</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">});</span>
-<span class="n">endfunction</span>
+<span class="n">endfunction</span></code></pre></figure>
 
-<span class="c">% Try this</span>
-<span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<p>Here’s how you apply the function.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
   <span class="n">user</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">fname</span><span class="p">{</span><span class="nb">i</span><span class="p">})</span>
-<span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
-<span class="c">%or use cellfun to do the same</span>
-<span class="n">user</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_user</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<p>Writing the <code>for</code> loop is not usually a very efficient way of doing this. Since the variable fname is a <code>cell</code> type, we can use the <code>cellfun</code> and then further define an <em>annonymous function</em> applied to each cell. In our case, this function is <code>@(x) get_user(x)</code> which reads, <code>apply each cell </code>x<code> using the function </code>get_user`’.</p>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">user</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_user</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span>
 <span class="n">session</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_session</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span></code></pre></figure>
 
 <p>The variable <code>user</code> will be used later to distinguish between genuine and impostor scores.</p>
@@ -294,15 +314,17 @@ features/101_5.xyt</code></pre></figure>
 
 <p><img src="/assets/2017-12-29-generate--pairwise-fprint-scores/matrix_scores1.png" alt="wer" style="width: 100%;" /></p>
 
-<p>These scores are not symmetrical but really they should since comparing samples A and B should be the same as comparing B and A. In minutia-based fingerprint matching, this is not true but can be enforced using the codes below.</p>
+<p>Minutiae-based similarity scores are <strong>not symmetrical</strong> but really they should since comparing samples A and B should be the same as comparing B and A. To enforece this property, we can use codes below, which take the upper triangular matrix of the scores and add it to the <strong>transposed version</strong> of the lower triangular matrix, and then take the average of the two.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores_sym</span> <span class="p">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="nb">triu</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">triu</span><span class="p">(</span><span class="n">scores1</span><span class="p">));</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores_sym</span> <span class="p">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="nb">triu</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tril</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span><span class="o">&#39;</span><span class="p">);</span> 
 
 <span class="c">% now display</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">scores_sym</span><span class="p">)</span>
 <span class="n">axis</span><span class="p">([</span><span class="mf">0.5</span> <span class="mf">100.5</span> <span class="mf">0.5</span> <span class="mf">100.5</span><span class="p">]);</span></code></pre></figure>
 
 <p><img src="/assets/2017-12-29-generate--pairwise-fprint-scores/matrix_scores_sym.png" alt="wer" style="width: 100%;" /></p>
+
+<p>Because of the above matrix operations (<code>triu</code> and <code>tril</code>), the lower triangular matrix has zero values everywhere.</p>
 
 <p>We can create a function <code>get_symmetric_scores</code> to do this.</p>
 
@@ -347,9 +369,6 @@ features/101_5.xyt</code></pre></figure>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">mask_imp</span> <span class="o">.*</span> <span class="n">scores_sym</span><span class="p">)</span>
 
 <span class="c">%% get the scores</span>
-
-
-
 <span class="n">imp_scores</span> <span class="p">=</span> <span class="n">scores_sym</span><span class="p">(</span><span class="n">mask_imp</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">gen_scores</span> <span class="p">=</span> <span class="n">scores_sym</span><span class="p">(</span><span class="n">mask_gen</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span></code></pre></figure>
 
@@ -383,6 +402,8 @@ features/101_5.xyt</code></pre></figure>
   <span class="n">gen_scores</span> <span class="p">=</span> <span class="n">scores</span><span class="p">(</span><span class="n">mask_gen</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span>
 
 <span class="n">endfunction</span></code></pre></figure>
+
+<p>In the above code, <code>scores(mask_imp==1)</code> selects the elements in the score matrix where the <code>mask_imp</code> is true. This conveniently returns a column vector of impostor scores which is the formwat we need. Recall that <code>scores</code> is a score matrix; and not a column vector but by using the subsetting operation <code>scores(mask_imp==1)</code> returns a column vector. So the matrix has been <em>linearlised</em> implicitly.</p>
 
 <p>Having obtained the genuine and impostor score vectors, we can now plot the performance using the <code>wer</code> function, which gives us the equal error rate (EER) of the system.</p>
 
@@ -421,17 +442,20 @@ may result in -Inf due to <script type="math/tex"> \log  ( 0 ) </script>; and th
 <script type="math/tex"> y_{ub}=0 </script> but 
 <script type="math/tex"> y_{ub}=-1 </script>; and so as its uppper bound which is to be set to a sufficiently large number by trial and error.</p>
 
-<p>It is implemented using the function below <code>get_gen_logit</code> below.</p>
+<p>It is implemented using the function below <code>logit_transform</code> function below.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>output<span class="p">=</span><span class="w"> </span><span class="nf">get_gen_logit</span><span class="p">(</span>scores, max_scores<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">output</span> <span class="p">=</span> <span class="nb">log</span><span class="p">(</span><span class="n">scores</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="nb">log</span><span class="p">(</span><span class="n">max_scores</span> <span class="o">-</span> <span class="n">scores</span><span class="p">);</span> <span class="c">%we add one to avoid -Inf</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>output<span class="p">=</span><span class="w"> </span><span class="nf">logit_transform</span><span class="p">(</span>scores, max_scores<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">max_scores</span><span class="p">=</span><span class="mi">400</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="n">output</span> <span class="p">=</span> <span class="nb">log</span><span class="p">(</span><span class="n">scores</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="nb">log</span><span class="p">(</span><span class="n">max_scores</span> <span class="o">-</span> <span class="n">scores</span><span class="p">);</span> <span class="c">%we add one to avoid -Inf</span>
 <span class="n">endfunction</span></code></pre></figure>
 
 <p>where <script type="math/tex">  \max(y) </script>
 is the maximum value the fingerprint similarity score $y$. We can set this to be slightly larger than the maximal observable score, which is 400 in this case. We then apply the function to the genine and impostor scores and then replot the performance curves using <code>wer</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">imp_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">gen_logit</span><span class="p">(</span><span class="n">imp_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-<span class="n">gen_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">gen_logit</span><span class="p">(</span><span class="n">gen_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">imp_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">imp_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="n">gen_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">gen_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
 
 <span class="n">tic</span><span class="p">;</span>
 <span class="n">eer</span> <span class="p">=</span> <span class="n">wer</span><span class="p">(</span><span class="n">imp_logit</span><span class="p">,</span> <span class="n">gen_logit</span><span class="p">,[],</span><span class="mi">1</span><span class="p">);</span>
@@ -442,14 +466,20 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
 
 <p><img src="/assets/2017-12-29-generate--pairwise-fprint-scores/wer2_logit.png" alt="wer" style="width: 100%;" /></p>
 
-<p>As can be observed the score distributions look a lot more sensible but the performance should remains the same.</p>
+<p>As can be observed the score distributions look a lot more sensible but the performance should remains the same. Why? Because the generalised logit transform operator is a one-to-one order-preserving transformation, i.e., the orders of the scores before and after the transformation does not change.</p>
+
+<h3 id="summary-and-where-do-you-go-from-here">Summary and where do you go from here</h3>
 
 <p>In short, this tutorial shows you how to work with NIST’s <code>bozorth3</code> software to generate scores which you can then analyse using the <code>wer</code> function in order to plot the system performance.</p>
 
-<p>In the next tutorial, I will show you how to optimize the system performance by adjusting the fingerprint minutia quality. The DET curve below shows the performance gain we could obtain if we retain only the minutiae with sufficiently high quality.</p>
+<p>In the <a href="/blog/2017/12/29/optimize-fprint-minutiae-quality.html">next tutorial</a>, I will show you how to optimize the system performance by adjusting the fingerprint minutia quality. The DET curve below shows the performance gain we could obtain if we retain only the minutiae with sufficiently high quality.</p>
 
 <p><img src="/assets/2017-12-29-generate--pairwise-fprint-scores/wer_quality_optimised.png" alt="wer" style="width: 100%;" /></p>
 
+<p>In addition, on reflection, you may have noticed that we have used all samples in a database to generate the genuine and impostor scores. So, if there are 
+<script type="math/tex"> J </script> users and each has
+<script type="math/tex"> S </script> samples, then a total of 
+<script type="math/tex"> \frac 1 2 JS(JS-1) </script> matching is needed (ignoring the symmetrised score operation). If we deal with millions of users, this can not only be prohibitive large, but also that the proportion of impostor scores relatively to the genuine scores becomes very disporportionate. You may also be interested in an <a href="/blog/2017/12/31/alternative-biometric-protocol.html">alternative biometric experimental protocol</a> that can deal with this situation.</p>
 
 </div>
 
