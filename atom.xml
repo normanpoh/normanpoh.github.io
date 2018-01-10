@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-10T18:13:49+00:00</updated>
+ <updated>2018-01-10T18:19:16+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -50,10 +50,7 @@
    <content type="html">&lt;h3 id=&quot;who-is-this-guide-for&quot;&gt;Who is this guide for?&lt;/h3&gt;
 &lt;p&gt;This guide is for computer scientists who wish to publish in conferences and journals targetting clinical and healthcare researchers.&lt;/p&gt;
 
-&lt;h3 id=&quot;guide&quot;&gt;Guide&lt;/h3&gt;
-
-&lt;p&gt;Text adapted from the Author’s guide to Informatics in Primary Care
-Norman Poh (normanpoh@ieee.org), University of Surrey, 13 Dec 2012&lt;/p&gt;
+&lt;p&gt;The original text was adapted from “the Author’s Guide to Informatics in Primary Care” but this journal has been renamed and so the text might have been lost. So, I edited the text in order to make it available for you.&lt;/p&gt;
 
 &lt;h4 id=&quot;structured-abstract&quot;&gt;Structured abstract  &lt;/h4&gt;
 &lt;p&gt;The structured abstract should be on a separate page and follow the authors details page(s),  i.e. First page of any submission is the authors details page and the second page is the structured abstract.
