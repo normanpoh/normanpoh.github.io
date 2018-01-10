@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norman Poh - How to a write scientific papers for clinical audience?</title>
+  <meta name="author" content="Norman Poh" />
+  <meta name="description" content="The blog of Norman Poh" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/09/clinical_research.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="Norman Poh" href="http://normanpoh.github.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+   <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1> </h1> 
+  <a href="/">
+    
+    <img src="/assets/norman_round.png" id="logo" alt="Norman's photo" width="200"/>
+    
+  </a>
+  <h2><a href="/">Norman Poh</a></h2>
+  <div id="bio">
+    <p>Senior lecturer, data scientist, consultant</p> 
+	<hr> 
+	<ul>
+	  <li><a href="http://www.snf.ch/en/funding/careers/postdoc-mobility">Swiss NSF Advanced Researcher Fellow</a></li>
+	  <li><a href="https://www.mrc.ac.uk/funding/how-we-fund-research/new-investigator-research-grant/">MRC NIRG Investigator</a> </li> 
+	  <li><a href="https://www.heacademy.ac.uk"> HEA Fellow</a></li>
+	  <li><a href="https://www.surrey.ac.uk"> Researcher of the year 2011, University of Surrey </a></li>
+	</ul>  
+	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
+	<hr>   
+    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, healthcare, and predictive analytics or <a href="/tag/research.html"> research </a></p>
+  </div>
+  <div id="social">
+    Follow me:
+<div id="stalker">
+  
+  <a title="normanpoh on Github" href="https://github.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+  <a title="normanpoh on gitlab" href="https://gitlab.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Norman Poh on LinkedIn" href="https://www.linkedin.com/in/normanpoh">
+    <i class="fa fa-linkedin-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+
+  </div>
+
+  <div id="tags">
+    <span >
+  
+  
+  
+    <a href="/tag/biometrics.html" rel="tag">
+      biometrics 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/healthcare.html" rel="tag">
+      healthcare 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/latex.html" rel="tag">
+      latex 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/research.html" rel="tag">
+      research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/resume.html" rel="tag">
+      resume 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/tutorial.html" rel="tag">
+      tutorial 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/virtual-machine.html" rel="tag">
+      virtual-machine 
+  
+    .
+    
+    </a>
+  
+
+</span>
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  January 09, 2018
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">How to a write scientific papers for clinical audience?</h1>
+
+<div id="post">
+  <h3 id="who-is-this-guide-for">Who is this guide for?</h3>
+<p>This guide is for computer scientists who wish to publish in conferences and journals targetting clinical and healthcare researchers.</p>
+
+<h3 id="guide">Guide</h3>
+
+<p>Text adapted from the Author’s guide to Informatics in Primary Care
+Norman Poh (normanpoh@ieee.org), University of Surrey, 13 Dec 2012</p>
+
+<h4 id="structured-abstract">Structured abstract  </h4>
+<p>The structured abstract should be on a separate page and follow the authors details page(s),  i.e. First page of any submission is the authors details page and the second page is the structured abstract.
+How you choose to word your abstract is really important as it affects how easily your paper can be found by others looking for it.  For example, some people call computerised records Electronic Patient Records ( EPR ), some use the term computerised medical records (CMR), others use “clinical computer system,” and I have also seen electronic health record (EHR) used as a synonym.  The nearest MeSH (Medical Subject Heading) is “medical record system, computerized.” When editing your abstract, please take into account that most people searching for information about a subject will use search engines that look at your paper title, keywords and abstract contents.  If a search term that they might use is not included, then your paper will not be found or cited.</p>
+
+<p>The abstract should contain the following sections for a scientific paper:</p>
+
+<ul>
+  <li>
+    <p><strong>Background</strong>: This is a brief description of the context of your study.  It should justify the investigation you are reporting in the rest of your paper.  Usually two sentences are enough; one describing in a generic sense the problem or information gap and the second in a more specific way.  </p>
+  </li>
+  <li>
+    <p><strong>Objective</strong>: This describes what you set out to do.  This should link the context of the study to your method and results.  It encompasses the research question your study set out to answer.   </p>
+  </li>
+  <li>
+    <p><strong>Method</strong>: Please include the subjects of your research, the setting and the technology.  </p>
+  </li>
+  <li>
+    <p><strong>Results</strong>: What did you find?  Include the key findings and any key statistical differences.  </p>
+  </li>
+  <li>
+    <p><strong>Conclusion</strong>: Report your key finding.  </p>
+  </li>
+  <li>
+    <p><strong>Keywords</strong>:  Use MeSH headings for keywords, wherever possible. Using MeSH headings also contributes to how easily your paper will be found in databases indexed using MeSH headings; including Medline.   We require a minimum of three keywords, but again remember that your paper may be searched for from a number of perspectives.  </p>
+  </li>
+</ul>
+
+<p>Try to make your abstract a complete description of your paper.  Also use as many terms and phrases that someone searching to find it might use.  The better your abstract, the more likely it is to be cited.  Show your abstract to a colleague and ask them to describe what they think your paper is about.  </p>
+
+<h4 id="general-layout-of-your-paper">General layout of your paper </h4>
+
+<p>A standardised format for papers may help authors communicate their findings more clearly and readers assimilate them more easily.  </p>
+
+<p>The IMRAD format (Introduction, Method, Results, and Discussion) is recommended here.  Author page; Structured abstract and keywords; then a main paper consisting of: Introduction: two paragraphs, Methods and results: seven paragraphs in each and a structured discussion of six paragraphs.  This format helps your readers find the information in your paper.  Details of your paper structure is set out below:   </p>
+
+<h5 id="introduction">Introduction: </h5>
+<p>This should consist of two paragraphs. The first paragraph should be a “seminar” describing the context of the study – and be broad in its scope.    The second paragraph should give the more specific context of the study and when combined with the first should provide the rationale for your study, e.g.  The first paragraph of a paper might start: “Cardiovascular disease is an important cause of mortality and morbidity”; with the rest of the paragraph quantifying this effect.  The second paragraph might then commence: “ UK general practice is almost universally computerised and most electronic patient record (EPR) systems contain a mechanism for estimating cardiovascular risk.” The introduction should end with a key sentence.  This key sentence should link the two paragraphs of your introduction and between them describe the rationale for your study.  For example, “We carried out this study to develop a consensus statement as to how information technology might best support the assessment of cardiovascular risk in the consultation.”</p>
+
+<h5 id="method">Method:</h5>
+<p>The method should contain seven paragraphs and progressively describe your method in sufficient detail that someone could reproduce you study.  We like the method to follow some conventions, where possible.  Please describe your literature review in the first paragraph.  Describe the search strategy, and where relevant the number and type of articles found. The last two paragraphs should describe statistical methods used and ethical considerations.  All statistical tests (except the most basic) should be explained.  The paragraph on ethical considerations should list any ethical issues, and if ethical approval had to be obtained, the details of the research ethics committee who granted permission.</p>
+
+<h5 id="results">Results:</h5>
+<p>This section should consist of seven paragraphs. The results should be described in the same order as the method.  Both sections should follow the same sequence.</p>
+
+<h5 id="discussion">Discussion:</h5>
+<p>The discussion should be set out in six labelled paragraphs.  The six headings and what should be described within them is set out below:</p>
+
+<ul>
+  <li>
+    <p><strong>Principal findings</strong>: Describe the new knowledge or finding which your study adds to existing understanding of an issue or technology. The first sentence of your principal findings is a critical sentence in your paper.  This should encapsulate what you found.  </p>
+  </li>
+  <li>
+    <p><strong>Implications of the findings</strong>. Say why your findings are important, and what their implications are for practice.  E.g., what might need to change as a result of the new knowledge that has arisen from your study?  How might the technology you describe be used to support clinical practice or improve patient care? This section should answer the “so what” question about what you have found.  </p>
+  </li>
+  <li>
+    <p><strong>Comparison with the literature</strong>: How do your findings compare with the literature?   It is really important to compare your findings with the existing body of knowledge so it is clearly understood by readers what this study adds.  This section should reference key publications in the area. Consider searching PubMed Medline using the search terms and the MeSH heading key words that describe your article to identify relevant papers.</p>
+  </li>
+  <li>
+    <p><strong>Limitations of the method</strong>: Please critically appraise your method.  Was the sample representative?  Was your intervention delivered as intended?  Please particularly address: your sample and any associated bias (e.g. findings from workshop that was part of an informatics conference, the delegates, etc); the method, and any possible confounding factors.</p>
+  </li>
+  <li>
+    <p><strong>Call for further research</strong>: What further research is needed to substantiate your findings? Try to use this section to address the limitations above.</p>
+  </li>
+  <li>
+    <p><strong>Conclusions</strong>: The conclusions should generally contain three sentences.  The first should describe what you have found overall.  The second should summarise any potential limitations or bias.  The third should convey the message of your paper.  This last sentence is potentially the most important sentence of your paper, highlighting how you have advanced the body of knowledge.</p>
+  </li>
+</ul>
+
+<h3 id="what-this-paper-adds">What this paper adds?</h3>
+<p>Please add a text box to your discussion saying what your paper adds.  This text box can contain up to five bullet points.  It should draw on the implications of your findings and how they compare with the literature. You could publish your paper  on your website so this helps people navigating to your webpage easily.</p>
+
+<h3 id="style-of-writing">Style of writing</h3>
+<p>Please use active sentences, e.g. We carried out a literature review;  and NOT a literature review was carried out.</p>
+
+<ul>
+  <li>
+    <p>Please structure your paragraphs into an initial opening sentence which describes the paragraph, then use the rest of the paragraph to develop the argument or to describe the concept in more detail.</p>
+  </li>
+  <li>
+    <p>Please avoid “Background” sections in submissions.</p>
+  </li>
+  <li>
+    <p>This suggested structure is only a guide.  However, we think that authors following this guidance may be more likely to have their papers published and readers may find more structured papers easier to navigate around.</p>
+  </li>
+  <li>
+    <p>There are other advice in scientific writing such as <a href="www.timalbert.co.uk/ta_books.htm">Tim Albert’s websites and books</a> or direct from the relevant publishers, e.g., <a href="http://www.radcliffe-oxford.com/books/bookdetail.aspx?ISBN=1846192471">Radcliff-Oxford</a>, etc.</p>
+  </li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>09 Jan 2018 &raquo;</span> <a href="/blog/2018/01/09/kick-start-latex.html">How to get started with Latex?</a>
+    </li>
+    
+    <li>
+      <span>31 Dec 2017 &raquo;</span> <a href="/blog/2017/12/31/hill-climbing.html">Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition</a>
+    </li>
+    
+    <li>
+      <span>31 Dec 2017 &raquo;</span> <a href="/blog/2017/12/31/alternative-biometric-protocol.html">Tutorial: An alternative biometric experimental protocol</a>
+    </li>
+    
+  </ul>
+
+  <h3>Tags :</h3>
+  <span>
+    
+      <a href="/tag/research.html" rel="tag"> 
+         research 
+        
+          ,
+        
+      </a>
+
+      <a href="/tag/healthcare.html" rel="tag"> 
+         healthcare 
+        
+        .
+        
+      </a>
+
+  </span>
+</div>
+
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Norman Poh, 2018 &mdash; built with 
+<a href="http://jekyllrb.com/">Jekyll</a> using 
+<a href="https://github.com/swanson/lagom">Lagom theme </a> and 
+<a href="https://github.com/Khan/KaTeX"> Katex </a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-111544249-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+
+$("script[type='math/tex']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<span class=\"inline-equation\">" + 
+           katex.renderToString(tex) +
+           "</span>";
+});
+
+$("script[type='math/tex; mode=display']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<div class=\"equation\">" + 
+           katex.renderToString("\\displaystyle "+tex) +
+           "</div>";
+});
+
+</script>
+
+
+</body>
+</html>

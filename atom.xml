@@ -4,13 +4,147 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-03T22:25:59+00:00</updated>
+ <updated>2018-01-10T11:32:16+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>How to get started with Latex?</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/09/kick-start-latex.html"/>
+   <updated>2018-01-09T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/09/kick-start-latex</id>
+   <content type="html">&lt;p&gt;Getting started with Latex nowadays is significantly more straightforward now than ever. You just need to know where to start. Here’s a simple tip that can get you started under 20 minutes.&lt;/p&gt;
+
+&lt;h4 id=&quot;register-your-account-at-overleafcomhttpoverleafcom&quot;&gt;1. Register your account at &lt;a href=&quot;http://overleaf.com&quot;&gt;overleaf.com&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;The advantage of using overleaf is that you don’t have to install Miktex or Latex or any packages locally on your machine. The downside is that you have to work online. To overcome this limitation, Overleaf supports git so you can &lt;code&gt;git clone&lt;/code&gt; the directory to your local folder and work on it offline before committing and pushing the changes back to Overleaf’s repository.&lt;/p&gt;
+
+&lt;p&gt;Overleaf also provides a number of templates that you can start with. Tempaltes for common proceedings like ACM, IEEE, and Elsevier are available. Just search for the Latex templates on Overleaf.&lt;/p&gt;
+
+&lt;h4 id=&quot;how-to-draw-tables-write-equations-and-more&quot;&gt;2. How to draw tables, write equations and more?&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;To write an equation use &lt;a href=&quot;http://overleaf.com&quot;&gt;Latex online equation editor&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To draw a table, use &lt;a href=&quot;http://overleaf.com&quot;&gt;Latex online table generator&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To know what Math symbols and format you can use, check out
+&lt;a href=&quot;http://overleaf.com&quot;&gt;Latex Math symbol&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That’s all. Enjoy!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How to a write scientific papers for clinical audience?</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/09/clinical_research.html"/>
+   <updated>2018-01-09T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/09/clinical_research</id>
+   <content type="html">&lt;h3 id=&quot;who-is-this-guide-for&quot;&gt;Who is this guide for?&lt;/h3&gt;
+&lt;p&gt;This guide is for computer scientists who wish to publish in conferences and journals targetting clinical and healthcare researchers.&lt;/p&gt;
+
+&lt;h3 id=&quot;guide&quot;&gt;Guide&lt;/h3&gt;
+
+&lt;p&gt;Text adapted from the Author’s guide to Informatics in Primary Care
+Norman Poh (normanpoh@ieee.org), University of Surrey, 13 Dec 2012&lt;/p&gt;
+
+&lt;h4 id=&quot;structured-abstract&quot;&gt;Structured abstract  &lt;/h4&gt;
+&lt;p&gt;The structured abstract should be on a separate page and follow the authors details page(s),  i.e. First page of any submission is the authors details page and the second page is the structured abstract.
+How you choose to word your abstract is really important as it affects how easily your paper can be found by others looking for it.  For example, some people call computerised records Electronic Patient Records ( EPR ), some use the term computerised medical records (CMR), others use “clinical computer system,” and I have also seen electronic health record (EHR) used as a synonym.  The nearest MeSH (Medical Subject Heading) is “medical record system, computerized.” When editing your abstract, please take into account that most people searching for information about a subject will use search engines that look at your paper title, keywords and abstract contents.  If a search term that they might use is not included, then your paper will not be found or cited.&lt;/p&gt;
+
+&lt;p&gt;The abstract should contain the following sections for a scientific paper:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Background&lt;/strong&gt;: This is a brief description of the context of your study.  It should justify the investigation you are reporting in the rest of your paper.  Usually two sentences are enough; one describing in a generic sense the problem or information gap and the second in a more specific way.  &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: This describes what you set out to do.  This should link the context of the study to your method and results.  It encompasses the research question your study set out to answer.   &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Method&lt;/strong&gt;: Please include the subjects of your research, the setting and the technology.  &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Results&lt;/strong&gt;: What did you find?  Include the key findings and any key statistical differences.  &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;: Report your key finding.  &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Keywords&lt;/strong&gt;:  Use MeSH headings for keywords, wherever possible. Using MeSH headings also contributes to how easily your paper will be found in databases indexed using MeSH headings; including Medline.   We require a minimum of three keywords, but again remember that your paper may be searched for from a number of perspectives.  &lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Try to make your abstract a complete description of your paper.  Also use as many terms and phrases that someone searching to find it might use.  The better your abstract, the more likely it is to be cited.  Show your abstract to a colleague and ask them to describe what they think your paper is about.  &lt;/p&gt;
+
+&lt;h4 id=&quot;general-layout-of-your-paper&quot;&gt;General layout of your paper &lt;/h4&gt;
+
+&lt;p&gt;A standardised format for papers may help authors communicate their findings more clearly and readers assimilate them more easily.  &lt;/p&gt;
+
+&lt;p&gt;The IMRAD format (Introduction, Method, Results, and Discussion) is recommended here.  Author page; Structured abstract and keywords; then a main paper consisting of: Introduction: two paragraphs, Methods and results: seven paragraphs in each and a structured discussion of six paragraphs.  This format helps your readers find the information in your paper.  Details of your paper structure is set out below:   &lt;/p&gt;
+
+&lt;h5 id=&quot;introduction&quot;&gt;Introduction: &lt;/h5&gt;
+&lt;p&gt;This should consist of two paragraphs. The first paragraph should be a “seminar” describing the context of the study – and be broad in its scope.    The second paragraph should give the more specific context of the study and when combined with the first should provide the rationale for your study, e.g.  The first paragraph of a paper might start: “Cardiovascular disease is an important cause of mortality and morbidity”; with the rest of the paragraph quantifying this effect.  The second paragraph might then commence: “ UK general practice is almost universally computerised and most electronic patient record (EPR) systems contain a mechanism for estimating cardiovascular risk.” The introduction should end with a key sentence.  This key sentence should link the two paragraphs of your introduction and between them describe the rationale for your study.  For example, “We carried out this study to develop a consensus statement as to how information technology might best support the assessment of cardiovascular risk in the consultation.”&lt;/p&gt;
+
+&lt;h5 id=&quot;method&quot;&gt;Method:&lt;/h5&gt;
+&lt;p&gt;The method should contain seven paragraphs and progressively describe your method in sufficient detail that someone could reproduce you study.  We like the method to follow some conventions, where possible.  Please describe your literature review in the first paragraph.  Describe the search strategy, and where relevant the number and type of articles found. The last two paragraphs should describe statistical methods used and ethical considerations.  All statistical tests (except the most basic) should be explained.  The paragraph on ethical considerations should list any ethical issues, and if ethical approval had to be obtained, the details of the research ethics committee who granted permission.&lt;/p&gt;
+
+&lt;h5 id=&quot;results&quot;&gt;Results:&lt;/h5&gt;
+&lt;p&gt;This section should consist of seven paragraphs. The results should be described in the same order as the method.  Both sections should follow the same sequence.&lt;/p&gt;
+
+&lt;h5 id=&quot;discussion&quot;&gt;Discussion:&lt;/h5&gt;
+&lt;p&gt;The discussion should be set out in six labelled paragraphs.  The six headings and what should be described within them is set out below:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Principal findings&lt;/strong&gt;: Describe the new knowledge or finding which your study adds to existing understanding of an issue or technology. The first sentence of your principal findings is a critical sentence in your paper.  This should encapsulate what you found.  &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Implications of the findings&lt;/strong&gt;. Say why your findings are important, and what their implications are for practice.  E.g., what might need to change as a result of the new knowledge that has arisen from your study?  How might the technology you describe be used to support clinical practice or improve patient care? This section should answer the “so what” question about what you have found.  &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Comparison with the literature&lt;/strong&gt;: How do your findings compare with the literature?   It is really important to compare your findings with the existing body of knowledge so it is clearly understood by readers what this study adds.  This section should reference key publications in the area. Consider searching PubMed Medline using the search terms and the MeSH heading key words that describe your article to identify relevant papers.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Limitations of the method&lt;/strong&gt;: Please critically appraise your method.  Was the sample representative?  Was your intervention delivered as intended?  Please particularly address: your sample and any associated bias (e.g. findings from workshop that was part of an informatics conference, the delegates, etc); the method, and any possible confounding factors.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Call for further research&lt;/strong&gt;: What further research is needed to substantiate your findings? Try to use this section to address the limitations above.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Conclusions&lt;/strong&gt;: The conclusions should generally contain three sentences.  The first should describe what you have found overall.  The second should summarise any potential limitations or bias.  The third should convey the message of your paper.  This last sentence is potentially the most important sentence of your paper, highlighting how you have advanced the body of knowledge.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-this-paper-adds&quot;&gt;What this paper adds?&lt;/h3&gt;
+&lt;p&gt;Please add a text box to your discussion saying what your paper adds.  This text box can contain up to five bullet points.  It should draw on the implications of your findings and how they compare with the literature. You could publish your paper  on your website so this helps people navigating to your webpage easily.&lt;/p&gt;
+
+&lt;h3 id=&quot;style-of-writing&quot;&gt;Style of writing&lt;/h3&gt;
+&lt;p&gt;Please use active sentences, e.g. We carried out a literature review;  and NOT a literature review was carried out.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Please structure your paragraphs into an initial opening sentence which describes the paragraph, then use the rest of the paragraph to develop the argument or to describe the concept in more detail.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Please avoid “Background” sections in submissions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;This suggested structure is only a guide.  However, we think that authors following this guidance may be more likely to have their papers published and readers may find more structured papers easier to navigate around.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;There are other advice in scientific writing such as &lt;a href=&quot;www.timalbert.co.uk/ta_books.htm&quot;&gt;Tim Albert’s websites and books&lt;/a&gt; or direct from the relevant publishers, e.g., &lt;a href=&quot;http://www.radcliffe-oxford.com/books/bookdetail.aspx?ISBN=1846192471&quot;&gt;Radcliff-Oxford&lt;/a&gt;, etc.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition</title>
@@ -30,20 +164,51 @@
 
 &lt;p&gt;However, not all target user (victim) is succeptible to a wolf attack. In partivcular, the biometric traits of subjects who are more unique would be more resistant to the wolf attack. It is, therefore, sensible to combine both attacks by first introducing the wolf attack first followed by hill climbing in order to further expose the potency of this threat.&lt;/p&gt;
 
-&lt;h3 id=&quot;approach&quot;&gt;Approach&lt;/h3&gt;
+&lt;h3 id=&quot;procedures&quot;&gt;Procedures&lt;/h3&gt;
+
+&lt;p&gt;The procedures outlined below will start with a wolf attack by using a database in order to find out which fingerprint templates (references) is closest to the target fingerprint template (reference). This is similar to a &lt;em&gt;dictionary&lt;/em&gt; attack since a database is used.&lt;/p&gt;
+
+&lt;p&gt;Then, the we shall use the top three closest matching fingerprint templates and start hill climbing with them by randomly pertubing their minutiae. The top 500 candidates are then retained for each generation. The algorithm is then repeated for a number of iterations (generations).&lt;/p&gt;
+
+&lt;p&gt;Why three top closest templates and why capping top 500 candidates per generation? The reason is that we want to keep the computation to a minimum while ensuring some diversities. These numbers are parameters that you can optimise.&lt;/p&gt;
+
+&lt;h5 id=&quot;mount-a-wolf-attack&quot;&gt;1. Mount a wolf attack.&lt;/h5&gt;
 &lt;p&gt;We shall continue from a previous &lt;a href=&quot;/blog/2017/12/29/generate-pairwise-fprint-scores.html&quot;&gt;post&lt;/a&gt; in which a database of fingerprint &lt;code&gt;features&lt;/code&gt; have been prepared using NIST’s fingerprint matcher &lt;code&gt;mindct&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;A text file named &lt;code&gt;filelist_xyt.txt&lt;/code&gt; contains all the processed files in  &lt;code&gt;.xyt&lt;/code&gt;  format. This file list serves as a gallery of zero-effort attack from which potential wolves can be identified.&lt;/p&gt;
+&lt;p&gt;A text file named &lt;code&gt;filelist_xyt.txt&lt;/code&gt; contains all the processed files in  &lt;code&gt;.xyt&lt;/code&gt;  format. This file list serves as a gallery of zero-effort attack from which potential wolves can be identified. There are 200 unique fingers each containing 5 impressions, so making a total of 1000 samples. The 1000 fingerprint templates in the &lt;code&gt;*.xyt&lt;/code&gt; format are stored in the &lt;code&gt;features&lt;/code&gt; directory. The following Octave code generates the content of the file &lt;code&gt;filelist_xyt.txt&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;procedures&quot;&gt;Procedures&lt;/h3&gt;
-&lt;p&gt;Let us suppose that the target biometric reference being attacked is &lt;code&gt;file2attack.xyt&lt;/code&gt;. The following codes in Oracle and Matlab/Octave invokes &lt;code&gt;bozorth3&lt;/code&gt; to match &lt;code&gt;file2attack.xyt&lt;/code&gt; against the gallery &lt;code&gt;filelist_xyt.txt&lt;/code&gt;; the result of which is stored in &lt;code&gt;file2attack.scores&lt;/code&gt;.&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;% In Octave
+&lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1:200 %there are &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; unique fingers
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1:5 %each having &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt; fingerprint impressions
+    &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;c+1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    fname&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;c&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; sprintf&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;features/%d_%d.xyt&amp;#39;&lt;/span&gt;, u, i&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  end
+end
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# bash&lt;/span&gt;
-bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+%% write to file
+&lt;span class=&quot;nv&quot;&gt;fid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; fopen&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;filelist_xyt.txt&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+cellfun&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;x&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; fprintf&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid, &lt;span class=&quot;s1&quot;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt;, x&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, fname&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Let us now prepare the fingerprint to be attacked by extracting the &lt;code&gt;.xyt&lt;/code&gt; features using NIST’s &lt;code&gt;mindtct&lt;/code&gt; command line tool below. You should replace &lt;code&gt;fingerprint2attack.jpg&lt;/code&gt; with your own file name. In practice, of course, an attacker would not have access to this raw data or its corresponding feature file in &lt;code&gt;.xyt&lt;/code&gt; format.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;c&quot;&gt;%extract the feature&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;mindtct fingerprint2attack.jpg file2attack&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The above command outputs &lt;code&gt;file2attack.xyt&lt;/code&gt; among other auxiliary files (which we won’t need).&lt;/p&gt;
+
+&lt;p&gt;We shall now use invokes &lt;code&gt;bozorth3&lt;/code&gt; to match the target file &lt;code&gt;file2attack.xyt&lt;/code&gt; against the gallery of templates in &lt;code&gt;filelist_xyt.txt&lt;/code&gt;; the result of which is stored in &lt;code&gt;file2attack.scores&lt;/code&gt;.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;c&quot;&gt;% Matlab or Ocatave&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;unix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;We could have run the command in &lt;code&gt;bash&lt;/code&gt; directly.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you might have guessed, the command &lt;code&gt;unix&lt;/code&gt; gives you access to shell environment where you can execute a &lt;code&gt;bash&lt;/code&gt; command.&lt;/p&gt;
 
 &lt;p&gt;The next lines of codes below then load the scores, sort them and plot the sorted scores.&lt;/p&gt;
 
@@ -57,13 +222,16 @@ bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&lt;/code&g
 &lt;span class=&quot;c&quot;&gt;%% plot the scores&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &amp;quot;&lt;span class=&quot;n&quot;&gt;defaultaxesfontsize&lt;/span&gt;&amp;quot;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
 &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;200 Attempts (sorted)&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Similarity scores&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;1000 Attempts (sorted)&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Similarity scores&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;-dpng&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Pictures/wolf_attack.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The last line save the figure in &lt;code&gt;.png&lt;/code&gt; format.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/hill-climb/wolf_attack.png&quot; alt=&quot;hill climbing output scores&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;how-do-the-minutiae-look-like&quot;&gt;How do the minutiae look like?&lt;/h5&gt;
-&lt;p&gt;To answer this question, I have written a function &lt;code&gt;display_xyt&lt;/code&gt; to display the minutiae. Because it is an image, we have to reverse the x-axis; and the function does this for you.  This function also takes in the magnitude variable, &lt;code&gt;mag&lt;/code&gt;, which controls the length of the arrow for visualisation purpose only.&lt;/p&gt;
+&lt;h5 id=&quot;visualize-the-fingerprint-that-is-closest-to-the-target-template&quot;&gt;2. Visualize the fingerprint that is closest to the target template&lt;/h5&gt;
+&lt;p&gt;How does the wolf fingerprint, i.e., the fingerprint that is closest to the target template look like? To answer this question, I have written a function &lt;code&gt;display_xyt&lt;/code&gt; to display the minutiae. Because it is an image, we have to reverse the x-axis; and this custom function does this for you.  This function also takes in the magnitude variable, &lt;code&gt;mag&lt;/code&gt;, which controls the length of the arrow of each minutia for visualisation purpose only.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;display_xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;xyt, mag, img&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nargin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;isempty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -88,18 +256,32 @@ bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&lt;/code&g
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Simply call this function for a given minutia template and its corresponding image. For example, if &lt;code&gt;140_1.png&lt;/code&gt; is the best wolf, read the &lt;code&gt;xyt&lt;/code&gt; features and its image and display the&lt;/p&gt;
+&lt;p&gt;Simply call this function for a given minutia template and its corresponding image.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;descend&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;best_xyt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filelist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
+&lt;p&gt;The code below finds the closest template.&lt;/p&gt;
 
-&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;TrainingItaldataLive/140_1.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;xyt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;features/140_1.xyt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;c&quot;&gt;% Find the wolf template&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;descend&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;best_xyt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filelist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;span class=&quot;n&quot;&gt;display_xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ii&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:),&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;We now get the filename of the original fingerprint in &lt;code&gt;.png&lt;/code&gt; format. f you want to copy and paste the code below, you should replace the variable &lt;code&gt;original_png_folder&lt;/code&gt; with the folder where your original folder where the fingerprint images in &lt;code&gt;.png&lt;/code&gt; are stored.&lt;/p&gt;
 
-&lt;h5 id=&quot;carrying-out-the-hill-climbing-attack&quot;&gt;Carrying out the hill climbing attack&lt;/h5&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;c&quot;&gt;%Now let&amp;#39;s load the original png file&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;best_xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strsplit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;original_png_folder&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/TrainingItaldataLive&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;best_xyt_fname&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;original_png_folder&lt;/span&gt;  &lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% I get : &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% best_xyt_fname = /mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/TrainingItaldataLive/118_5.png&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, having loaded the image and xyt file, we are ready to call the &lt;code&gt;display_xyt&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span class=&quot;n&quot;&gt;display_xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ii&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:),&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This produces an output similar to the one below:
+&lt;img src=&quot;/assets/hill-climb/fprint.png&quot; alt=&quot;Fs ingeprint with minutiae overlayed&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;carrying-out-the-hill-climbing-attack&quot;&gt;3. Carrying out the hill climbing attack&lt;/h5&gt;
 
 &lt;p&gt;In order to carry out the hill-climbing attack, we shall define a supporting function which interfaces with NIST’s &lt;code&gt;bozorth3&lt;/code&gt; matcher. This function takes in a fingerprint template in &lt;code&gt;.xyt&lt;/code&gt; which has four features per minutiae, namely row, column, orientation and quality and then outputs a &lt;em&gt;set&lt;/em&gt; of slightly modified templates with some pertubation as controlled by &lt;code&gt;pertube&lt;/code&gt;.&lt;/p&gt;
 
@@ -266,7 +448,7 @@ J \times (S-1)
 &lt;/script&gt;
 and the number of impostor scores is:
 &lt;script type=&quot;math/tex; mode=display&quot;&gt; 
-J (J-1)  \times (S-1)
+\frac 1 2 J (J-1)  \times (S-1)
 &lt;/script&gt;
 So, the genuine to impostor score ratio is
 &lt;script type=&quot;math/tex; mode=display&quot;&gt; 
