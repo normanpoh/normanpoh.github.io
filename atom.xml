@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-10T11:33:33+00:00</updated>
+ <updated>2018-01-10T18:13:49+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -27,14 +27,14 @@
 &lt;h4 id=&quot;how-to-draw-tables-write-equations-and-more&quot;&gt;2. How to draw tables, write equations and more?&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;To write an equation use &lt;a href=&quot;http://overleaf.com&quot;&gt;Latex online equation editor&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;To write an equation use Latex online equation editors such as &lt;a href=&quot;http://www.hostmath.com/&quot;&gt;hostmath&lt;/a&gt;, &lt;a href=&quot;https://www.codecogs.com/latex/eqneditor.php&quot;&gt;codecogs&lt;/a&gt; or Sciweavers’ free online editor](http://www.sciweavers.org/free-online-latex-equation-editor).&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;To draw a table, use &lt;a href=&quot;http://overleaf.com&quot;&gt;Latex online table generator&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;To draw a table, use &lt;a href=&quot;https://www.tablesgenerator.com/&quot;&gt;Latex online table generator&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;To know what Math symbols and format you can use, check out
-&lt;a href=&quot;http://overleaf.com&quot;&gt;Latex Math symbol&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols&quot;&gt;Latex Math symbol&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
