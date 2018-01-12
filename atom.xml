@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-12T10:53:38+00:00</updated>
+ <updated>2018-01-12T18:28:39+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -128,6 +128,30 @@
 &lt;a href=&quot;https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols&quot;&gt;Latex Math symbol&lt;/a&gt;.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h4 id=&quot;what-about-working-in-latex-offline&quot;&gt;3. What about working in Latex offline?&lt;/h4&gt;
+&lt;p&gt;Last but not least, if you want to work offline, instead of online using Overleaf, you can install Latex and all the associated packages using &lt;code&gt;apt-get install&lt;/code&gt; in Ubuntu. Also, don’t forget to install &lt;code&gt;xpdf&lt;/code&gt; so that you can view the generated pdf file.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install texlive-full
+sudo apt-get install xpdf&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After that, to compile a Latex source file manually, say &lt;code&gt;source.tex&lt;/code&gt;, you do the following if you use  bibliographic references such as &lt;code&gt;\cite&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pdflatex &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+bibtex &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+pdflatex &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+pdflatex &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;However, if you don’t have any bibligraphy, use the following commands instead.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pdflatex &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+pdflatex &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You call &lt;code&gt;pdflatex&lt;/code&gt; twice to make sure that the references are compiled correctly.&lt;/p&gt;
+
+&lt;p&gt;To view the generated pdf file, type:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;xpdf source.pdf &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;That’s all. Enjoy!&lt;/p&gt;
 </content>

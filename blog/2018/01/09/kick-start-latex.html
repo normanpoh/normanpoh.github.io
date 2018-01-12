@@ -203,6 +203,30 @@
   </li>
 </ul>
 
+<h4 id="what-about-working-in-latex-offline">3. What about working in Latex offline?</h4>
+<p>Last but not least, if you want to work offline, instead of online using Overleaf, you can install Latex and all the associated packages using <code>apt-get install</code> in Ubuntu. Also, don’t forget to install <code>xpdf</code> so that you can view the generated pdf file.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install texlive-full
+sudo apt-get install xpdf</code></pre></figure>
+
+<p>After that, to compile a Latex source file manually, say <code>source.tex</code>, you do the following if you use  bibliographic references such as <code>\cite</code>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">pdflatex <span class="nb">source</span>
+bibtex <span class="nb">source</span>
+pdflatex <span class="nb">source</span>
+pdflatex <span class="nb">source</span></code></pre></figure>
+
+<p>However, if you don’t have any bibligraphy, use the following commands instead.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">pdflatex <span class="nb">source</span>
+pdflatex <span class="nb">source</span></code></pre></figure>
+
+<p>You call <code>pdflatex</code> twice to make sure that the references are compiled correctly.</p>
+
+<p>To view the generated pdf file, type:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">xpdf source.pdf <span class="p">&amp;</span></code></pre></figure>
+
 <p>That’s all. Enjoy!</p>
 
 </div>
