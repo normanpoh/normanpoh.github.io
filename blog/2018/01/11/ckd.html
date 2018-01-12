@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norman Poh - Healthcare Analytics: A Case Study in Chronic Kidney Disease</title>
+  <meta name="author" content="Norman Poh" />
+  <meta name="description" content="The blog of Norman Poh" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/11/ckd.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="Norman Poh" href="http://normanpoh.github.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+   <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1> </h1> 
+  <a href="/">
+    
+    <img src="/assets/norman_round.png" id="logo" alt="Norman's photo" width="200"/>
+    
+  </a>
+  <h2><a href="/">Norman Poh</a></h2>
+  <div id="bio">
+    <p>Senior lecturer, data scientist, consultant</p> 
+	<hr> 
+	<ul>
+	  <li><a href="http://www.snf.ch/en/funding/careers/postdoc-mobility">Swiss NSF Advanced Researcher Fellow</a></li>
+	  <li><a href="https://www.mrc.ac.uk/funding/how-we-fund-research/new-investigator-research-grant/">MRC NIRG Investigator</a> </li> 
+	  <li><a href="https://www.heacademy.ac.uk"> HEA Fellow</a></li>
+	  <li><a href="https://www.surrey.ac.uk"> Researcher of the year 2011, University of Surrey </a></li>
+	</ul>  
+	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
+	<hr>   
+    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, healthcare, and predictive analytics or <a href="/tag/research.html"> research </a></p>
+  </div>
+  <div id="social">
+    Follow me:
+<div id="stalker">
+  
+  <a title="normanpoh on Github" href="https://github.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+  <a title="normanpoh on gitlab" href="https://gitlab.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Norman Poh on LinkedIn" href="https://www.linkedin.com/in/normanpoh">
+    <i class="fa fa-linkedin-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+
+  </div>
+
+  <div id="tags">
+    <span >
+  
+  
+  
+    <a href="/tag/biometrics.html" rel="tag">
+      biometrics 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/healthcare.html" rel="tag">
+      healthcare 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/kidney-research.html" rel="tag">
+      kidney-research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/latex.html" rel="tag">
+      latex 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/machine-learning.html" rel="tag">
+      machine-learning 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/research.html" rel="tag">
+      research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/resume.html" rel="tag">
+      resume 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/tutorial.html" rel="tag">
+      tutorial 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/virtual-machine.html" rel="tag">
+      virtual-machine 
+  
+    .
+    
+    </a>
+  
+
+</span>
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  January 11, 2018
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Healthcare Analytics: A Case Study in Chronic Kidney Disease</h1>
+
+<div id="post">
+  <h3 id="healthcare-analytics">Healthcare analytics</h3>
+
+<p>Advancements in machine learning algorithms, massive data storage and cloud computing as well as mobile computing can now power intelligent applications that can improve our quality of life. By <em>healthcare analytics</em>, we leverage on the above developments to deliver solutions to keep health and care costs low whilst keeping high quality of care at the same time by empowering patients to better understand their own health and healthcare professionals with more holistic information to make better treatment decisions.</p>
+
+<p>In this blog, I would like to demonstrate how machine learning can help clinicians understand the progression of <em>Chronic Kidney Disease</em> or CKD.</p>
+
+<h3 id="why-chronic-kidney-disease">Why Chronic Kidney Disease?</h3>
+<p>Chronic Kidney Disease (CKD) is a significant cause of morbidity and mortality across the developed world. Patients with CKD have increased risk of death from cardiovascular disease and End Stage Kidney Failure, leading to dialysis and kidney transplant. Indeed, according to an <a href="http://goo.gl/oLJD2">NHS Kidney Care report in 2012</a>, CKD was estimated to cost £1.45 billion in 2009-10; 1.8 million people were diagnosed with CKD in England; and, there were potentially 900,000 to 1.8 million people with undiagnosed CKD. Therefore, the importance and urgency of managing CKD cannot be over-emphasized.</p>
+
+<p>CKD is difficult to manage because it is largely asymptomatic; its progression, often quantified via estimated Glomerular Filtration Rate or eGFR, is difficult to interpret due to a number of factors, namely,</p>
+
+<ol>
+  <li>
+    <p>change in assay methods <a href="https://s3.amazonaws.com/academia.edu.documents/37999486/norman_eGFR_icpr2012_workshop.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&amp;Expires=1515699723&amp;Signature=R2x1wbgD4Y7hxPJVT0FboMuTlm4%3D&amp;response-content-disposition=inline%3B%20filename%3DCalibrating_Longitudinal_eGFR_in_Patienc.pdf">Poh and Lusignan, ICPR 2012</a>;</p>
+  </li>
+  <li>
+    <p>the fluctuation of kidney function which is under the influence of myriad factors, often confounded by treatment effects and person-dependent characteristics; and</p>
+  </li>
+  <li>
+    <p>varying quality of data recording, among others.</p>
+  </li>
+</ol>
+
+<p>These factors limit us from modelling the disease progression accurately, thus impeding us from better understanding the disease progression and consequently from clinicians from managing CKD confidently.</p>
+
+<h3 id="what-kind-of-analytics-are-useful-for-ckd">What kind of analytics are useful for CKD?</h3>
+<ol>
+  <li><a href="#parametric-modelling">Parametric modelling of eGFR</a></li>
+  <li><a href="#classification">Classification of eGFR trend</a></li>
+  <li><a href="#regression">Identifying signal from noise in eGFR</a></li>
+  <li><a href="#clustering">Clustering trend to identify patients with drastic decline in renal function</a></li>
+  <li><a href="#clustering-records">Clustering medical records to stratify patients</a></li>
+  <li><a href="#risk-stratification">More refined risk stratification</a></li>
+  <li><a href="#computer-vision">Computer vision</a></li>
+</ol>
+
+<h5 id="parametric-modelling-of-egfr">1. Parametric modelling of eGFR</h5>
+<p><a name="parametric-modelling"></a></p>
+
+<p><img src="/assets/ckd/eGFR_hierarchical_modelling.png" alt="eGFR hierarchical modelling" style="width: 100%;" /></p>
+
+<h5 id="classification-of-egfr-trend">2. Classification of eGFR trend</h5>
+<p><a name="classification"></a></p>
+
+<p><img src="/assets/ckd/eGFR_trend_classification.png" alt="eGFR hierarchical modelling" style="width: 100%;" /></p>
+
+<h5 id="identifying-signal-from-noise-in-egfr">3. Identifying signal from noise in eGFR</h5>
+<p><a name="regression"></a></p>
+
+<p><img src="/assets/ckd/prob_broken_stick_model.png" alt="eGFR hierarchical modelling" style="width: 100%;" /></p>
+
+<h5 id="clustering-trend-to-identify-patients-with-drastic-decline-in-renal-function">4. Clustering trend to identify patients with drastic decline in renal function</h5>
+<p><a name="clustering"></a>
+<img src="/assets/ckd/eGFR_drastic_decline.png" alt="Trends showing drastic decline" style="width: 100%;" /></p>
+
+<h5 id="clustering-medical-records-to-stratify-patients">5. Clustering medical records to stratify patients</h5>
+<p><a name="clustering-records"></a></p>
+
+<p><img src="/assets/ckd/ckd_tsne.png" alt="CKD Clustering using t-SNE algorithm" style="width: 100%;" /></p>
+
+<h5 id="more-refined-ckd-risk-stratification-using-egfr-slope">6. More refined CKD risk stratification using eGFR slope</h5>
+<p><a name="risk-stratification"></a></p>
+
+<p><img src="/assets/ckd/refined_ckd_risk.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
+
+<h5 id="computer-vision-for-stablising-kidney-image-sequence">7. Computer vision for stablising kidney image sequence</h5>
+<p><a name="computer-vision"></a></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Oyj2utakNx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<h4 id="acknowledgements">Acknowledgements</h4>
+
+<ul>
+  <li>
+    <p>The Medical Research Council for funding the <a href="http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1">New Investigator Research Grant (NIRG) entitled “Modelling the Progression of Chronic Kidney Disease”</a>, or the MRC CKD project, with grant no MR/M023281/1, awarded to Dr Norman Poh</p>
+  </li>
+  <li>
+    <p>Prof Simon de Lusignan and the investigators for providing the initial data set from the <a href="https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-4-39">Quality Improvement Chronic Kidney Disease (QICKD) study</a>, which has a population denominator of nearly 1 million patient records</p>
+  </li>
+  <li>
+    <p>The Royal College of General Practitioners Research and Surveillance Centre (<a href="http://www.rcgp.org.uk/clinical-and-research/our-programmes/research-and-surveillance-centre.aspx">RCGP-RSC</a>) for having extracted the data set enabling this research.</p>
+  </li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>09 Jan 2018 &raquo;</span> <a href="/blog/2018/01/09/kick-start-latex.html">How to get started with Latex?</a>
+    </li>
+    
+    <li>
+      <span>09 Jan 2018 &raquo;</span> <a href="/blog/2018/01/09/clinical_research.html">How to a write scientific paper for clinical audience?</a>
+    </li>
+    
+    <li>
+      <span>31 Dec 2017 &raquo;</span> <a href="/blog/2017/12/31/hill-climbing.html">Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition</a>
+    </li>
+    
+  </ul>
+
+  <h3>Tags :</h3>
+  <span>
+    
+      <a href="/tag/kidney-research.html" rel="tag"> 
+         kidney-research 
+        
+          ,
+        
+      </a>
+
+      <a href="/tag/machine-learning.html" rel="tag"> 
+         machine-learning 
+        
+        .
+        
+      </a>
+
+  </span>
+</div>
+
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Norman Poh, 2018 &mdash; built with 
+<a href="http://jekyllrb.com/">Jekyll</a> using 
+<a href="https://github.com/swanson/lagom">Lagom theme </a> and 
+<a href="https://github.com/Khan/KaTeX"> Katex </a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-111544249-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+
+$("script[type='math/tex']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<span class=\"inline-equation\">" + 
+           katex.renderToString(tex) +
+           "</span>";
+});
+
+$("script[type='math/tex; mode=display']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<div class=\"equation\">" + 
+           katex.renderToString("\\displaystyle "+tex) +
+           "</div>";
+});
+
+</script>
+
+
+</body>
+</html>

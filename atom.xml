@@ -4,13 +4,104 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-10T18:23:08+00:00</updated>
+ <updated>2018-01-12T10:53:38+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>Healthcare Analytics: A Case Study in Chronic Kidney Disease</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/11/ckd.html"/>
+   <updated>2018-01-11T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/11/ckd</id>
+   <content type="html">&lt;h3 id=&quot;healthcare-analytics&quot;&gt;Healthcare analytics&lt;/h3&gt;
+
+&lt;p&gt;Advancements in machine learning algorithms, massive data storage and cloud computing as well as mobile computing can now power intelligent applications that can improve our quality of life. By &lt;em&gt;healthcare analytics&lt;/em&gt;, we leverage on the above developments to deliver solutions to keep health and care costs low whilst keeping high quality of care at the same time by empowering patients to better understand their own health and healthcare professionals with more holistic information to make better treatment decisions.&lt;/p&gt;
+
+&lt;p&gt;In this blog, I would like to demonstrate how machine learning can help clinicians understand the progression of &lt;em&gt;Chronic Kidney Disease&lt;/em&gt; or CKD.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-chronic-kidney-disease&quot;&gt;Why Chronic Kidney Disease?&lt;/h3&gt;
+&lt;p&gt;Chronic Kidney Disease (CKD) is a significant cause of morbidity and mortality across the developed world. Patients with CKD have increased risk of death from cardiovascular disease and End Stage Kidney Failure, leading to dialysis and kidney transplant. Indeed, according to an &lt;a href=&quot;http://goo.gl/oLJD2&quot;&gt;NHS Kidney Care report in 2012&lt;/a&gt;, CKD was estimated to cost £1.45 billion in 2009-10; 1.8 million people were diagnosed with CKD in England; and, there were potentially 900,000 to 1.8 million people with undiagnosed CKD. Therefore, the importance and urgency of managing CKD cannot be over-emphasized.&lt;/p&gt;
+
+&lt;p&gt;CKD is difficult to manage because it is largely asymptomatic; its progression, often quantified via estimated Glomerular Filtration Rate or eGFR, is difficult to interpret due to a number of factors, namely,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;change in assay methods &lt;a href=&quot;https://s3.amazonaws.com/academia.edu.documents/37999486/norman_eGFR_icpr2012_workshop.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&amp;amp;Expires=1515699723&amp;amp;Signature=R2x1wbgD4Y7hxPJVT0FboMuTlm4%3D&amp;amp;response-content-disposition=inline%3B%20filename%3DCalibrating_Longitudinal_eGFR_in_Patienc.pdf&quot;&gt;Poh and Lusignan, ICPR 2012&lt;/a&gt;;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;the fluctuation of kidney function which is under the influence of myriad factors, often confounded by treatment effects and person-dependent characteristics; and&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;varying quality of data recording, among others.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These factors limit us from modelling the disease progression accurately, thus impeding us from better understanding the disease progression and consequently from clinicians from managing CKD confidently.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-kind-of-analytics-are-useful-for-ckd&quot;&gt;What kind of analytics are useful for CKD?&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#parametric-modelling&quot;&gt;Parametric modelling of eGFR&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#classification&quot;&gt;Classification of eGFR trend&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#regression&quot;&gt;Identifying signal from noise in eGFR&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#clustering&quot;&gt;Clustering trend to identify patients with drastic decline in renal function&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#clustering-records&quot;&gt;Clustering medical records to stratify patients&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#risk-stratification&quot;&gt;More refined risk stratification&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#computer-vision&quot;&gt;Computer vision&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;parametric-modelling-of-egfr&quot;&gt;1. Parametric modelling of eGFR&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;parametric-modelling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_hierarchical_modelling.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;classification-of-egfr-trend&quot;&gt;2. Classification of eGFR trend&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;classification&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_trend_classification.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;identifying-signal-from-noise-in-egfr&quot;&gt;3. Identifying signal from noise in eGFR&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;regression&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/prob_broken_stick_model.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;clustering-trend-to-identify-patients-with-drastic-decline-in-renal-function&quot;&gt;4. Clustering trend to identify patients with drastic decline in renal function&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;clustering&quot;&gt;&lt;/a&gt;
+&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;Trends showing drastic decline&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;clustering-medical-records-to-stratify-patients&quot;&gt;5. Clustering medical records to stratify patients&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;clustering-records&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/ckd_tsne.png&quot; alt=&quot;CKD Clustering using t-SNE algorithm&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;more-refined-ckd-risk-stratification-using-egfr-slope&quot;&gt;6. More refined CKD risk stratification using eGFR slope&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;risk-stratification&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/refined_ckd_risk.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;computer-vision-for-stablising-kidney-image-sequence&quot;&gt;7. Computer vision for stablising kidney image sequence&lt;/h5&gt;
+&lt;p&gt;&lt;a name=&quot;computer-vision&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Oyj2utakNx8&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h4 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Medical Research Council for funding the &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;New Investigator Research Grant (NIRG) entitled “Modelling the Progression of Chronic Kidney Disease”&lt;/a&gt;, or the MRC CKD project, with grant no MR/M023281/1, awarded to Dr Norman Poh&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Prof Simon de Lusignan and the investigators for providing the initial data set from the &lt;a href=&quot;https://implementationscience.biomedcentral.com/articles/10.1186/1748-5908-4-39&quot;&gt;Quality Improvement Chronic Kidney Disease (QICKD) study&lt;/a&gt;, which has a population denominator of nearly 1 million patient records&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Royal College of General Practitioners Research and Surveillance Centre (&lt;a href=&quot;http://www.rcgp.org.uk/clinical-and-research/our-programmes/research-and-surveillance-centre.aspx&quot;&gt;RCGP-RSC&lt;/a&gt;) for having extracted the data set enabling this research.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>How to get started with Latex?</title>
@@ -1134,6 +1225,12 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
 &lt;/script&gt; 
 years of research experience, in both the academia and commerce.&lt;/p&gt;
 
+&lt;p&gt;He is currently working for &lt;a href=&quot;http://www.bjss.com&quot;&gt;BJSS&lt;/a&gt; where he helps develop a core team of data scientists and machine learning engineers to solve a range of practical machine learning problems across different sectors from government and healthcare to commdity and finance.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Previous roles&lt;/strong&gt;. He previously worked at QuintilesIMS (now &lt;a href=&quot;https://www.iqvia.com&quot;&gt;IQVIA&lt;/a&gt;) where he developed and applied machine learning algorithms to healthcare with applications to detecting and modelling disease progression. Prior to this, he was a &lt;a href=&quot;https://www.surrey.ac.uk&quot;&gt;senior lecturer&lt;/a&gt; and a principal investigator of a project funded by Medical Research Council (MRC) with the aim of &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;modelling Chronic Kidney Disease&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Awards and recognition&lt;/strong&gt;. Whilst at University of Surrey, he was named the researcher of the year 2011. He is a fellow of Higher Education Academy and a recipient of Swiss National Science Foundation Advanced Researcher grant. He has been applying machine learning to solving predictive and diagnostic analytics, with applications to biometrics, forensics, and healthcare. On these topics, he has published in excess of 100 peer-reviwed publications which are summarised by a &lt;a href=&quot;https://scholar.google.co.uk/citations?user=6CjzwfEAAAAJ&amp;amp;hl=en&quot;&gt;Google-based H-index of 31&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
@@ -1142,7 +1239,7 @@ years of research experience, in both the academia and commerce.&lt;/p&gt;
   &lt;li&gt;BSc in Computer Science, &lt;a href=&quot;http://www.cs.usm.my&quot;&gt;Universiti Sains Malaysia&lt;/a&gt;, 1999.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;experience&quot;&gt;Experience&lt;/h2&gt;
+&lt;h2 id=&quot;past-experience&quot;&gt;Past Experience&lt;/h2&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;Quintiles IMS Holdings, Inc. - Senior Data Scientist&lt;/strong&gt;&lt;/p&gt;
 
