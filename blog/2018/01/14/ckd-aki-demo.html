@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - How to install VWWare Workstation Player and update it with the latest VMWare Tools</title>
+  <title>Norman Poh - A software demo for modelling CKD and detecting AKI</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2017/12/29/vmware-tools-update.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/ckd-aki-demo.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -180,41 +180,58 @@
 
     <div class="eleven columns content">
       <p class="meta">
-  December 29, 2017
+  January 14, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">How to install VWWare Workstation Player and update it with the latest VMWare Tools</h1>
+<h1 class="title">A software demo for modelling CKD and detecting AKI</h1>
 
 <div id="post">
-  <h3 id="installing-vmware-workstation-in-windows-host-os">Installing VMWare Workstation in Windows’ host OS</h3>
-<p>First, download the latest version of VMWare Workstation from the <a href="https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1410|product_downloads">link</a>. The latest version is “VMWare Workstation Player 14”.</p>
+  <h2 id="about-the-demo">About the demo</h2>
+<p>Within the context of the <a href="http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1">MRC Modelling CKD Progression project</a>, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).</p>
 
-<p>Then, install it in your host machine</p>
+<p>I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to <em>climate</em> whereas the short-term trend as akin to the <em>weather</em>. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.</p>
 
-<h3 id="updating-your-vmware-workstation-with-the-latest-vmware-tools">Updating your VMWare Workstation with the latest VMWare Tools</h3>
-<p>For training, I normally prepare the VMWare Ubuntu image. If you have prepared this yourself, you may want to update your image with the latest VMWare Tools. These tools allow you to resize your screen in a window’s host machine and to access to your local drive mount point which is <code>/mnt/hgfs/C</code> if you share your C drive.</p>
+<p><img src="/assets/ckd/ckd_short_long_term.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p>In preparing this guide, I have followed the VMware Doc on <a href="https://docs.vmware.com/en/VMware-Workstation-Player-for-Windows/14.0/com.vmware.player.win.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html">Manually Installing VMware Tools on a Linux Virtual Machine</a>.</p>
+<p>The diagram above shows how the algorithm called <a href="https://www.sciencedirect.com/science/article/pii/S1532046417302253"><em>probabilistic broken-stick model</em></a> can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.</p>
 
-<h4 id="procedure">Procedure</h4>
-<ol>
-  <li>On the host, from the Workstation Player menu bar, select Player &gt; Manage &gt; Install VMware Tools. If an earlier version of VMware Tools is installed, the menu item is Update VMware Tools.</li>
-  <li>In the virtual machine, open a terminal window.  Type the following commands</li>
-</ol>
+<h2 id="the-algorithms-implemented">The algorithms implemented</h2>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 
-tar zxpf /media/user/VMware<span class="se">\ </span>Tools/VMwareTools-10.2.0-7259539.tar.gz 
-<span class="nb">cd</span> vmware-tools-distrib/
-sudo ./vmware-install.pl </code></pre></figure>
+<p>The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:</p>
 
-<p>Finally, you can remove the distribution source itself</p>
+<ul>
+  <li><strong>Probabilistic broken-stick model</strong>: for modelling the long-term CKD progression</li>
+  <li><strong>SAKIDA</strong>: Surrey AKI Detection Algorithm</li>
+  <li><strong>NHS</strong>: The NHS algorithm for AKI detection</li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span>
-rm -rvf /media/user/VMware<span class="se">\ </span>Tools</code></pre></figure>
+<p>All of these algorithms work with eGFR. The software, however, can take a creatinine time-series and apply the relevant formulas to obtain the corresponing eGFR time-series, such as:</p>
 
+<ul>
+  <li>
+    <p><strong>MDRD GFR</strong>: This is the Modification of Diet in Renal Disease (MDRD) Study equation. The resultant eGFR that is calculated has variance (standard error) that is larger for hight GFR values. So, it is not suitable for healthy subjects who generally have high GFR value. The Creatinine can be recorded in micro mol per litre (µmol/L) or miligram per decilitre (mg/dL); and we have implemented both.</p>
+  </li>
+  <li>
+    <p><strong>CKD-EPI</strong>: This is the Chronic Kidney Disease Epidemiology Collaboration study equation, which supercedes the MDRD GFR equation.</p>
+  </li>
+  <li>
+    <p><strong>eGFR</strong>: Of course, the software will happily take eGFR if you prefer to supply  pre-calculated eGFR values.</p>
+  </li>
+</ul>
+
+<h2 id="the-demo">The demo</h2>
+
+<p>Here’s a demo of the software.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;start=99" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<h2 id="whats-next">What’s next?</h2>
+<p>Go to this page to <a href="/blog/2018/01/14/sakida-download.html">download the software</a>. To learn how to use the software, read the <a href="/blog/2018/01/14/sakida-help.html">user manual</a>.</p>
+
+<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
 
 </div>
 
@@ -239,8 +256,15 @@ rm -rvf /media/user/VMware<span class="se">\ </span>Tools</code></pre></figure>
   <h3>Tags :</h3>
   <span>
     
-      <a href="/tag/virtual-machine.html" rel="tag"> 
-         virtual-machine 
+      <a href="/tag/kidney-research.html" rel="tag"> 
+         kidney-research 
+        
+          ,
+        
+      </a>
+
+      <a href="/tag/machine-leanring.html" rel="tag"> 
+         machine-leanring 
         
         .
         

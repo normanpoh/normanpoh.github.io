@@ -4,13 +4,213 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-12T18:28:39+00:00</updated>
+ <updated>2018-01-14T16:20:53+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>Surrey AKI Detection Algorithm (SAKIDA)</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"/>
+   <updated>2018-01-14T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/14/sakida</id>
+   <content type="html">&lt;h2 id=&quot;about-sakida&quot;&gt;About SAKIDA&lt;/h2&gt;
+&lt;p&gt;This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/screenshot_sakida.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-acute-kidney-injury&quot;&gt;What is Acute Kidney Injury?&lt;/h2&gt;
+&lt;p&gt;Acute kidney injury (AKI), previously called acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. It commonly occurs in hospital and is associated to death in hospital.&lt;/p&gt;
+
+&lt;h3 id=&quot;aki-in-numbers&quot;&gt;AKI in numbers&lt;/h3&gt;
+
+&lt;p&gt;According to an &lt;a href=&quot;https://www.england.nhs.uk/patientsafety/wp-content/uploads/sites/32/2014/04/issue-aki-pres2.pdf&quot;&gt;NHS patient saftey study&lt;/a&gt;,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;”One in five emergency admissions to hospital will have AKI”&lt;/li&gt;
+  &lt;li&gt;”AKI is 100 times more deadly than MRSA infection”&lt;/li&gt;
+  &lt;li&gt;”Around 20 per cent of AKI cases are preventable”&lt;/li&gt;
+  &lt;li&gt;”costs of AKI to the NHS are £434-620m pa”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;why-detecting-acute-kidney-injury-in-primary-care-clinic&quot;&gt;Why detecting Acute Kidney Injury in primary care (clinic)?&lt;/h3&gt;
+
+&lt;p&gt;The community-acquired AKI accounts for two thirds of all AKI incidents in the UK. Although algorithms for detecting AKI exist, they are mainly designed for use in the hospital setting where serum creatinine is regularly monitored, about once a day. For this reason, we have designed the SAKIDA (Surrey Acute Kidney Injury Detection Algorithm) which is more suitable for use in the primary care setting.&lt;/p&gt;
+
+&lt;h3 id=&quot;so-how-do-i-use-sakida&quot;&gt;So, how do I use SAKIDA?&lt;/h3&gt;
+
+&lt;p&gt;First &lt;a href=&quot;https://sites.google.com/site/akidetection/download&quot;&gt;download the software&lt;/a&gt;. Then read the help page. Do check out the demo too.&lt;/p&gt;
+
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Surrey AKI Detection Algorithm (SAKIDA) - User Manual</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html"/>
+   <updated>2018-01-14T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/14/sakida-help</id>
+   <content type="html">&lt;h2 id=&quot;about-sakida&quot;&gt;About SAKIDA&lt;/h2&gt;
+&lt;p&gt;This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. You should read the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software introduction&lt;/a&gt; before continuing to read this page which serves as the &lt;em&gt;user manual&lt;/em&gt;. To download the SAKIDA software, &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;visit this page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;get-familiar-with-the-interface&quot;&gt;1. Get familiar with the interface&lt;/h2&gt;
+&lt;p&gt;First, get to know the way your interact with the software in five steps. Don’t forget to press F1 any time to get to this help website.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-help.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;choose-your-file-format&quot;&gt;1) Choose your file format&lt;/h2&gt;
+
+&lt;p&gt;There are four file formats. Please choose the right option. If you are not sure, please choose the first option, which loads serum creatinine in mg/dL and then computes eGFR using the CKD-EPI equation as our software can figure out automatically the correct formula to used. If you want to use the MDRD equation, then you should choose the third option.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-file_format.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Below, we shall show two cases: files with creatinine as input or eGFR as input&lt;/p&gt;
+
+&lt;h3 id=&quot;input-file-with-creatinine-measurements&quot;&gt;Input file with Creatinine measurements&lt;/h3&gt;
+
+&lt;p&gt;Let’s take a look at an example file below: &lt;code&gt;Example_Scr_in_micromolperL3.csv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-creatine_file.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;All the headings above mandatory; otherwise, the loading will fail.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;DemographicsID&lt;/strong&gt; - a unique patient ID (integer)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;DOB&lt;/strong&gt;. This is a date of the format dd-mmm-yy, e.g., 11-Jan-33, which is taken as 11 Jan 1933. The software can also accept the American date format: Jan-11-33. If 11-01-33 is presented, the software will interpret this as 1 November 1933, which is wrong. If your date is in dd-mm-yy or mm-dd-yy (e.g., 11-01-33 or 01-11-33), which can create a lot of confusion, we recommend that you change your format automatically using Excel, following &lt;a href=&quot;https://www.extendoffice.com/documents/excel/2476-excel-convert-date-to-text-or-number.html&quot;&gt;the instructions here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Gender&lt;/strong&gt;: should be M or F&lt;/li&gt;
+  &lt;li&gt;Ethnicity can be any character, e.g., ‘W’ for white, but our software will only look for the flag ‘B’ for black.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Date&lt;/strong&gt;: This is the date the measurement was taken.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Creatinine&lt;/strong&gt;: The serum creatinine value in micro m/L or mg/dL. To distinguish the two, choose the right option as stated above.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All fields can be named exactly as they are: &lt;code&gt;DemographicsID&lt;/code&gt; (and not ID, please); &lt;code&gt;DOB&lt;/code&gt; (and not Date of Birth); etc. Our software can only recognise these headings.&lt;/p&gt;
+
+&lt;h3 id=&quot;input-file-with-egfr&quot;&gt;Input file with eGFR&lt;/h3&gt;
+
+&lt;p&gt;An example file with eGFR is also provided: &lt;code&gt;Example_eGFR.csv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If your file has pre-computed eGFR values, then you should have Date, Age, and eGFR fields (attributes).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-eGFR_file.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that we don’t need the gender, ethnicity fields, etc.&lt;/p&gt;
+
+&lt;h3 id=&quot;import-the-file&quot;&gt;2) Import the file&lt;/h3&gt;
+&lt;p&gt;Next, import the file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-file_selector.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;choose-a-patient&quot;&gt;3) Choose a patient&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-click_id.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;choose-an-aki-detection-algorithm&quot;&gt;4) Choose an AKI detection algorithm&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-clikc_aki.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;save-the-output&quot;&gt;5) Save the output&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-click_output.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you have chosen to save an image, the filename is AKI.png which is stored in the same directory as where the software is installed. The exported data is saved in a default file named ‘AKI_result.csv’. An example of output is shown below. Note that we calculate the age by assuming one year has 365.25 days.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-aki_results.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+
+&lt;p&gt;If you haven’t downloaded the SAKIDA software, do this &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Surrey AKI Detection Algorithm (SAKIDA) - Software Download</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html"/>
+   <updated>2018-01-14T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/14/sakida-download</id>
+   <content type="html">&lt;h2 id=&quot;about-sakida&quot;&gt;About SAKIDA&lt;/h2&gt;
+&lt;p&gt;This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. Find out more &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;about the SAKIDA software here&lt;/a&gt; and &lt;a href=&quot;/blog/2018/01/14/sakida-help.html&quot;&gt;the help page here&lt;/a&gt;. This page provides the instructions for you to download and install the software.&lt;/p&gt;
+
+&lt;p&gt;Our software was developed and compiled using Matlab R2017a so you will have to download the Matlab runtime R2017a (9.2).&lt;/p&gt;
+
+&lt;h5 id=&quot;first-install-matlab-runtime&quot;&gt;1. First, install Matlab runtime:&lt;/h5&gt;
+&lt;p&gt;Go to https://uk.mathworks.com/products/compiler/mcr.html and download Matlab runtime R2017a (9.2). This will take a while to download and install it.&lt;/p&gt;
+
+&lt;h5 id=&quot;next-download-our-software-herehttpssitesgooglecomsiteakidetectiondownloadforredistributionfilesonlyzipattredirects0d1&quot;&gt;2. Next, &lt;a href=&quot;https://sites.google.com/site/akidetection/download/for_redistribution_files_only.zip?attredirects=0&amp;amp;d=1&quot;&gt;download our software here&lt;/a&gt;.&lt;/h5&gt;
+
+&lt;p&gt;Note that if your browser suggests that the software is ‘dangerous’ because it is an EXE file. Please indicate that you want to keep the software.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-exe_dangerous.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;unzip-the-file-and-click-sakidaexe&quot;&gt;3. Unzip the file and click SAKIDA.exe.&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-explorer_exe.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Run the software for the first time. You might be warned by Windows that the software is not safe. Please be reassured that it is.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/screenshot_sakida.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;need-help&quot;&gt;Need help?&lt;/h5&gt;
+&lt;p&gt;Find out more &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;about the SAKIDA software here&lt;/a&gt; and &lt;a href=&quot;/blog/2018/01/14/sakida-help.html&quot;&gt;the help page here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A software demo for modelling CKD and detecting AKI</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/14/ckd-aki-demo.html"/>
+   <updated>2018-01-14T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/14/ckd-aki-demo</id>
+   <content type="html">&lt;h2 id=&quot;about-the-demo&quot;&gt;About the demo&lt;/h2&gt;
+&lt;p&gt;Within the context of the &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;MRC Modelling CKD Progression project&lt;/a&gt;, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).&lt;/p&gt;
+
+&lt;p&gt;I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to &lt;em&gt;climate&lt;/em&gt; whereas the short-term trend as akin to the &lt;em&gt;weather&lt;/em&gt;. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/ckd_short_long_term.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The diagram above shows how the algorithm called &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S1532046417302253&quot;&gt;&lt;em&gt;probabilistic broken-stick model&lt;/em&gt;&lt;/a&gt; can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-algorithms-implemented&quot;&gt;The algorithms implemented&lt;/h2&gt;
+
+&lt;p&gt;The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Probabilistic broken-stick model&lt;/strong&gt;: for modelling the long-term CKD progression&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;SAKIDA&lt;/strong&gt;: Surrey AKI Detection Algorithm&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;NHS&lt;/strong&gt;: The NHS algorithm for AKI detection&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of these algorithms work with eGFR. The software, however, can take a creatinine time-series and apply the relevant formulas to obtain the corresponing eGFR time-series, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;MDRD GFR&lt;/strong&gt;: This is the Modification of Diet in Renal Disease (MDRD) Study equation. The resultant eGFR that is calculated has variance (standard error) that is larger for hight GFR values. So, it is not suitable for healthy subjects who generally have high GFR value. The Creatinine can be recorded in micro mol per litre (µmol/L) or miligram per decilitre (mg/dL); and we have implemented both.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;CKD-EPI&lt;/strong&gt;: This is the Chronic Kidney Disease Epidemiology Collaboration study equation, which supercedes the MDRD GFR equation.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;eGFR&lt;/strong&gt;: Of course, the software will happily take eGFR if you prefer to supply  pre-calculated eGFR values.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-demo&quot;&gt;The demo&lt;/h2&gt;
+
+&lt;p&gt;Here’s a demo of the software.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;amp;start=99&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
+&lt;p&gt;Go to this page to &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download the software&lt;/a&gt;. To learn how to use the software, read the &lt;a href=&quot;/blog/2018/01/14/sakida-help.html&quot;&gt;user manual&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Healthcare Analytics: A Case Study in Chronic Kidney Disease</title>
@@ -30,7 +230,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;change in assay methods &lt;a href=&quot;https://s3.amazonaws.com/academia.edu.documents/37999486/norman_eGFR_icpr2012_workshop.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&amp;amp;Expires=1515699723&amp;amp;Signature=R2x1wbgD4Y7hxPJVT0FboMuTlm4%3D&amp;amp;response-content-disposition=inline%3B%20filename%3DCalibrating_Longitudinal_eGFR_in_Patienc.pdf&quot;&gt;Poh and Lusignan, ICPR 2012&lt;/a&gt;;&lt;/p&gt;
+    &lt;p&gt;change in assay methods &lt;a href=&quot;https://s3.amazonaws.com/academia.edu.documents/37999486/norman_eGFR_icpr2012_workshop.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&amp;amp;Expires=1515699723&amp;amp;Signature=R2x1wbgD4Y7hxPJVT0FboMuTlm4%3D&amp;amp;response-content-disposition=inline%3B%20filename%3DCalibrating_Longitudinal_eGFR_in_Patienc.pdf&quot;&gt;(Poh and Lusignan, ICPR 2012)&lt;/a&gt;;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;the fluctuation of kidney function which is under the influence of myriad factors, often confounded by treatment effects and person-dependent characteristics; and&lt;/p&gt;
@@ -1249,7 +1449,7 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
 &lt;/script&gt; 
 years of research experience, in both the academia and commerce.&lt;/p&gt;
 
-&lt;p&gt;He is currently working for &lt;a href=&quot;http://www.bjss.com&quot;&gt;BJSS&lt;/a&gt; where he helps develop a core team of data scientists and machine learning engineers to solve a range of practical machine learning problems across different sectors from government and healthcare to commdity and finance.&lt;/p&gt;
+&lt;p&gt;He is currently working for &lt;a href=&quot;http://www.bjss.com&quot;&gt;BJSS&lt;/a&gt; where he works with a core team of data scientists and machine learning engineers to solve a range of practical machine learning problems across different sectors from government and healthcare to commdity and finance.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Previous roles&lt;/strong&gt;. He previously worked at QuintilesIMS (now &lt;a href=&quot;https://www.iqvia.com&quot;&gt;IQVIA&lt;/a&gt;) where he developed and applied machine learning algorithms to healthcare with applications to detecting and modelling disease progression. Prior to this, he was a &lt;a href=&quot;https://www.surrey.ac.uk&quot;&gt;senior lecturer&lt;/a&gt; and a principal investigator of a project funded by Medical Research Council (MRC) with the aim of &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;modelling Chronic Kidney Disease&lt;/a&gt;.&lt;/p&gt;
 
@@ -1314,7 +1514,7 @@ progression, and to stratify CKD patients.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Produced award-winning research papers on biometrics, advancing research in multimodal biometrics fusion, dynamic fusion based on biometric sample quality.&lt;/li&gt;
   &lt;li&gt;Collaborated with researchers in Europe and Asia.&lt;/li&gt;
-  &lt;li&gt;Team leader for the FP7 MOBIO and BEAT projects&lt;/li&gt;
+  &lt;li&gt;Team leader for the FP7 MOBIO and BEAT projects.&lt;/li&gt;
 &lt;/ul&gt;
 </content>
  </entry>

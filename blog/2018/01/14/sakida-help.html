@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - User Manual</title>
+  <meta name="author" content="Norman Poh" />
+  <meta name="description" content="The blog of Norman Poh" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="Norman Poh" href="http://normanpoh.github.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+   <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1> </h1> 
+  <a href="/">
+    
+    <img src="/assets/norman_round.png" id="logo" alt="Norman's photo" width="200"/>
+    
+  </a>
+  <h2><a href="/">Norman Poh</a></h2>
+  <div id="bio">
+    <p>Senior lecturer, data scientist, consultant</p> 
+	<hr> 
+	<ul>
+	  <li><a href="http://www.snf.ch/en/funding/careers/postdoc-mobility">Swiss NSF Advanced Researcher Fellow</a></li>
+	  <li><a href="https://www.mrc.ac.uk/funding/how-we-fund-research/new-investigator-research-grant/">MRC NIRG Investigator</a> </li> 
+	  <li><a href="https://www.heacademy.ac.uk"> HEA Fellow</a></li>
+	  <li><a href="https://www.surrey.ac.uk"> Researcher of the year 2011, University of Surrey </a></li>
+	</ul>  
+	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
+	<hr>   
+    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, healthcare, and predictive analytics or <a href="/tag/research.html"> research </a></p>
+  </div>
+  <div id="social">
+    Follow me:
+<div id="stalker">
+  
+  <a title="normanpoh on Github" href="https://github.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+  <a title="normanpoh on gitlab" href="https://gitlab.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Norman Poh on LinkedIn" href="https://www.linkedin.com/in/normanpoh">
+    <i class="fa fa-linkedin-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+
+  </div>
+
+  <div id="tags">
+    <span >
+  
+  
+  
+    <a href="/tag/biometrics.html" rel="tag">
+      biometrics 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/healthcare.html" rel="tag">
+      healthcare 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/kidney-research.html" rel="tag">
+      kidney-research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/latex.html" rel="tag">
+      latex 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/machine-leanring.html" rel="tag">
+      machine-leanring 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/machine-learning.html" rel="tag">
+      machine-learning 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/research.html" rel="tag">
+      research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/resume.html" rel="tag">
+      resume 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/tutorial.html" rel="tag">
+      tutorial 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/virtual-machine.html" rel="tag">
+      virtual-machine 
+  
+    .
+    
+    </a>
+  
+
+</span>
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  January 14, 2018
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</h1>
+
+<div id="post">
+  <h2 id="about-sakida">About SAKIDA</h2>
+<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. You should read the <a href="/blog/2018/01/14/sakida.html">SAKIDA software introduction</a> before continuing to read this page which serves as the <em>user manual</em>. To download the SAKIDA software, <a href="/blog/2018/01/14/sakida-download.html">visit this page</a>.</p>
+
+<h2 id="get-familiar-with-the-interface">1. Get familiar with the interface</h2>
+<p>First, get to know the way your interact with the software in five steps. Don’t forget to press F1 any time to get to this help website.</p>
+
+<p><img src="/assets/sakida/sakida-help.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<h2 id="choose-your-file-format">1) Choose your file format</h2>
+
+<p>There are four file formats. Please choose the right option. If you are not sure, please choose the first option, which loads serum creatinine in mg/dL and then computes eGFR using the CKD-EPI equation as our software can figure out automatically the correct formula to used. If you want to use the MDRD equation, then you should choose the third option.</p>
+
+<p><img src="/assets/sakida/sakida-file_format.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<p>Below, we shall show two cases: files with creatinine as input or eGFR as input</p>
+
+<h3 id="input-file-with-creatinine-measurements">Input file with Creatinine measurements</h3>
+
+<p>Let’s take a look at an example file below: <code>Example_Scr_in_micromolperL3.csv</code>.</p>
+
+<p><img src="/assets/sakida/sakida-creatine_file.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<p>All the headings above mandatory; otherwise, the loading will fail.</p>
+
+<ul>
+  <li><strong>DemographicsID</strong> - a unique patient ID (integer)</li>
+  <li><strong>DOB</strong>. This is a date of the format dd-mmm-yy, e.g., 11-Jan-33, which is taken as 11 Jan 1933. The software can also accept the American date format: Jan-11-33. If 11-01-33 is presented, the software will interpret this as 1 November 1933, which is wrong. If your date is in dd-mm-yy or mm-dd-yy (e.g., 11-01-33 or 01-11-33), which can create a lot of confusion, we recommend that you change your format automatically using Excel, following <a href="https://www.extendoffice.com/documents/excel/2476-excel-convert-date-to-text-or-number.html">the instructions here</a>.</li>
+  <li><strong>Gender</strong>: should be M or F</li>
+  <li>Ethnicity can be any character, e.g., ‘W’ for white, but our software will only look for the flag ‘B’ for black.</li>
+  <li><strong>Date</strong>: This is the date the measurement was taken.</li>
+  <li><strong>Creatinine</strong>: The serum creatinine value in micro m/L or mg/dL. To distinguish the two, choose the right option as stated above.</li>
+</ul>
+
+<p>All fields can be named exactly as they are: <code>DemographicsID</code> (and not ID, please); <code>DOB</code> (and not Date of Birth); etc. Our software can only recognise these headings.</p>
+
+<h3 id="input-file-with-egfr">Input file with eGFR</h3>
+
+<p>An example file with eGFR is also provided: <code>Example_eGFR.csv</code>.</p>
+
+<p>If your file has pre-computed eGFR values, then you should have Date, Age, and eGFR fields (attributes).</p>
+
+<p><img src="/assets/sakida/sakida-eGFR_file.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<p>Note that we don’t need the gender, ethnicity fields, etc.</p>
+
+<h3 id="import-the-file">2) Import the file</h3>
+<p>Next, import the file.</p>
+
+<p><img src="/assets/sakida/sakida-file_selector.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<h3 id="choose-a-patient">3) Choose a patient</h3>
+
+<p><img src="/assets/sakida/sakida-click_id.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<h3 id="choose-an-aki-detection-algorithm">4) Choose an AKI detection algorithm</h3>
+
+<p><img src="/assets/sakida/sakida-clikc_aki.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<h3 id="save-the-output">5) Save the output</h3>
+
+<p><img src="/assets/sakida/sakida-click_output.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<p>If you have chosen to save an image, the filename is AKI.png which is stored in the same directory as where the software is installed. The exported data is saved in a default file named ‘AKI_result.csv’. An example of output is shown below. Note that we calculate the age by assuming one year has 365.25 days.</p>
+
+<p><img src="/assets/sakida/sakida-aki_results.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<h3 id="whats-next">What’s next?</h3>
+
+<p>If you haven’t downloaded the SAKIDA software, do this <a href="/blog/2018/01/14/sakida-download.html">here</a>.</p>
+
+<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA)</a>
+    </li>
+    
+    <li>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-download.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Download</a>
+    </li>
+    
+    <li>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/ckd-aki-demo.html">A software demo for modelling CKD and detecting AKI</a>
+    </li>
+    
+  </ul>
+
+  <h3>Tags :</h3>
+  <span>
+    
+      <a href="/tag/kidney-research.html" rel="tag"> 
+         kidney-research 
+        
+          ,
+        
+      </a>
+
+      <a href="/tag/machine-leanring.html" rel="tag"> 
+         machine-leanring 
+        
+        .
+        
+      </a>
+
+  </span>
+</div>
+
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Norman Poh, 2018 &mdash; built with 
+<a href="http://jekyllrb.com/">Jekyll</a> using 
+<a href="https://github.com/swanson/lagom">Lagom theme </a> and 
+<a href="https://github.com/Khan/KaTeX"> Katex </a>
+  </p>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-111544249-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+
+$("script[type='math/tex']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<span class=\"inline-equation\">" + 
+           katex.renderToString(tex) +
+           "</span>";
+});
+
+$("script[type='math/tex; mode=display']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<div class=\"equation\">" + 
+           katex.renderToString("\\displaystyle "+tex) +
+           "</div>";
+});
+
+</script>
+
+
+</body>
+</html>
