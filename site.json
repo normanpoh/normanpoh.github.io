@@ -2,31 +2,37 @@
 
 {"date": "Sun, 14 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
-"tags": ["kidney-research","machine-leanring"],
+"tags": ["kidney-research","healthcare"],
 "title": "Surrey AKI Detection Algorithm (SAKIDA) - Software Demo",
 "url": "/blog/2018/01/14/sakida.html"},
 
 {"date": "Sun, 14 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
-"tags": ["kidney-research","machine-leanring"],
+"tags": ["kidney-research","healthcare"],
 "title": "Surrey AKI Detection Algorithm (SAKIDA) - User Manual",
 "url": "/blog/2018/01/14/sakida-help.html"},
 
 {"date": "Sun, 14 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
-"tags": ["kidney-research","machine-leanring"],
+"tags": ["kidney-research","healthcare"],
 "title": "Surrey AKI Detection Algorithm (SAKIDA) - Software Download",
 "url": "/blog/2018/01/14/sakida-download.html"},
 
 {"date": "Sun, 14 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
-"tags": ["kidney-research","machine-leanring"],
+"tags": ["kidney-research","healthcare"],
+"title": "Modelling the Progression of CKD - The MRC CKD project",
+"url": "/blog/2018/01/14/mrc-ckd-project.html"},
+
+{"date": "Sun, 14 Jan 2018 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["kidney-research","healthcare"],
 "title": "A software demo for modelling CKD and detecting AKI",
 "url": "/blog/2018/01/14/ckd-aki-demo.html"},
 
 {"date": "Thu, 11 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
-"tags": ["kidney-research","machine-learning"],
+"tags": ["kidney-research","healthcare"],
 "title": "Healthcare Analytics: A Case Study in Chronic Kidney Disease",
 "url": "/blog/2018/01/11/ckd.html"},
 

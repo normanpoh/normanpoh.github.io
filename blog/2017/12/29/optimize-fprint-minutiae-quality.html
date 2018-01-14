@@ -23,6 +23,25 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
 
+<!-- header for today -->
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '/' + dd + '/' + yyyy;
+</script>
+
 </head>
 <body>
   <div class="container">
@@ -46,7 +65,7 @@
 	</ul>  
 	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
 	<hr>   
-    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, healthcare, and predictive analytics or <a href="/tag/research.html"> research </a></p>
+    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, <a href="/tag/healthcare.html"> healthcare</a>, <a href="/tag/kidney-research.html"> modelling of CKD progression</a> and predictive analytics or <a href="/tag/research.html">research</a></p>
   </div>
   <div id="social">
     Follow me:
@@ -124,20 +143,6 @@
   
     <a href="/tag/latex.html" rel="tag">
       latex 
-  
-    ,
-  
-    </a>
-  
-    <a href="/tag/machine-leanring.html" rel="tag">
-      machine-leanring 
-  
-    ,
-  
-    </a>
-  
-    <a href="/tag/machine-learning.html" rel="tag">
-      machine-learning 
   
     ,
   
@@ -282,6 +287,47 @@ mkdir features</code></pre></figure>
 
 </div>
 
+<!--- begin adding the citation -->
+
+<div id="citation">
+
+  <H3> Cite this blog post </H3>
+  Cite the article in Bibtex this way:
+
+  
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  @misc<span class="o">{</span> poh_2017_12_29_optimize-fprint-minutiae-quality <span class="o">}</span>,
+    <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
+    <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: Optimize fingerprint minutiae quality <span class="o">}</span>,
+    <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/29/optimize-fprint-minutiae-quality.html<span class="o">}</span>,
+    <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
+  <span class="o">}</span>
+  </code></pre></figure>
+
+
+  <br>
+
+  <p>
+  MLA citation:
+  </p>
+  <ul>
+    <li>
+  Poh, Norman. "Tutorial: Optimize fingerprint minutiae quality". <i> Norman Poh's Github Blog</i>, 
+  <a href="http://normanpoh.github.com/blog/2017/12/29/optimize-fprint-minutiae-quality.html">
+  http://normanpoh.github.com/blog/2017/12/29/optimize-fprint-minutiae-quality.html
+  </a>. 
+  Accessed <script type="text/javascript"> document.write(today); </script>.
+  </li>
+  <ul>
+
+  <script type="text/javascript"> window.onload = replace_today; 
+               function replace_today() { document.body.innerHTML = document.body.innerHTML.replace('___TODAY___', today);}
+  </script>
+  
+
+</div>
+<!--- end -->
+
+
 <div id="related">
   <h3>Related Posts</h3>
   <ul class="posts">
@@ -338,6 +384,7 @@ mkdir features</code></pre></figure>
 <a href="https://github.com/Khan/KaTeX"> Katex </a>
   </p>
 </div>
+
 
       </div>
     </div>

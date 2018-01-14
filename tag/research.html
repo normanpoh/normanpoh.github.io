@@ -23,6 +23,25 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
 
+<!-- header for today -->
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '/' + dd + '/' + yyyy;
+</script>
+
 </head>
 <body>
   <div class="container">
@@ -46,7 +65,7 @@
 	</ul>  
 	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
 	<hr>   
-    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, healthcare, and predictive analytics or <a href="/tag/research.html"> research </a></p>
+    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, <a href="/tag/healthcare.html"> healthcare</a>, <a href="/tag/kidney-research.html"> modelling of CKD progression</a> and predictive analytics or <a href="/tag/research.html">research</a></p>
   </div>
   <div id="social">
     Follow me:
@@ -129,20 +148,6 @@
   
     </a>
   
-    <a href="/tag/machine-leanring.html" rel="tag">
-      machine-leanring 
-  
-    ,
-  
-    </a>
-  
-    <a href="/tag/machine-learning.html" rel="tag">
-      machine-learning 
-  
-    ,
-  
-    </a>
-  
     <a href="/tag/research.html" rel="tag">
       research 
   
@@ -186,6 +191,8 @@
   <h2><i class="fa fa-bookmark"></i> Research Posts </h2> 
   <ul id="blog-posts" class="posts">
        
+      
+     
       
      
       
@@ -242,6 +249,7 @@
 <a href="https://github.com/Khan/KaTeX"> Katex </a>
   </p>
 </div>
+
 
       </div>
     </div>
