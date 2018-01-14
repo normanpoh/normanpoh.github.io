@@ -254,12 +254,13 @@ today = mm + '/' + dd + '/' + yyyy;
   Accessed <script type="text/javascript"> document.write(today); </script>.
   </li>
   <ul>
-
-  <script type="text/javascript"> window.onload = replace_today; 
-               function replace_today() { document.body.innerHTML = document.body.innerHTML.replace('___TODAY___', today);}
-  </script>
 </div>
 
+<script type="text/javascript"> window.onload = replace_today; 
+  function replace_today() { 
+    document.body.innerHTML = document.body.innerHTML.replace('___TODAY___', today);
+  }
+</script>
 
 
 <!--- end -->
