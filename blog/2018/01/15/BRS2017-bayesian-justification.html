@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - User Manual</title>
+  <title>Norman Poh - Automatically Detecting AKI Events from Primary Care Records</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,86 +185,37 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 15, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</h1>
+<h1 class="title">Automatically Detecting AKI Events from Primary Care Records</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. You should read the <a href="/blog/2018/01/14/sakida.html">SAKIDA software introduction</a> before continuing to read this page which serves as the <em>user manual</em>. To download the SAKIDA software, <a href="/blog/2018/01/14/sakida-download.html">visit this page</a>.</p>
+  <h2 id="an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017">An absract published in the <a href="https://britishrenal.org/event/brs-conference-2017">British Renal Society 2017 (BRS2017)</a></h2>
 
-<h2 id="get-familiar-with-the-interface">1. Get familiar with the interface</h2>
-<p>First, get to know the way your interact with the software in five steps. Don’t forget to press F1 any time to get to this help website.</p>
+<p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
 
-<p><img src="/assets/sakida/sakida-help.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="introduction">Introduction</h3>
+<p>Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) (Figure a) and as the outlier points when using Gaussian process regression (GPR) (Figure b).</p>
 
-<h2 id="choose-your-file-format">1) Choose your file format</h2>
+<h3 id="method">Method</h3>
 
-<p>There are four file formats. Please choose the right option. If you are not sure, please choose the first option, which loads serum creatinine in mg/dL and then computes eGFR using the CKD-EPI equation as our software can figure out automatically the correct formula to used. If you want to use the MDRD equation, then you should choose the third option.</p>
+<p>The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.</p>
 
-<p><img src="/assets/sakida/sakida-file_format.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="results">Results</h3>
+<p>SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).</p>
 
-<p>Below, we shall show two cases: files with creatinine as input or eGFR as input</p>
+<h3 id="conclusion">Conclusion</h3>
 
-<h3 id="input-file-with-creatinine-measurements">Input file with Creatinine measurements</h3>
-
-<p>Let’s take a look at an example file below: <code>Example_Scr_in_micromolperL3.csv</code>.</p>
-
-<p><img src="/assets/sakida/sakida-creatine_file.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<p>All the headings above mandatory; otherwise, the loading will fail.</p>
-
-<ul>
-  <li><strong>DemographicsID</strong> - a unique patient ID (integer)</li>
-  <li><strong>DOB</strong>. This is a date of the format dd-mmm-yy, e.g., 11-Jan-33, which is taken as 11 Jan 1933. The software can also accept the American date format: Jan-11-33. If 11-01-33 is presented, the software will interpret this as 1 November 1933, which is wrong. If your date is in dd-mm-yy or mm-dd-yy (e.g., 11-01-33 or 01-11-33), which can create a lot of confusion, we recommend that you change your format automatically using Excel, following <a href="https://www.extendoffice.com/documents/excel/2476-excel-convert-date-to-text-or-number.html">the instructions here</a>.</li>
-  <li><strong>Gender</strong>: should be M or F</li>
-  <li>Ethnicity can be any character, e.g., ‘W’ for white, but our software will only look for the flag ‘B’ for black.</li>
-  <li><strong>Date</strong>: This is the date the measurement was taken.</li>
-  <li><strong>Creatinine</strong>: The serum creatinine value in micro m/L or mg/dL. To distinguish the two, choose the right option as stated above.</li>
-</ul>
-
-<p>All fields can be named exactly as they are: <code>DemographicsID</code> (and not ID, please); <code>DOB</code> (and not Date of Birth); etc. Our software can only recognise these headings.</p>
-
-<h3 id="input-file-with-egfr">Input file with eGFR</h3>
-
-<p>An example file with eGFR is also provided: <code>Example_eGFR.csv</code>.</p>
-
-<p>If your file has pre-computed eGFR values, then you should have Date, Age, and eGFR fields (attributes).</p>
-
-<p><img src="/assets/sakida/sakida-eGFR_file.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<p>Note that we don’t need the gender, ethnicity fields, etc.</p>
-
-<h3 id="import-the-file">2) Import the file</h3>
-<p>Next, import the file.</p>
-
-<p><img src="/assets/sakida/sakida-file_selector.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<h3 id="choose-a-patient">3) Choose a patient</h3>
-
-<p><img src="/assets/sakida/sakida-click_id.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<h3 id="choose-an-aki-detection-algorithm">4) Choose an AKI detection algorithm</h3>
-
-<p><img src="/assets/sakida/sakida-clikc_aki.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<h3 id="save-the-output">5) Save the output</h3>
-
-<p><img src="/assets/sakida/sakida-click_output.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<p>If you have chosen to save an image, the filename is AKI.png which is stored in the same directory as where the software is installed. The exported data is saved in a default file named ‘AKI_result.csv’. An example of output is shown below. Note that we calculate the age by assuming one year has 365.25 days.</p>
-
-<p><img src="/assets/sakida/sakida-aki_results.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<p>Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.</p>
 
 <h3 id="whats-next">What’s next?</h3>
 
-<p>If you haven’t downloaded the SAKIDA software, do this <a href="/blog/2018/01/14/sakida-download.html">here</a>.</p>
-
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
+<p>Download <a href="/assets/papers/BRS2017_abstract_SAKIDA.pdf">the abstract here</a> 
+and <a href="/assets/papers/BRS2017-poster-SAKIDA.pdf">the poster here</a>. You may also want see <a href="/blog/2018/01/14/sakida.html">a demo of the SAKIDA software here</a> or simply <a href="/blog/2018/01/14/sakida-download.html">download it </a> and try it out yourself.</p>
 
 </div>
 
@@ -284,10 +235,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida-help <span class="o">}</span>,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_15_BRS2017-bayesian-justification <span class="o">}</span>,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - User Manual <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida-help.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Automatically Detecting AKI Events from Primary Care Records <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -298,8 +249,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - User Manual". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-help.html </a>.  
+      Poh, Norman. "Automatically Detecting AKI Events from Primary Care Records". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html"> http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -308,8 +259,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - User Manual". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-help.html </a>. 
+      Poh, Norman (2018). "Automatically Detecting AKI Events from Primary Care Records". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html"> http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -367,6 +318,13 @@ function openReference(evt, bibrefName) {
     
       <a href="/tag/kidney-research.html" rel="tag"> 
         kidney-research 
+        
+        ,
+        
+      </a>
+
+      <a href="/tag/healthcare.html" rel="tag"> 
+        healthcare 
         
         ,
         

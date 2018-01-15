@@ -2,9 +2,27 @@
 
 {"date": "Mon, 15 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
-"tags": ["kidney-research","healthcare","healthcare"],
+"tags": ["kidney-research","healthcare"],
 "title": "Automatically Detecting AKI Events from Primary Care Records",
 "url": "/blog/2018/01/15/BRS2017-sakida.html"},
+
+{"date": "Mon, 15 Jan 2018 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["kidney-research","healthcare"],
+"title": "Identifying Progressive CKD from Primary Care Records – a Study Protocol",
+"url": "/blog/2018/01/15/BRS2017-progressive-ckd.html"},
+
+{"date": "Mon, 15 Jan 2018 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["kidney-research","healthcare"],
+"title": "A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification",
+"url": "/blog/2018/01/15/BRS2017-broken-stick-model.html"},
+
+{"date": "Mon, 15 Jan 2018 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["kidney-research","healthcare","healthcare"],
+"title": "Automatically Detecting AKI Events from Primary Care Records",
+"url": "/blog/2018/01/15/BRS2017-bayesian-justification.html"},
 
 {"date": "Sun, 14 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],

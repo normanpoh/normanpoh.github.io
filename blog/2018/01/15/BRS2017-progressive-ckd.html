@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - User Manual</title>
+  <title>Norman Poh - Identifying Progressive CKD from Primary Care Records – a Study Protocol</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,86 +185,42 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 15, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</h1>
+<h1 class="title">Identifying Progressive CKD from Primary Care Records – a Study Protocol</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. You should read the <a href="/blog/2018/01/14/sakida.html">SAKIDA software introduction</a> before continuing to read this page which serves as the <em>user manual</em>. To download the SAKIDA software, <a href="/blog/2018/01/14/sakida-download.html">visit this page</a>.</p>
+  <h2 id="an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017">An absract published in the <a href="https://britishrenal.org/event/brs-conference-2017">British Renal Society 2017 (BRS2017)</a></h2>
 
-<h2 id="get-familiar-with-the-interface">1. Get familiar with the interface</h2>
-<p>First, get to know the way your interact with the software in five steps. Don’t forget to press F1 any time to get to this help website.</p>
+<h5 id="figure-a-a-namefigure-aa">Figure a <a name="figure-a"></a></h5>
+<p><img src="/assets/ckd/eGFR_trend_16cat.png" alt="eGFR Stratification" style="width: 100%;" /></p>
 
-<p><img src="/assets/sakida/sakida-help.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="background">Background</h3>
+<p>One of the key challenges in managing CKD patients is to identify those who are progressive (worsening eGFR) from those who are non-progressive or may even have underlying improvement in their CKD. To this end, we have developed an algorithm capable of identify progressive from non-progressive CKD based on observed historical eGFR trends.</p>
 
-<h2 id="choose-your-file-format">1) Choose your file format</h2>
+<h3 id="methods---clinical-codes">Methods - Clinical codes.</h3>
+<p>We identified 5-Byte Read Codes from the Royal College of General Practioners (RCGP) Research and Surveillance Centre (RSC) for a range of known factors, including codes related to signs and symptoms (<script type="math/tex"> s </script>), laboratory measurements (<script type="math/tex"> m </script>) and treatments (<script type="math/tex"> t </script>) for CKD as well as its associated co-morbidities or risk factors (r) such as diabetes, cardiovascular disease and kidney-related diseases. For each risk factor, <script type="math/tex"> s, t, m </script> and <script type="math/tex"> r </script> are systematically identified, leading to a range of plausible phenotype variables for explaining a rapid decline in eGFR (See our Bayesian Justification accompanying poster).  Algorithm. We have developed our own regression algorithm – called the broken-stick model – capable of estimating the rate change of eGFR by using a ‘Bayesian’ sliding window of three years in order to provide a stable estimate of the annual rate change of eGFR, while still being sensitive to underlying genuine patterns. The global eGFR slope (annual rate change) of a patient is defined as the average eGFR slope over the patient’s entire history.</p>
 
-<p>There are four file formats. Please choose the right option. If you are not sure, please choose the first option, which loads serum creatinine in mg/dL and then computes eGFR using the CKD-EPI equation as our software can figure out automatically the correct formula to used. If you want to use the MDRD equation, then you should choose the third option.</p>
+<h3 id="patient-inclusionexclusion-criteria">Patient inclusion/exclusion criteria</h3>
+<p>All patients with eGFR measurements were included. Patients with an acute kidney injury episode or hereditary kidney diseases were excluded. Additionally, patients without consistent eGFR trends, defined as having a standard deviation of the eGFR slope of 2 units per year, were excluded.</p>
 
-<p><img src="/assets/sakida/sakida-file_format.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="initial-descriptive-observations">Initial descriptive observations</h3>
+<p>The longitudinal observational data was divided into equal groups of approximately 600 patients. In 9 out of 16 groups (see <a href="#figure-a">figure a</a>) we found that there was a deterioration in eGFR, one group was equivocal and six groups showed improvement. <a href="#figure-b">Figure b</a> below compares the eGFR trends of the first group with the last group.</p>
 
-<p>Below, we shall show two cases: files with creatinine as input or eGFR as input</p>
+<h5 id="figure-b-a-namefigure-ba">Figure b <a name="figure-b"></a></h5>
+<p><img src="/assets/ckd/eGFR_drastic_decline.png" alt="eGFR Stratification" style="width: 100%;" /></p>
 
-<h3 id="input-file-with-creatinine-measurements">Input file with Creatinine measurements</h3>
-
-<p>Let’s take a look at an example file below: <code>Example_Scr_in_micromolperL3.csv</code>.</p>
-
-<p><img src="/assets/sakida/sakida-creatine_file.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<p>All the headings above mandatory; otherwise, the loading will fail.</p>
-
-<ul>
-  <li><strong>DemographicsID</strong> - a unique patient ID (integer)</li>
-  <li><strong>DOB</strong>. This is a date of the format dd-mmm-yy, e.g., 11-Jan-33, which is taken as 11 Jan 1933. The software can also accept the American date format: Jan-11-33. If 11-01-33 is presented, the software will interpret this as 1 November 1933, which is wrong. If your date is in dd-mm-yy or mm-dd-yy (e.g., 11-01-33 or 01-11-33), which can create a lot of confusion, we recommend that you change your format automatically using Excel, following <a href="https://www.extendoffice.com/documents/excel/2476-excel-convert-date-to-text-or-number.html">the instructions here</a>.</li>
-  <li><strong>Gender</strong>: should be M or F</li>
-  <li>Ethnicity can be any character, e.g., ‘W’ for white, but our software will only look for the flag ‘B’ for black.</li>
-  <li><strong>Date</strong>: This is the date the measurement was taken.</li>
-  <li><strong>Creatinine</strong>: The serum creatinine value in micro m/L or mg/dL. To distinguish the two, choose the right option as stated above.</li>
-</ul>
-
-<p>All fields can be named exactly as they are: <code>DemographicsID</code> (and not ID, please); <code>DOB</code> (and not Date of Birth); etc. Our software can only recognise these headings.</p>
-
-<h3 id="input-file-with-egfr">Input file with eGFR</h3>
-
-<p>An example file with eGFR is also provided: <code>Example_eGFR.csv</code>.</p>
-
-<p>If your file has pre-computed eGFR values, then you should have Date, Age, and eGFR fields (attributes).</p>
-
-<p><img src="/assets/sakida/sakida-eGFR_file.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<p>Note that we don’t need the gender, ethnicity fields, etc.</p>
-
-<h3 id="import-the-file">2) Import the file</h3>
-<p>Next, import the file.</p>
-
-<p><img src="/assets/sakida/sakida-file_selector.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<h3 id="choose-a-patient">3) Choose a patient</h3>
-
-<p><img src="/assets/sakida/sakida-click_id.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<h3 id="choose-an-aki-detection-algorithm">4) Choose an AKI detection algorithm</h3>
-
-<p><img src="/assets/sakida/sakida-clikc_aki.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<h3 id="save-the-output">5) Save the output</h3>
-
-<p><img src="/assets/sakida/sakida-click_output.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
-
-<p>If you have chosen to save an image, the filename is AKI.png which is stored in the same directory as where the software is installed. The exported data is saved in a default file named ‘AKI_result.csv’. An example of output is shown below. Note that we calculate the age by assuming one year has 365.25 days.</p>
-
-<p><img src="/assets/sakida/sakida-aki_results.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="conclusions">Conclusions</h3>
+<p>A systematic cohort-based retrospective observational study, based on routinely collected primary care data coupled with advanced machine learning algorithms, could improve our understanding of the nature of the rapid progression of CKD in some groups (group 1) of patients in contrast to those (group 16) that show an improvement in eGFR.</p>
 
 <h3 id="whats-next">What’s next?</h3>
 
-<p>If you haven’t downloaded the SAKIDA software, do this <a href="/blog/2018/01/14/sakida-download.html">here</a>.</p>
-
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
+<p>Download <a href="/assets/papers/BRS2017_abstract_SAKIDA.pdf">the abstract here</a> 
+and <a href="/assets/papers/BRS2017-poster-SAKIDA.pdf">the poster here</a>. You may also want see <a href="/blog/2018/01/14/sakida.html">a demo of the SAKIDA software here</a> or simply <a href="/blog/2018/01/14/sakida-download.html">download it </a> and try it out yourself.</p>
 
 </div>
 
@@ -284,10 +240,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida-help <span class="o">}</span>,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_15_BRS2017-progressive-ckd <span class="o">}</span>,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - User Manual <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida-help.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Identifying Progressive CKD from Primary Care Records – a Study Protocol <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -298,8 +254,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - User Manual". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-help.html </a>.  
+      Poh, Norman. "Identifying Progressive CKD from Primary Care Records – a Study Protocol". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html"> http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -308,8 +264,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - User Manual". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-help.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-help.html </a>. 
+      Poh, Norman (2018). "Identifying Progressive CKD from Primary Care Records – a Study Protocol". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html"> http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -353,11 +309,11 @@ function openReference(evt, bibrefName) {
     </li>
     
     <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/BRS2017-progressive-ckd.html">Identifying Progressive CKD from Primary Care Records – a Study Protocol</a>
+      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/BRS2017-broken-stick-model.html">A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification</a>
     </li>
     
     <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/BRS2017-broken-stick-model.html">A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification</a>
+      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/BRS2017-bayesian-justification.html">Automatically Detecting AKI Events from Primary Care Records</a>
     </li>
     
   </ul>
