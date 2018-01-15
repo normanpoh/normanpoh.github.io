@@ -532,42 +532,78 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
 
 <!--- begin adding the citation -->
 
-<div id="citation">
 
-  <H3> Cite this blog post </H3>
-  Cite the article in Bibtex this way:
 
   
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  @misc<span class="o">{</span> poh_2017_12_29_generate-pairwise-fprint-scores <span class="o">}</span>,
-    <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-    <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix <span class="o">}</span>,
-    <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html<span class="o">}</span>,
-    <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
-  <span class="o">}</span>
-  </code></pre></figure>
+  
+<H3> Cite this blog post </H3>
+<hr>
 
-
-  <br>
-
-  <p>
-  MLA citation:
-  </p>
-  <ul>
-    <li>
-  Poh, Norman. "Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix". <i> Norman Poh's Github Blog</i>, 
-  <a href="http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html">
-  http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html
-  </a>. 
-  Accessed <script type="text/javascript"> document.write(today); </script>.
-  </li>
-  <ul>
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button tablink w3-red" onclick="openReference(event,'Bibtex')">Bibtex</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openReference(event,'MLA')">MLA</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openReference(event,'APA')">APA</button>
 </div>
 
-<script type="text/javascript"> window.onload = replace_today; 
+  <div id="Bibtex" class="w3-container w3-border bibref">
+      <h2>Bibtex</h2>
+
+    
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2017_12_29_generate-pairwise-fprint-scores <span class="o">}</span>,
+      <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html<span class="o">}</span>,
+      <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
+    <span class="o">}</span>
+    </code></pre></figure>
+
+
+  </div>
+
+  <div id="MLA" class="w3-container w3-border bibref" style="display:none">
+    <ul>
+      <li>
+      Poh, Norman. "Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix". <i> Norman Poh's Github Blog</i>, 2017.
+      <a href="http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html"> http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html </a>.  
+      Accessed <script type="text/javascript"> document.write(today); </script>.
+    </li>
+    <ul>
+  </div>
+
+  <div id="APA" class="w3-container w3-border bibref" style="display:none">
+    <ul>
+      <li>
+      Poh, Norman (2017). "Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html"> http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html </a>. 
+      Accessed <script type="text/javascript"> document.write(today); </script>.
+    </li>
+    <ul>
+  </div> 
+
+<script>
+function openReference(evt, bibrefName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("bibref");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(bibrefName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+
+<script type="text/javascript"> 
+  window.onload = replace_today; 
   function replace_today() { 
     document.body.innerHTML = document.body.innerHTML.replace('___TODAY___', today);
   }
 </script>
+<hr>
 
 
 <!--- end -->
@@ -578,15 +614,15 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
   <ul class="posts">
     
     <li>
+      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/BRS2017-sakida.html">Automatically Detecting AKI Events from Primary Care Records</a>
+    </li>
+    
+    <li>
       <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Demo</a>
     </li>
     
     <li>
       <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
-    </li>
-    
-    <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-download.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Download</a>
     </li>
     
   </ul>

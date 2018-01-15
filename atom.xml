@@ -4,13 +4,43 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-14T21:25:25+00:00</updated>
+ <updated>2018-01-15T09:11:03+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>Automatically Detecting AKI Events from Primary Care Records</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-sakida.html"/>
+   <updated>2018-01-15T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/15/BRS2017-sakida</id>
+   <content type="html">&lt;h2 id=&quot;an-absract-accepted-at-the-british-renal-society-2017-brs2017&quot;&gt;An Absract accepted at the British Renal Society 2017 (BRS2017)&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/sakida/screenshot_sakida.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) (Figure a) and as the outlier points when using Gaussian process regression (GPR) (Figure b).&lt;/p&gt;
+
+&lt;h3 id=&quot;method&quot;&gt;Method&lt;/h3&gt;
+
+&lt;p&gt;The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.&lt;/p&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+&lt;p&gt;SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+
+&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;the abstract here&lt;/a&gt; 
+and &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;. You may also want see &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a demo of the SAKIDA software here&lt;/a&gt; or simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download it &lt;/a&gt; and try it out yourself.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Surrey AKI Detection Algorithm (SAKIDA) - Software Demo</title>
@@ -170,7 +200,44 @@
    <id>http://normanpoh.github.com/blog/2018/01/14/mrc-ckd-project</id>
    <content type="html">&lt;h2 id=&quot;about-this-project&quot;&gt;About this project&lt;/h2&gt;
 
-&lt;p&gt;The research&lt;/p&gt;
+&lt;h2 id=&quot;the-research&quot;&gt;The research&lt;/h2&gt;
+&lt;div class=&quot;w3-bar w3-black&quot;&gt;
+	&lt;button class=&quot;w3-bar-item w3-button tablink w3-red&quot; onclick=&quot;openReference(event,&#39;Bibtex&#39;)&quot;&gt;Bibtex&lt;/button&gt;
+	&lt;button class=&quot;w3-bar-item w3-button tablink&quot; onclick=&quot;openReference(event,&#39;MLA&#39;)&quot;&gt;MLA&lt;/button&gt;
+	&lt;button class=&quot;w3-bar-item w3-button tablink&quot; onclick=&quot;openReference(event,&#39;APA&#39;)&quot;&gt;APA&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;Bibtex&quot; class=&quot;w3-container w3-border city&quot;&gt;
+    &lt;h2&gt;Bibtex&lt;/h2&gt;
+    &lt;p&gt;Bibtex is the capital city of England.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;MLA&quot; class=&quot;w3-container w3-border city&quot; style=&quot;display:none&quot;&gt;
+    &lt;h2&gt;MLA&lt;/h2&gt;
+    &lt;p&gt;MLA is the capital of France.&lt;/p&gt; 
+  &lt;/div&gt;
+
+&lt;div id=&quot;APA&quot; class=&quot;w3-container w3-border city&quot; style=&quot;display:none&quot;&gt;
+    &lt;h2&gt;APA&lt;/h2&gt;
+    &lt;p&gt;APA is the capital of Japan.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;hr /&gt;
+&lt;script&gt;
+function openReference(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName(&quot;city&quot;);
+  for (i = 0; i &lt; x.length; i++) {
+      x[i].style.display = &quot;none&quot;;
+  }
+  tablinks = document.getElementsByClassName(&quot;tablink&quot;);
+  for (i = 0; i &lt; x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(&quot; w3-red&quot;, &quot;&quot;);
+  }
+  document.getElementById(cityName).style.display = &quot;block&quot;;
+  evt.currentTarget.className += &quot; w3-red&quot;;
+}
+&lt;/script&gt;
+
 </content>
  </entry>
  
@@ -1462,7 +1529,7 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
 &lt;/script&gt; 
 years of research experience, in both the academia and commerce.&lt;/p&gt;
 
-&lt;p&gt;He is currently working for &lt;a href=&quot;http://www.bjss.com&quot;&gt;BJSS&lt;/a&gt; where he works with a core team of data scientists and machine learning engineers to solve a range of practical machine learning problems across different sectors from government and healthcare to commdity and finance.&lt;/p&gt;
+&lt;p&gt;He is currently working for &lt;a href=&quot;http://www.bjss.com&quot;&gt;BJSS&lt;/a&gt; where he works with a core team of data scientists and machine learning engineers to solve a range of practical machine learning problems across different sectors from government and healthcare to commodity and finance.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Previous roles&lt;/strong&gt;. He previously worked at QuintilesIMS (now &lt;a href=&quot;https://www.iqvia.com&quot;&gt;IQVIA&lt;/a&gt;) where he developed and applied machine learning algorithms to healthcare with applications to detecting and modelling disease progression. Prior to this, he was a &lt;a href=&quot;https://www.surrey.ac.uk&quot;&gt;senior lecturer&lt;/a&gt; and a principal investigator of a project funded by Medical Research Council (MRC) with the aim of &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;modelling Chronic Kidney Disease&lt;/a&gt;.&lt;/p&gt;
 

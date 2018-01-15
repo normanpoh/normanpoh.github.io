@@ -225,42 +225,78 @@ today = mm + '/' + dd + '/' + yyyy;
 
 <!--- begin adding the citation -->
 
-<div id="citation">
 
-  <H3> Cite this blog post </H3>
-  Cite the article in Bibtex this way:
 
   
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  @misc<span class="o">{</span> poh_2018_01_14_sakida-download <span class="o">}</span>,
-    <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-    <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Software Download <span class="o">}</span>,
-    <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html<span class="o">}</span>,
-    <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
-  <span class="o">}</span>
-  </code></pre></figure>
+  
+<H3> Cite this blog post </H3>
+<hr>
 
-
-  <br>
-
-  <p>
-  MLA citation:
-  </p>
-  <ul>
-    <li>
-  Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Software Download". <i> Norman Poh's Github Blog</i>, 
-  <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html">
-  http://normanpoh.github.com/blog/2018/01/14/sakida-download.html
-  </a>. 
-  Accessed <script type="text/javascript"> document.write(today); </script>.
-  </li>
-  <ul>
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button tablink w3-red" onclick="openReference(event,'Bibtex')">Bibtex</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openReference(event,'MLA')">MLA</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openReference(event,'APA')">APA</button>
 </div>
 
-<script type="text/javascript"> window.onload = replace_today; 
+  <div id="Bibtex" class="w3-container w3-border bibref">
+      <h2>Bibtex</h2>
+
+    
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida-download <span class="o">}</span>,
+      <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Software Download <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html<span class="o">}</span>,
+      <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
+    <span class="o">}</span>
+    </code></pre></figure>
+
+
+  </div>
+
+  <div id="MLA" class="w3-container w3-border bibref" style="display:none">
+    <ul>
+      <li>
+      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Software Download". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html </a>.  
+      Accessed <script type="text/javascript"> document.write(today); </script>.
+    </li>
+    <ul>
+  </div>
+
+  <div id="APA" class="w3-container w3-border bibref" style="display:none">
+    <ul>
+      <li>
+      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - Software Download". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html </a>. 
+      Accessed <script type="text/javascript"> document.write(today); </script>.
+    </li>
+    <ul>
+  </div> 
+
+<script>
+function openReference(evt, bibrefName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("bibref");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(bibrefName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+
+<script type="text/javascript"> 
+  window.onload = replace_today; 
   function replace_today() { 
     document.body.innerHTML = document.body.innerHTML.replace('___TODAY___', today);
   }
 </script>
+<hr>
 
 
 <!--- end -->
@@ -271,15 +307,15 @@ today = mm + '/' + dd + '/' + yyyy;
   <ul class="posts">
     
     <li>
+      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/BRS2017-sakida.html">Automatically Detecting AKI Events from Primary Care Records</a>
+    </li>
+    
+    <li>
       <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Demo</a>
     </li>
     
     <li>
       <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
-    </li>
-    
-    <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
     </li>
     
   </ul>
