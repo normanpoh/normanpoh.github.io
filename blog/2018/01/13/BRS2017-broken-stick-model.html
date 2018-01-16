@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</title>
+  <title>Norman Poh - A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,45 +185,54 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 13, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</h1>
+<h1 class="title">A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm.</p>
+  <h3 id="introduction">Introduction</h3>
+<p>Determining CKD stage and disease progression based on eGFR in primary care is complicated by the fact that the measurements are irregularly sampled and influenced by both genuine physiological changes and external factors. Models used for these purposes would ideally capture both short- (for staging) and long-term (for progression) trends. However, existing regression algorithms such as linear, polynomial and Gaussian process regression either cannot account for these challenges or do not satisfy the key clinical requirements of providing an easily interpretable model that can elucidate short- and long-term trends. In order to balance interpretability and flexibility, an extension to broken-stick regression models is proposed in order to make them more suitable for modelling clinical time series.</p>
 
-<p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="method">Method</h3>
+<p>The proposed broken-stick model proceeds by dividing a patient’s eGFR time series into a number of overlapping windows of equal length (although windows can be of different lengths), and then performing a linear regression in each window. These locally linear line segments are then smoothly joined using a Bayesian approach, whereby the further away from a point in time <script type="math/tex"> t </script> a windows is the less influence its line segment has near <script type="math/tex"> t </script>. This is achieved by defining the posterior probability of the 
+<script type="math/tex"> w </script> -th window at time <script type="math/tex"> t </script>, i.e., 
+<script type="math/tex"> P(w|t)  </script> as <em>proportional</em> to  <script type="math/tex"> p(t|w) </script>, 
+where the window function <script type="math/tex"> p(t|w) </script>  is bell-shaped, e.g. Gaussian.</p>
 
-<h2 id="what-is-acute-kidney-injury">What is Acute Kidney Injury?</h2>
-<p>Acute kidney injury (AKI), previously called acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. It commonly occurs in hospital and is associated to death in hospital.</p>
+<p>In order to demonstrate the utility of this proposed broken-stick model, we used it to model the long term trend of eGFR measurements from the primary care data of 12,000 patients collected as part of the QICKD study. Rather than rely on the raw eGFR values to determine the stage of a patient’s CKD, we used the estimated mean eGFR value obtained directly from the broken-stick model. In addition, by calculating both the expected eGFR value (<script type="math/tex"> \mu </script>) and slope (<script type="math/tex"> \mu\prime </script>) at a given time it is possible to stage and stratify patients according to the trajectory that their condition is taking.</p>
 
-<h3 id="aki-in-numbers">AKI in numbers</h3>
+<h3 id="results">Results</h3>
 
-<p>According to an <a href="https://www.england.nhs.uk/patientsafety/wp-content/uploads/sites/32/2014/04/issue-aki-pres2.pdf">NHS patient saftey study</a>,</p>
+<p>In addition to using the broken-stick model to determine CKD stages, it is possible to both stage and stratify patients according to the trajectory that their condition is taking. From <a href="#figure-a">figure a</a> we can see that using expected eGFR slope enables both the staging and trajectory of a patient’s eGFR measurements to be taken into account, and allows us to stratify patients into categories dependent on their current eGFR and the expected trajectory of it. The broken-stick model also enables the calculation of the expected CKD stage posterior, as shown in <a href="#figure-b">figure b</a>. Gaps found between the KDIGO guideline stage (dashed vertical lines) and the boundary between expected CKD stages can be interpreted as indicative of systemic variation in recording of patient data compared to what would be expected.</p>
+
+<h5 id="figure-a-a-namefigure-aa">Figure a <a name="figure-a"></a></h5>
+<p><img src="/assets/ckd/refined_ckd_risk.png" alt="eGFR Stratification" style="width: 100%;" /></p>
+
+<h5 id="figure-b-a-namefigure-ba">Figure b <a name="figure-b"></a></h5>
+<p><img src="/assets/ckd/eGFR_staging.png" alt="eGFR staging" style="width: 100%;" /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>The proposed broken-stick model can robustly estimate both short-term and long-term trends simultaneously, while also accommodating the unequal length and irregularly sampled nature of eGFR time series. While CKD staging is currently based on local trends (the most recent measurements), by modelling a patient’s eGFR time series using a broken-stick model it is possible to base a patient’s stage on their entire time series. Conversely, the broken-stick model enables CKD progression estimates to be based on both short- and long-term trends. CKD stages determined using the broken-stick model are largely consistent with those determined using the KDIGO guidelines, and therefore estimates of progression are likely to prove reliable as they are based on the same model. Taken together, these results could provide useful information when determining the trajectory of a patient’s condition (which allows for early intervention) and in the retrospective identification of patients for clinical research.</p>
+
+<h3 id="whats-next">What’s next?</h3>
+
+<p>To find out more about the broken stick model, you can:</p>
 
 <ul>
-  <li>”One in five emergency admissions to hospital will have AKI”</li>
-  <li>”AKI is 100 times more deadly than MRSA infection”</li>
-  <li>”Around 20 per cent of AKI cases are preventable”</li>
-  <li>”costs of AKI to the NHS are £434-620m pa”</li>
+  <li>
+    <p>Download the <a href="https://britishrenal.org/event/brs-conference-2017">BRS2017</a> <a href="/assets/papers/BRS2017_abstract_BrokenStickModel.pdf">abstract here</a></p>
+  </li>
+  <li>
+    <p>Read <a href="/assets/papers/BRS2017-poster-BrokenStick.pdf">the poster</a></p>
+  </li>
+  <li>
+    <p>Find out more about the algorithm by <a href="https://arxiv.org/pdf/1612.01409.pdf">reading the author’s version of the journal paper</a> or from <a href="https://www.sciencedirect.com/science/article/pii/S1532046417302253">Science direct</a></p>
+  </li>
 </ul>
-
-<h3 id="why-detecting-acute-kidney-injury-in-primary-care-clinic">Why detecting Acute Kidney Injury in primary care (clinic)?</h3>
-
-<p>The community-acquired AKI accounts for two thirds of all AKI incidents in the UK. Although algorithms for detecting AKI exist, they are mainly designed for use in the hospital setting where serum creatinine is regularly monitored, about once a day. For this reason, we have designed the SAKIDA (Surrey Acute Kidney Injury Detection Algorithm) which is more suitable for use in the primary care setting.</p>
-
-<h3 id="so-how-do-i-use-sakida">So, how do I use SAKIDA?</h3>
-
-<p>First <a href="/blog/2018/01/14/sakida-download.html">download the software</a>. Then read <a href="/blog/2018/01/14/sakida-help.html">the help page</a>. Do check out the demo below.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rtiTHT3LAWs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
 
 </div>
 
@@ -243,10 +252,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_13_BRS2017-broken-stick-model,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Introduction and Software Demo <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> A Probabilistic Broken-stick Model <span class="k">for</span> CKD Staging and Risk Stratification <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -257,8 +266,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>.  
+      Poh, Norman. "A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -267,8 +276,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>. 
+      Poh, Norman (2018). "A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -312,11 +321,11 @@ function openReference(evt, bibrefName) {
     </li>
     
     <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</a>
     </li>
     
     <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-download.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Download</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
     </li>
     
   </ul>

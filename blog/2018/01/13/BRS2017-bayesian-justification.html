@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</title>
+  <title>Norman Poh - A Factored Co-morbidity Approach for Modelling CKD Progression</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,45 +185,41 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 13, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</h1>
+<h1 class="title">A Factored Co-morbidity Approach for Modelling CKD Progression</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm.</p>
+  <h2 id="an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017">An absract published in the <a href="https://britishrenal.org/event/brs-conference-2017">British Renal Society 2017 (BRS2017)</a></h2>
 
-<p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="introduction">Introduction</h3>
+<p>One of the key challenges in understanding CKD progression is its multifaceted aetiology. This is evident as it is commonly observed that hypertension, heart disease and diabetes are common co-morbidities of CKD. In other words, the existence of co-morbidities can potentially alter the risk of CKD progression, e.g. from stage 3 to 5. Unfortunately, “flat” risk models such as logistic regression, e.g. as implemented by the QKidney score and many similar risk models, are not designed to extract the rich structure induced by a multitude of co-morbidities, the state of which are often captured in routinely collected patient data.</p>
 
-<h2 id="what-is-acute-kidney-injury">What is Acute Kidney Injury?</h2>
-<p>Acute kidney injury (AKI), previously called acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. It commonly occurs in hospital and is associated to death in hospital.</p>
+<h3 id="methods">Methods</h3>
+<p>We revisit the modelling of CKD progression by proposing a Bayesian network that has a certain regular structure, which has attractive properties such as tractability and efficient computation. The risk of progression to more severe CKD stages can be inferred not only from eGFR but signs and symptoms (s) related to kidney impairment, while causality of CKD is captured by risk factors (<script type="math/tex"> r </script>) and treatment strategies (<script type="math/tex"> t </script>). Each co-morbidity is then allowed to directly interact with the CKD progression risk only if the diagnosis of the co-morbidity is available. Where this information is not available, the state of the co-morbidity can be inferred from its own <script type="math/tex"> r,s </script> and <script type="math/tex"> t </script> variables.</p>
 
-<h3 id="aki-in-numbers">AKI in numbers</h3>
+<p>In addition, the model can also incorporate past episodes of acute kidney injury (AKI) when estimating the risk of CKD progression. This exploits the fact that people with AKI are more likely to have a lower eGFR value. The extent of this degradation is explicitly modelled by the Bayesian network. Similar to the above, as before, when the AKI information is not available, the risk of AKI can be inferred from its own <script type="math/tex"> r,s </script> and <script type="math/tex"> t </script> variables, in a process known as ‘marginalisation’. Therefore, the interplay between CKD and AKI can be captured by the model.</p>
 
-<p>According to an <a href="https://www.england.nhs.uk/patientsafety/wp-content/uploads/sites/32/2014/04/issue-aki-pres2.pdf">NHS patient saftey study</a>,</p>
+<h3 id="analysis">Analysis</h3>
+<p>As a proof of concept, the proposed Bayesian network can be verified “by parts”. In essence, the factored co-morbid approach offers a divide-and-conquer strategy to implement risk models. Some of the relationships of the model are informed by the literature and can be expressed in the conditional probabilities below.</p>
 
-<ul>
-  <li>”One in five emergency admissions to hospital will have AKI”</li>
-  <li>”AKI is 100 times more deadly than MRSA infection”</li>
-  <li>”Around 20 per cent of AKI cases are preventable”</li>
-  <li>”costs of AKI to the NHS are £434-620m pa”</li>
-</ul>
+<p><img src="/assets/ckd/table_ckd_cond_model.png" alt="ckd table" style="width: 100%;" /></p>
 
-<h3 id="why-detecting-acute-kidney-injury-in-primary-care-clinic">Why detecting Acute Kidney Injury in primary care (clinic)?</h3>
+<p>The local models can be linked to form a single Bayesian network as shown in figure (a) below. In (b), the model is tailored for AKI, which makes provision for eGFR (<script type="math/tex"> g </script>) to be influenced by AKI directly.</p>
 
-<p>The community-acquired AKI accounts for two thirds of all AKI incidents in the UK. Although algorithms for detecting AKI exist, they are mainly designed for use in the hospital setting where serum creatinine is regularly monitored, about once a day. For this reason, we have designed the SAKIDA (Surrey Acute Kidney Injury Detection Algorithm) which is more suitable for use in the primary care setting.</p>
+<p><img src="/assets/ckd/graph_ckd_cond_model.png" alt="ckd table" style="width: 100%;" /></p>
 
-<h3 id="so-how-do-i-use-sakida">So, how do I use SAKIDA?</h3>
+<h3 id="conclusion-and-relevance">Conclusion and relevance</h3>
+<p>Current risk models are ‘flat’ and do not exploit the rich information captured in patient records. The proposed factored co-morbidity approach offers a natural next step whilst being tractable and efficient in computation. The merit of this model will be investigated as part of the MRC Modelling CKD project using data extracted from the Royal College of GPs database.</p>
 
-<p>First <a href="/blog/2018/01/14/sakida-download.html">download the software</a>. Then read <a href="/blog/2018/01/14/sakida-help.html">the help page</a>. Do check out the demo below.</p>
+<h3 id="whats-next">What’s next?</h3>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rtiTHT3LAWs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
+<p>Download <a href="/assets/papers/BRS2017-poster-BayesianJustification.pdf">the abstract here</a> 
+and <a href="/assets/papers/BRS2017-poster-BayesianJustification.pdf">the poster here</a>.</p>
 
 </div>
 
@@ -243,10 +239,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_13_BRS2017-bayesian-justification,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Introduction and Software Demo <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> A Factored Co-morbidity Approach <span class="k">for</span> Modelling CKD Progression <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -257,8 +253,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>.  
+      Poh, Norman. "A Factored Co-morbidity Approach for Modelling CKD Progression". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -267,8 +263,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>. 
+      Poh, Norman (2018). "A Factored Co-morbidity Approach for Modelling CKD Progression". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -312,11 +308,11 @@ function openReference(evt, bibrefName) {
     </li>
     
     <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</a>
     </li>
     
     <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-download.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Download</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
     </li>
     
   </ul>

@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</title>
+  <title>Norman Poh - Automatically Detecting AKI Events from Primary Care Records</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,45 +185,51 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 13, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</h1>
+<h1 class="title">Automatically Detecting AKI Events from Primary Care Records</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm.</p>
+  <p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
 
-<p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h3 id="introduction">Introduction</h3>
+<p>Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) and as the outlier points when using Gaussian process regression (GPR), as shown in the <a href="/assets/papers/BRS2017_abstract_SAKIDA.pdf">abstract</a> .</p>
 
-<h2 id="what-is-acute-kidney-injury">What is Acute Kidney Injury?</h2>
-<p>Acute kidney injury (AKI), previously called acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. It commonly occurs in hospital and is associated to death in hospital.</p>
+<h3 id="method">Method</h3>
 
-<h3 id="aki-in-numbers">AKI in numbers</h3>
+<p>The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.</p>
 
-<p>According to an <a href="https://www.england.nhs.uk/patientsafety/wp-content/uploads/sites/32/2014/04/issue-aki-pres2.pdf">NHS patient saftey study</a>,</p>
+<h3 id="results">Results</h3>
+<p>SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.</p>
+
+<h3 id="whats-next">What’s next?</h3>
 
 <ul>
-  <li>”One in five emergency admissions to hospital will have AKI”</li>
-  <li>”AKI is 100 times more deadly than MRSA infection”</li>
-  <li>”Around 20 per cent of AKI cases are preventable”</li>
-  <li>”costs of AKI to the NHS are £434-620m pa”</li>
+  <li>Read <a href="/assets/papers/BRS2017_abstract_SAKIDA.pdf">the abstract here</a></li>
+  <li>See <a href="/assets/papers/BRS2017-poster-SAKIDA.pdf">the poster here</a></li>
+  <li>Play <a href="/blog/2018/01/14/sakida.html">a pre-recorded demo of the SAKIDA software here</a></li>
+  <li>Simply <a href="/blog/2018/01/14/sakida-download.html">download the SAKIDA software</a> and try it out yourself</li>
+  <li>Find our more <a href="http://epubs.surrey.ac.uk/812516/1/Norman_AKI_Detection.pdf">about the algorithm as published the 2016 IEEE Symposium Series on Computational Intelligence (SSCI)</a></li>
+  <li>Cite the article</li>
 </ul>
 
-<h3 id="why-detecting-acute-kidney-injury-in-primary-care-clinic">Why detecting Acute Kidney Injury in primary care (clinic)?</h3>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"> @inproceedings<span class="o">{</span>tirunagari2016automatic,
+   <span class="nv">title</span><span class="o">={</span>Automatic detection of acute kidney injury episodes from primary care data<span class="o">}</span>,
+   <span class="nv">author</span><span class="o">={</span>Tirunagari, Santosh and Bull, Simon C and Vehtari, Aki and Farmer, Christopher and de Lusignan, Simon and Poh,    Norman<span class="o">}</span>,
+   <span class="nv">booktitle</span><span class="o">={</span>Computational Intelligence <span class="o">(</span>SSCI<span class="o">)</span>, <span class="m">2016</span> IEEE Symposium Series on<span class="o">}</span>,
+   <span class="nv">pages</span><span class="o">={</span>1--6<span class="o">}</span>,
+   <span class="nv">year</span><span class="o">={</span>2016<span class="o">}</span>,
+   <span class="nv">organization</span><span class="o">={</span>IEEE<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
 
-<p>The community-acquired AKI accounts for two thirds of all AKI incidents in the UK. Although algorithms for detecting AKI exist, they are mainly designed for use in the hospital setting where serum creatinine is regularly monitored, about once a day. For this reason, we have designed the SAKIDA (Surrey Acute Kidney Injury Detection Algorithm) which is more suitable for use in the primary care setting.</p>
-
-<h3 id="so-how-do-i-use-sakida">So, how do I use SAKIDA?</h3>
-
-<p>First <a href="/blog/2018/01/14/sakida-download.html">download the software</a>. Then read <a href="/blog/2018/01/14/sakida-help.html">the help page</a>. Do check out the demo below.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rtiTHT3LAWs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
-
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
 
 </div>
 
@@ -243,10 +249,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_13_BRS2017-sakida,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Introduction and Software Demo <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Automatically Detecting AKI Events from Primary Care Records <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -257,8 +263,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>.  
+      Poh, Norman. "Automatically Detecting AKI Events from Primary Care Records". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -267,8 +273,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>. 
+      Poh, Norman (2018). "Automatically Detecting AKI Events from Primary Care Records". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -312,11 +318,11 @@ function openReference(evt, bibrefName) {
     </li>
     
     <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</a>
     </li>
     
     <li>
-      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-download.html">Surrey AKI Detection Algorithm (SAKIDA) - Software Download</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
     </li>
     
   </ul>

@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-15T13:00:58+00:00</updated>
+ <updated>2018-01-16T11:07:29+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -13,138 +13,58 @@
 
  
  <entry>
-   <title>Automatically Detecting AKI Events from Primary Care Records</title>
-   <link href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-sakida.html"/>
+   <title>A software demo for modelling CKD and detecting AKI</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html"/>
    <updated>2018-01-15T00:00:00+00:00</updated>
-   <id>http://normanpoh.github.com/blog/2018/01/15/BRS2017-sakida</id>
-   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
+   <id>http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo</id>
+   <content type="html">&lt;h2 id=&quot;about-the-demo&quot;&gt;About the demo&lt;/h2&gt;
+&lt;p&gt;Within the context of the &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;MRC Modelling CKD Progression project&lt;/a&gt;, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/sakida/screenshot_sakida.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to &lt;em&gt;climate&lt;/em&gt; whereas the short-term trend as akin to the &lt;em&gt;weather&lt;/em&gt;. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.&lt;/p&gt;
 
-&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) (Figure a) and as the outlier points when using Gaussian process regression (GPR) (Figure b).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/ckd_short_long_term.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;method&quot;&gt;Method&lt;/h3&gt;
+&lt;p&gt;The diagram above shows how the algorithm called &lt;a href=&quot;/blog/2018/01/13/BRS2017-broken-stick-model.html&quot;&gt;&lt;em&gt;probabilistic broken-stick model&lt;/em&gt;&lt;/a&gt; can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.&lt;/p&gt;
 
-&lt;p&gt;The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.&lt;/p&gt;
+&lt;h2 id=&quot;the-algorithms-implemented&quot;&gt;The algorithms implemented&lt;/h2&gt;
 
-&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
-&lt;p&gt;SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).&lt;/p&gt;
+&lt;p&gt;The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:&lt;/p&gt;
 
-&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Probabilistic broken-stick model&lt;/strong&gt;: &lt;a href=&quot;/blog/2018/01/13/BRS2017-broken-stick-model.html&quot;&gt;for modelling the long-term CKD progression&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;SAKIDA&lt;/strong&gt;: &lt;a href=&quot;/blog/2018/01/13/BRS2017-sakida.html&quot;&gt;Surrey AKI Detection Algorithm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;NHS&lt;/strong&gt;: &lt;a href=&quot;https://www.england.nhs.uk/wp-content/uploads/2014/06/psa-aki-alg.pdf&quot;&gt;The NHS algorithm for AKI detection&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.&lt;/p&gt;
+&lt;p&gt;All of these algorithms work with eGFR. The software, however, can take a creatinine time-series and apply the relevant formulas to obtain the corresponing eGFR time-series, such as:&lt;/p&gt;
 
-&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;MDRD GFR&lt;/strong&gt;: This is the Modification of Diet in Renal Disease (MDRD) Study equation. The resultant eGFR that is calculated has variance (standard error) that is larger for hight GFR values. So, it is not suitable for healthy subjects who generally have high GFR value. The Creatinine can be recorded in micro mol per litre (µmol/L) or miligram per decilitre (mg/dL); and we have implemented both.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;CKD-EPI&lt;/strong&gt;: This is the Chronic Kidney Disease Epidemiology Collaboration study equation, which supercedes the MDRD GFR equation.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;eGFR&lt;/strong&gt;: Of course, the software will happily take eGFR if you prefer to supply  pre-calculated eGFR values.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;the abstract here&lt;/a&gt; 
-and &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;. You may also want see &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a demo of the SAKIDA software here&lt;/a&gt; or simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download it &lt;/a&gt; and try it out yourself.&lt;/p&gt;
+&lt;h2 id=&quot;the-demo&quot;&gt;The demo&lt;/h2&gt;
+
+&lt;p&gt;Here’s a demo of the software.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;amp;start=99&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
+&lt;p&gt;I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
+
+&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
  </entry>
  
  <entry>
-   <title>Identifying Progressive CKD from Primary Care Records – a Study Protocol</title>
-   <link href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd.html"/>
-   <updated>2018-01-15T00:00:00+00:00</updated>
-   <id>http://normanpoh.github.com/blog/2018/01/15/BRS2017-progressive-ckd</id>
-   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h5 id=&quot;figure-a-a-namefigure-aa&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_trend_16cat.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt;
-&lt;p&gt;One of the key challenges in managing CKD patients is to identify those who are progressive (worsening eGFR) from those who are non-progressive or may even have underlying improvement in their CKD. To this end, we have developed an algorithm capable of identify progressive from non-progressive CKD based on observed historical eGFR trends.&lt;/p&gt;
-
-&lt;h3 id=&quot;methods---clinical-codes&quot;&gt;Methods - Clinical codes.&lt;/h3&gt;
-&lt;p&gt;We identified 5-Byte Read Codes from the Royal College of General Practioners (RCGP) Research and Surveillance Centre (RSC) for a range of known factors, including codes related to signs and symptoms (&lt;script type=&quot;math/tex&quot;&gt; s &lt;/script&gt;), laboratory measurements (&lt;script type=&quot;math/tex&quot;&gt; m &lt;/script&gt;) and treatments (&lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt;) for CKD as well as its associated co-morbidities or risk factors (r) such as diabetes, cardiovascular disease and kidney-related diseases. For each risk factor, &lt;script type=&quot;math/tex&quot;&gt; s, t, m &lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt; r &lt;/script&gt; are systematically identified, leading to a range of plausible phenotype variables for explaining a rapid decline in eGFR (See our Bayesian Justification accompanying poster).  Algorithm. We have developed our own regression algorithm – called the broken-stick model – capable of estimating the rate change of eGFR by using a ‘Bayesian’ sliding window of three years in order to provide a stable estimate of the annual rate change of eGFR, while still being sensitive to underlying genuine patterns. The global eGFR slope (annual rate change) of a patient is defined as the average eGFR slope over the patient’s entire history.&lt;/p&gt;
-
-&lt;h3 id=&quot;patient-inclusionexclusion-criteria&quot;&gt;Patient inclusion/exclusion criteria&lt;/h3&gt;
-&lt;p&gt;All patients with eGFR measurements were included. Patients with an acute kidney injury episode or hereditary kidney diseases were excluded. Additionally, patients without consistent eGFR trends, defined as having a standard deviation of the eGFR slope of 2 units per year, were excluded.&lt;/p&gt;
-
-&lt;h3 id=&quot;initial-descriptive-observations&quot;&gt;Initial descriptive observations&lt;/h3&gt;
-&lt;p&gt;The longitudinal observational data was divided into equal groups of approximately 600 patients. In 9 out of 16 groups (see &lt;a href=&quot;#figure-a&quot;&gt;figure a&lt;/a&gt;) we found that there was a deterioration in eGFR, one group was equivocal and six groups showed improvement. &lt;a href=&quot;#figure-b&quot;&gt;Figure b&lt;/a&gt; below compares the eGFR trends of the first group with the last group.&lt;/p&gt;
-
-&lt;h5 id=&quot;figure-b-a-namefigure-ba&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h3&gt;
-&lt;p&gt;A systematic cohort-based retrospective observational study, based on routinely collected primary care data coupled with advanced machine learning algorithms, could improve our understanding of the nature of the rapid progression of CKD in some groups (group 1) of patients in contrast to those (group 16) that show an improvement in eGFR.&lt;/p&gt;
-
-&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
-
-&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;the abstract here&lt;/a&gt; 
-and &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;. You may also want see &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a demo of the SAKIDA software here&lt;/a&gt; or simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download it &lt;/a&gt; and try it out yourself.&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification</title>
-   <link href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-broken-stick-model.html"/>
-   <updated>2018-01-15T00:00:00+00:00</updated>
-   <id>http://normanpoh.github.com/blog/2018/01/15/BRS2017-broken-stick-model</id>
-   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Determining CKD stage and disease progression based on eGFR in primary care is complicated by the fact that the measurements are irregularly sampled and influenced by both genuine physiological changes and external factors. Models used for these purposes would ideally capture both short- (for staging) and long-term (for progression) trends. However, existing regression algorithms such as linear, polynomial and Gaussian process regression either cannot account for these challenges or do not satisfy the key clinical requirements of providing an easily interpretable model that can elucidate short- and long-term trends. In order to balance interpretability and flexibility, an extension to broken-stick regression models is proposed in order to make them more suitable for modelling clinical time series.&lt;/p&gt;
-
-&lt;h3 id=&quot;method&quot;&gt;Method&lt;/h3&gt;
-&lt;p&gt;The proposed broken-stick model proceeds by dividing a patient’s eGFR time series into a number of overlapping windows of equal length (although windows can be of different lengths), and then performing a linear regression in each window. These locally linear line segments are then smoothly joined using a Bayesian approach, whereby the further away from a point in time &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt; a windows is the less influence its line segment has near &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt;. This is achieved by defining the posterior probability of the 
-&lt;script type=&quot;math/tex&quot;&gt; w &lt;/script&gt; -th window at time &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt; as:
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; P(w|t)\approx p(t|w), &lt;/script&gt; 
-where the window function &lt;script type=&quot;math/tex&quot;&gt; p(t|w) &lt;/script&gt;  is bell-shaped, e.g. Gaussian. In order to demonstrate the utility of this proposed broken-stick model, we used it to model the long term trend of eGFR measurements from the primary care data of 12,000 patients collected as part of the QICKD study. Rather than rely on the raw eGFR values to determine the stage of a patient’s CKD, we used the estimated mean eGFR value obtained directly from the broken-stick model. In addition, by calculating both the expected eGFR value (&lt;script type=&quot;math/tex&quot;&gt; \mu &lt;/script&gt;) and slope (&lt;script type=&quot;math/tex&quot;&gt; \mu\prime &lt;/script&gt;) at a given time it is possible to stage and stratify patients according to the trajectory that their condition is taking.&lt;/p&gt;
-
-&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
-
-&lt;p&gt;In addition to using the broken-stick model to determine CKD stages, it is possible to both stage and stratify patients according to the trajectory that their condition is taking. From &lt;a href=&quot;#figure-a&quot;&gt;figure a&lt;/a&gt; we can see that using expected eGFR slope enables both the staging and trajectory of a patient’s eGFR measurements to be taken into account, and allows us to stratify patients into categories dependent on their current eGFR and the expected trajectory of it. The broken-stick model also enables the calculation of the expected CKD stage posterior, as shown in &lt;a href=&quot;#figure-b&quot;&gt;figure b&lt;/a&gt;. Gaps found between the KDIGO guideline stage (dashed vertical lines) and the boundary between expected CKD stages can be interpreted as indicative of systemic variation in recording of patient data compared to what would be expected.&lt;/p&gt;
-
-&lt;h5 id=&quot;figure-a-a-namefigure-aa&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/ckd/refined_ckd_risk.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;figure-b-a-namefigure-ba&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_staging.png&quot; alt=&quot;eGFR staging&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;The proposed broken-stick model can robustly estimate both short-term and long-term trends simultaneously, while also accommodating the unequal length and irregularly sampled nature of eGFR time series. While CKD staging is currently based on local trends (the most recent measurements), by modelling a patient’s eGFR time series using a broken-stick model it is possible to base a patient’s stage on their entire time series. Conversely, the broken-stick model enables CKD progression estimates to be based on both short- and long-term trends. CKD stages determined using the broken-stick model are largely consistent with those determined using the KDIGO guidelines, and therefore estimates of progression are likely to prove reliable as they are based on the same model. Taken together, these results could provide useful information when determining the trajectory of a patient’s condition (which allows for early intervention) and in the retrospective identification of patients for clinical research.&lt;/p&gt;
-
-&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
-
-&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017_abstract_BrokenStickModel.pdf&quot;&gt;the abstract here&lt;/a&gt; 
-and &lt;a href=&quot;/assets/papers/BRS2017-poster-BrokenStick.pdf&quot;&gt;the poster here&lt;/a&gt;. You may also want see &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a demo of the SAKIDA software here&lt;/a&gt; or simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download it &lt;/a&gt; and try it out yourself.&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Automatically Detecting AKI Events from Primary Care Records</title>
-   <link href="http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification.html"/>
-   <updated>2018-01-15T00:00:00+00:00</updated>
-   <id>http://normanpoh.github.com/blog/2018/01/15/BRS2017-bayesian-justification</id>
-   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/sakida/screenshot_sakida.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) (Figure a) and as the outlier points when using Gaussian process regression (GPR) (Figure b).&lt;/p&gt;
-
-&lt;h3 id=&quot;method&quot;&gt;Method&lt;/h3&gt;
-
-&lt;p&gt;The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.&lt;/p&gt;
-
-&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
-&lt;p&gt;SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).&lt;/p&gt;
-
-&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.&lt;/p&gt;
-
-&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
-
-&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;the abstract here&lt;/a&gt; 
-and &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;. You may also want see &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a demo of the SAKIDA software here&lt;/a&gt; or simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download it &lt;/a&gt; and try it out yourself.&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Surrey AKI Detection Algorithm (SAKIDA) - Software Demo</title>
+   <title>Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</title>
    <link href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"/>
    <updated>2018-01-14T00:00:00+00:00</updated>
    <id>http://normanpoh.github.com/blog/2018/01/14/sakida</id>
@@ -295,101 +215,162 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poste
  </entry>
  
  <entry>
-   <title>Modelling the Progression of CKD - The MRC CKD project</title>
-   <link href="http://normanpoh.github.com/blog/2018/01/14/mrc-ckd-project.html"/>
-   <updated>2018-01-14T00:00:00+00:00</updated>
-   <id>http://normanpoh.github.com/blog/2018/01/14/mrc-ckd-project</id>
-   <content type="html">&lt;h2 id=&quot;about-this-project&quot;&gt;About this project&lt;/h2&gt;
+   <title>Automatically Detecting AKI Events from Primary Care Records</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html"/>
+   <updated>2018-01-13T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/sakida/screenshot_sakida.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;the-research&quot;&gt;The research&lt;/h2&gt;
-&lt;div class=&quot;w3-bar w3-black&quot;&gt;
-	&lt;button class=&quot;w3-bar-item w3-button tablink w3-red&quot; onclick=&quot;openReference(event,&#39;Bibtex&#39;)&quot;&gt;Bibtex&lt;/button&gt;
-	&lt;button class=&quot;w3-bar-item w3-button tablink&quot; onclick=&quot;openReference(event,&#39;MLA&#39;)&quot;&gt;MLA&lt;/button&gt;
-	&lt;button class=&quot;w3-bar-item w3-button tablink&quot; onclick=&quot;openReference(event,&#39;APA&#39;)&quot;&gt;APA&lt;/button&gt;
-&lt;/div&gt;
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) and as the outlier points when using Gaussian process regression (GPR), as shown in the &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;abstract&lt;/a&gt; .&lt;/p&gt;
 
-&lt;div id=&quot;Bibtex&quot; class=&quot;w3-container w3-border city&quot;&gt;
-    &lt;h2&gt;Bibtex&lt;/h2&gt;
-    &lt;p&gt;Bibtex is the capital city of England.&lt;/p&gt;
-&lt;/div&gt;
+&lt;h3 id=&quot;method&quot;&gt;Method&lt;/h3&gt;
 
-&lt;div id=&quot;MLA&quot; class=&quot;w3-container w3-border city&quot; style=&quot;display:none&quot;&gt;
-    &lt;h2&gt;MLA&lt;/h2&gt;
-    &lt;p&gt;MLA is the capital of France.&lt;/p&gt; 
-  &lt;/div&gt;
+&lt;p&gt;The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.&lt;/p&gt;
 
-&lt;div id=&quot;APA&quot; class=&quot;w3-container w3-border city&quot; style=&quot;display:none&quot;&gt;
-    &lt;h2&gt;APA&lt;/h2&gt;
-    &lt;p&gt;APA is the capital of Japan.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;hr /&gt;
-&lt;script&gt;
-function openReference(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName(&quot;city&quot;);
-  for (i = 0; i &lt; x.length; i++) {
-      x[i].style.display = &quot;none&quot;;
-  }
-  tablinks = document.getElementsByClassName(&quot;tablink&quot;);
-  for (i = 0; i &lt; x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(&quot; w3-red&quot;, &quot;&quot;);
-  }
-  document.getElementById(cityName).style.display = &quot;block&quot;;
-  evt.currentTarget.className += &quot; w3-red&quot;;
-}
-&lt;/script&gt;
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+&lt;p&gt;SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Read &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;the abstract here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;See &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Play &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a pre-recorded demo of the SAKIDA software here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download the SAKIDA software&lt;/a&gt; and try it out yourself&lt;/li&gt;
+  &lt;li&gt;Find our more &lt;a href=&quot;http://epubs.surrey.ac.uk/812516/1/Norman_AKI_Detection.pdf&quot;&gt;about the algorithm as published the 2016 IEEE Symposium Series on Computational Intelligence (SSCI)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Cite the article&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt; @inproceedings&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;tirunagari2016automatic,
+   &lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;Automatic detection of acute kidney injury episodes from primary care data&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;Tirunagari, Santosh and Bull, Simon C and Vehtari, Aki and Farmer, Christopher and de Lusignan, Simon and Poh,    Norman&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;booktitle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;Computational Intelligence &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SSCI&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;2016&lt;/span&gt; IEEE Symposium Series on&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;pages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;1--6&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;2016&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;organization&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;IEEE&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </content>
  </entry>
  
  <entry>
-   <title>A software demo for modelling CKD and detecting AKI</title>
-   <link href="http://normanpoh.github.com/blog/2018/01/14/ckd-aki-demo.html"/>
-   <updated>2018-01-14T00:00:00+00:00</updated>
-   <id>http://normanpoh.github.com/blog/2018/01/14/ckd-aki-demo</id>
-   <content type="html">&lt;h2 id=&quot;about-the-demo&quot;&gt;About the demo&lt;/h2&gt;
-&lt;p&gt;Within the context of the &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;MRC Modelling CKD Progression project&lt;/a&gt;, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).&lt;/p&gt;
+   <title>Identifying Progressive CKD from Primary Care Records – a Study Protocol</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-progressive-ckd.html"/>
+   <updated>2018-01-13T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/13/BRS2017-progressive-ckd</id>
+   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to &lt;em&gt;climate&lt;/em&gt; whereas the short-term trend as akin to the &lt;em&gt;weather&lt;/em&gt;. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.&lt;/p&gt;
+&lt;h5 id=&quot;figure-a-a-namefigure-aa&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_trend_16cat.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/ckd/ckd_short_long_term.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt;
+&lt;p&gt;One of the key challenges in managing CKD patients is to identify those who are progressive (worsening eGFR) from those who are non-progressive or may even have underlying improvement in their CKD. To this end, we have developed an algorithm capable of identify progressive from non-progressive CKD based on observed historical eGFR trends.&lt;/p&gt;
 
-&lt;p&gt;The diagram above shows how the algorithm called &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S1532046417302253&quot;&gt;&lt;em&gt;probabilistic broken-stick model&lt;/em&gt;&lt;/a&gt; can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.&lt;/p&gt;
+&lt;h3 id=&quot;methods---clinical-codes&quot;&gt;Methods - Clinical codes.&lt;/h3&gt;
+&lt;p&gt;We identified 5-Byte Read Codes from the Royal College of General Practioners (RCGP) Research and Surveillance Centre (RSC) for a range of known factors, including codes related to signs and symptoms (&lt;script type=&quot;math/tex&quot;&gt; s &lt;/script&gt;), laboratory measurements (&lt;script type=&quot;math/tex&quot;&gt; m &lt;/script&gt;) and treatments (&lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt;) for CKD as well as its associated co-morbidities or risk factors (r) such as diabetes, cardiovascular disease and kidney-related diseases. For each risk factor, &lt;script type=&quot;math/tex&quot;&gt; s, t, m &lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt; r &lt;/script&gt; are systematically identified, leading to a range of plausible phenotype variables for explaining a rapid decline in eGFR (See our Bayesian Justification accompanying poster).  Algorithm. We have developed our own regression algorithm – called the broken-stick model – capable of estimating the rate change of eGFR by using a ‘Bayesian’ sliding window of three years in order to provide a stable estimate of the annual rate change of eGFR, while still being sensitive to underlying genuine patterns. The global eGFR slope (annual rate change) of a patient is defined as the average eGFR slope over the patient’s entire history.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-algorithms-implemented&quot;&gt;The algorithms implemented&lt;/h2&gt;
+&lt;h3 id=&quot;patient-inclusionexclusion-criteria&quot;&gt;Patient inclusion/exclusion criteria&lt;/h3&gt;
+&lt;p&gt;All patients with eGFR measurements were included. Patients with an acute kidney injury episode or hereditary kidney diseases were excluded. Additionally, patients without consistent eGFR trends, defined as having a standard deviation of the eGFR slope of 2 units per year, were excluded.&lt;/p&gt;
 
-&lt;p&gt;The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:&lt;/p&gt;
+&lt;h3 id=&quot;initial-descriptive-observations&quot;&gt;Initial descriptive observations&lt;/h3&gt;
+&lt;p&gt;The longitudinal observational data was divided into equal groups of approximately 600 patients. In 9 out of 16 groups (see &lt;a href=&quot;#figure-a&quot;&gt;figure a&lt;/a&gt;) we found that there was a deterioration in eGFR, one group was equivocal and six groups showed improvement. &lt;a href=&quot;#figure-b&quot;&gt;Figure b&lt;/a&gt; below compares the eGFR trends of the first group with the last group, group 16. It is clear that the first group of patients have very drastic decline in CKD. Understanding the factors that contributing to or even distinguish them from the other groups is the important step.&lt;/p&gt;
+
+&lt;h5 id=&quot;figure-b-a-namefigure-ba&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h3&gt;
+&lt;p&gt;A systematic cohort-based retrospective observational study, based on routinely collected primary care data coupled with advanced machine learning algorithms, could improve our understanding of the nature of the rapid progression of CKD in some groups (group 1) of patients in contrast to those (group 16) that show an improvement in eGFR.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+
+&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017_abstract_ProgressiveCKD.pdf&quot;&gt;the abstract here&lt;/a&gt; 
+and &lt;a href=&quot;/assets/papers/BRS2017-poster-StudyProtocol_CKD_progression.pdf&quot;&gt;the poster here&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Probabilistic Broken-stick Model for CKD Staging and Risk Stratification</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model.html"/>
+   <updated>2018-01-13T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/13/BRS2017-broken-stick-model</id>
+   <content type="html">&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Determining CKD stage and disease progression based on eGFR in primary care is complicated by the fact that the measurements are irregularly sampled and influenced by both genuine physiological changes and external factors. Models used for these purposes would ideally capture both short- (for staging) and long-term (for progression) trends. However, existing regression algorithms such as linear, polynomial and Gaussian process regression either cannot account for these challenges or do not satisfy the key clinical requirements of providing an easily interpretable model that can elucidate short- and long-term trends. In order to balance interpretability and flexibility, an extension to broken-stick regression models is proposed in order to make them more suitable for modelling clinical time series.&lt;/p&gt;
+
+&lt;h3 id=&quot;method&quot;&gt;Method&lt;/h3&gt;
+&lt;p&gt;The proposed broken-stick model proceeds by dividing a patient’s eGFR time series into a number of overlapping windows of equal length (although windows can be of different lengths), and then performing a linear regression in each window. These locally linear line segments are then smoothly joined using a Bayesian approach, whereby the further away from a point in time &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt; a windows is the less influence its line segment has near &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt;. This is achieved by defining the posterior probability of the 
+&lt;script type=&quot;math/tex&quot;&gt; w &lt;/script&gt; -th window at time &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt;, i.e., 
+&lt;script type=&quot;math/tex&quot;&gt; P(w|t)  &lt;/script&gt; as &lt;em&gt;proportional&lt;/em&gt; to  &lt;script type=&quot;math/tex&quot;&gt; p(t|w) &lt;/script&gt;, 
+where the window function &lt;script type=&quot;math/tex&quot;&gt; p(t|w) &lt;/script&gt;  is bell-shaped, e.g. Gaussian.&lt;/p&gt;
+
+&lt;p&gt;In order to demonstrate the utility of this proposed broken-stick model, we used it to model the long term trend of eGFR measurements from the primary care data of 12,000 patients collected as part of the QICKD study. Rather than rely on the raw eGFR values to determine the stage of a patient’s CKD, we used the estimated mean eGFR value obtained directly from the broken-stick model. In addition, by calculating both the expected eGFR value (&lt;script type=&quot;math/tex&quot;&gt; \mu &lt;/script&gt;) and slope (&lt;script type=&quot;math/tex&quot;&gt; \mu\prime &lt;/script&gt;) at a given time it is possible to stage and stratify patients according to the trajectory that their condition is taking.&lt;/p&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+
+&lt;p&gt;In addition to using the broken-stick model to determine CKD stages, it is possible to both stage and stratify patients according to the trajectory that their condition is taking. From &lt;a href=&quot;#figure-a&quot;&gt;figure a&lt;/a&gt; we can see that using expected eGFR slope enables both the staging and trajectory of a patient’s eGFR measurements to be taken into account, and allows us to stratify patients into categories dependent on their current eGFR and the expected trajectory of it. The broken-stick model also enables the calculation of the expected CKD stage posterior, as shown in &lt;a href=&quot;#figure-b&quot;&gt;figure b&lt;/a&gt;. Gaps found between the KDIGO guideline stage (dashed vertical lines) and the boundary between expected CKD stages can be interpreted as indicative of systemic variation in recording of patient data compared to what would be expected.&lt;/p&gt;
+
+&lt;h5 id=&quot;figure-a-a-namefigure-aa&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/refined_ckd_risk.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;figure-b-a-namefigure-ba&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_staging.png&quot; alt=&quot;eGFR staging&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;The proposed broken-stick model can robustly estimate both short-term and long-term trends simultaneously, while also accommodating the unequal length and irregularly sampled nature of eGFR time series. While CKD staging is currently based on local trends (the most recent measurements), by modelling a patient’s eGFR time series using a broken-stick model it is possible to base a patient’s stage on their entire time series. Conversely, the broken-stick model enables CKD progression estimates to be based on both short- and long-term trends. CKD stages determined using the broken-stick model are largely consistent with those determined using the KDIGO guidelines, and therefore estimates of progression are likely to prove reliable as they are based on the same model. Taken together, these results could provide useful information when determining the trajectory of a patient’s condition (which allows for early intervention) and in the retrospective identification of patients for clinical research.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+
+&lt;p&gt;To find out more about the broken stick model, you can:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Probabilistic broken-stick model&lt;/strong&gt;: for modelling the long-term CKD progression&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;SAKIDA&lt;/strong&gt;: Surrey AKI Detection Algorithm&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;NHS&lt;/strong&gt;: The NHS algorithm for AKI detection&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;All of these algorithms work with eGFR. The software, however, can take a creatinine time-series and apply the relevant formulas to obtain the corresponing eGFR time-series, such as:&lt;/p&gt;
-
-&lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;MDRD GFR&lt;/strong&gt;: This is the Modification of Diet in Renal Disease (MDRD) Study equation. The resultant eGFR that is calculated has variance (standard error) that is larger for hight GFR values. So, it is not suitable for healthy subjects who generally have high GFR value. The Creatinine can be recorded in micro mol per litre (µmol/L) or miligram per decilitre (mg/dL); and we have implemented both.&lt;/p&gt;
+    &lt;p&gt;Download the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;BRS2017&lt;/a&gt; &lt;a href=&quot;/assets/papers/BRS2017_abstract_BrokenStickModel.pdf&quot;&gt;abstract here&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;CKD-EPI&lt;/strong&gt;: This is the Chronic Kidney Disease Epidemiology Collaboration study equation, which supercedes the MDRD GFR equation.&lt;/p&gt;
+    &lt;p&gt;Read &lt;a href=&quot;/assets/papers/BRS2017-poster-BrokenStick.pdf&quot;&gt;the poster&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;eGFR&lt;/strong&gt;: Of course, the software will happily take eGFR if you prefer to supply  pre-calculated eGFR values.&lt;/p&gt;
+    &lt;p&gt;Find out more about the algorithm by &lt;a href=&quot;https://arxiv.org/pdf/1612.01409.pdf&quot;&gt;reading the author’s version of the journal paper&lt;/a&gt; or from &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S1532046417302253&quot;&gt;Science direct&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Factored Co-morbidity Approach for Modelling CKD Progression</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html"/>
+   <updated>2018-01-13T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification</id>
+   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
 
-&lt;h2 id=&quot;the-demo&quot;&gt;The demo&lt;/h2&gt;
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;One of the key challenges in understanding CKD progression is its multifaceted aetiology. This is evident as it is commonly observed that hypertension, heart disease and diabetes are common co-morbidities of CKD. In other words, the existence of co-morbidities can potentially alter the risk of CKD progression, e.g. from stage 3 to 5. Unfortunately, “flat” risk models such as logistic regression, e.g. as implemented by the QKidney score and many similar risk models, are not designed to extract the rich structure induced by a multitude of co-morbidities, the state of which are often captured in routinely collected patient data.&lt;/p&gt;
 
-&lt;p&gt;Here’s a demo of the software.&lt;/p&gt;
+&lt;h3 id=&quot;methods&quot;&gt;Methods&lt;/h3&gt;
+&lt;p&gt;We revisit the modelling of CKD progression by proposing a Bayesian network that has a certain regular structure, which has attractive properties such as tractability and efficient computation. The risk of progression to more severe CKD stages can be inferred not only from eGFR but signs and symptoms (s) related to kidney impairment, while causality of CKD is captured by risk factors (&lt;script type=&quot;math/tex&quot;&gt; r &lt;/script&gt;) and treatment strategies (&lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt;). Each co-morbidity is then allowed to directly interact with the CKD progression risk only if the diagnosis of the co-morbidity is available. Where this information is not available, the state of the co-morbidity can be inferred from its own &lt;script type=&quot;math/tex&quot;&gt; r,s &lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt; variables.&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;amp;start=99&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;In addition, the model can also incorporate past episodes of acute kidney injury (AKI) when estimating the risk of CKD progression. This exploits the fact that people with AKI are more likely to have a lower eGFR value. The extent of this degradation is explicitly modelled by the Bayesian network. Similar to the above, as before, when the AKI information is not available, the risk of AKI can be inferred from its own &lt;script type=&quot;math/tex&quot;&gt; r,s &lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt; t &lt;/script&gt; variables, in a process known as ‘marginalisation’. Therefore, the interplay between CKD and AKI can be captured by the model.&lt;/p&gt;
 
-&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
-&lt;p&gt;I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
+&lt;h3 id=&quot;analysis&quot;&gt;Analysis&lt;/h3&gt;
+&lt;p&gt;As a proof of concept, the proposed Bayesian network can be verified “by parts”. In essence, the factored co-morbid approach offers a divide-and-conquer strategy to implement risk models. Some of the relationships of the model are informed by the literature and can be expressed in the conditional probabilities below.&lt;/p&gt;
 
-&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/table_ckd_cond_model.png&quot; alt=&quot;ckd table&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The local models can be linked to form a single Bayesian network as shown in figure (a) below. In (b), the model is tailored for AKI, which makes provision for eGFR (&lt;script type=&quot;math/tex&quot;&gt; g &lt;/script&gt;) to be influenced by AKI directly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/graph_ckd_cond_model.png&quot; alt=&quot;ckd table&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion-and-relevance&quot;&gt;Conclusion and relevance&lt;/h3&gt;
+&lt;p&gt;Current risk models are ‘flat’ and do not exploit the rich information captured in patient records. The proposed factored co-morbidity approach offers a natural next step whilst being tractable and efficient in computation. The merit of this model will be investigated as part of the MRC Modelling CKD project using data extracted from the Royal College of GPs database.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h3&gt;
+
+&lt;p&gt;Download &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quot;&gt;the abstract here&lt;/a&gt; 
+and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quot;&gt;the poster here&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  

@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</title>
+  <title>Norman Poh - A software demo for modelling CKD and detecting AKI</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,45 +185,58 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 15, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</h1>
+<h1 class="title">A software demo for modelling CKD and detecting AKI</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm.</p>
+  <h2 id="about-the-demo">About the demo</h2>
+<p>Within the context of the <a href="http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1">MRC Modelling CKD Progression project</a>, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).</p>
 
-<p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<p>I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to <em>climate</em> whereas the short-term trend as akin to the <em>weather</em>. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.</p>
 
-<h2 id="what-is-acute-kidney-injury">What is Acute Kidney Injury?</h2>
-<p>Acute kidney injury (AKI), previously called acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. It commonly occurs in hospital and is associated to death in hospital.</p>
+<p><img src="/assets/ckd/ckd_short_long_term.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<h3 id="aki-in-numbers">AKI in numbers</h3>
+<p>The diagram above shows how the algorithm called <a href="/blog/2018/01/13/BRS2017-broken-stick-model.html"><em>probabilistic broken-stick model</em></a> can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.</p>
 
-<p>According to an <a href="https://www.england.nhs.uk/patientsafety/wp-content/uploads/sites/32/2014/04/issue-aki-pres2.pdf">NHS patient saftey study</a>,</p>
+<h2 id="the-algorithms-implemented">The algorithms implemented</h2>
+
+<p>The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:</p>
 
 <ul>
-  <li>”One in five emergency admissions to hospital will have AKI”</li>
-  <li>”AKI is 100 times more deadly than MRSA infection”</li>
-  <li>”Around 20 per cent of AKI cases are preventable”</li>
-  <li>”costs of AKI to the NHS are £434-620m pa”</li>
+  <li><strong>Probabilistic broken-stick model</strong>: <a href="/blog/2018/01/13/BRS2017-broken-stick-model.html">for modelling the long-term CKD progression</a></li>
+  <li><strong>SAKIDA</strong>: <a href="/blog/2018/01/13/BRS2017-sakida.html">Surrey AKI Detection Algorithm</a></li>
+  <li><strong>NHS</strong>: <a href="https://www.england.nhs.uk/wp-content/uploads/2014/06/psa-aki-alg.pdf">The NHS algorithm for AKI detection</a></li>
 </ul>
 
-<h3 id="why-detecting-acute-kidney-injury-in-primary-care-clinic">Why detecting Acute Kidney Injury in primary care (clinic)?</h3>
+<p>All of these algorithms work with eGFR. The software, however, can take a creatinine time-series and apply the relevant formulas to obtain the corresponing eGFR time-series, such as:</p>
 
-<p>The community-acquired AKI accounts for two thirds of all AKI incidents in the UK. Although algorithms for detecting AKI exist, they are mainly designed for use in the hospital setting where serum creatinine is regularly monitored, about once a day. For this reason, we have designed the SAKIDA (Surrey Acute Kidney Injury Detection Algorithm) which is more suitable for use in the primary care setting.</p>
+<ul>
+  <li>
+    <p><strong>MDRD GFR</strong>: This is the Modification of Diet in Renal Disease (MDRD) Study equation. The resultant eGFR that is calculated has variance (standard error) that is larger for hight GFR values. So, it is not suitable for healthy subjects who generally have high GFR value. The Creatinine can be recorded in micro mol per litre (µmol/L) or miligram per decilitre (mg/dL); and we have implemented both.</p>
+  </li>
+  <li>
+    <p><strong>CKD-EPI</strong>: This is the Chronic Kidney Disease Epidemiology Collaboration study equation, which supercedes the MDRD GFR equation.</p>
+  </li>
+  <li>
+    <p><strong>eGFR</strong>: Of course, the software will happily take eGFR if you prefer to supply  pre-calculated eGFR values.</p>
+  </li>
+</ul>
 
-<h3 id="so-how-do-i-use-sakida">So, how do I use SAKIDA?</h3>
+<h2 id="the-demo">The demo</h2>
 
-<p>First <a href="/blog/2018/01/14/sakida-download.html">download the software</a>. Then read <a href="/blog/2018/01/14/sakida-help.html">the help page</a>. Do check out the demo below.</p>
+<p>Here’s a demo of the software.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rtiTHT3LAWs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;start=99" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
+<h2 id="whats-next">What’s next?</h2>
+<p>I haven’t got time to compile the binary and distribute it yet. However, do check out the <a href="/blog/2018/01/14/sakida.html">SAKIDA software</a> which is ready for download and installation.</p>
+
+<p>The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
 
 </div>
 
@@ -243,10 +256,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_14_sakida,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_15_ckd-aki-demo,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Introduction and Software Demo <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> A software demo <span class="k">for</span> modelling CKD and detecting AKI <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -257,8 +270,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>.  
+      Poh, Norman. "A software demo for modelling CKD and detecting AKI". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html"> http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -267,8 +280,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida.html"> http://normanpoh.github.com/blog/2018/01/14/sakida.html </a>. 
+      Poh, Norman (2018). "A software demo for modelling CKD and detecting AKI". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html"> http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -308,7 +321,7 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/ckd-aki-demo.html">A software demo for modelling CKD and detecting AKI</a>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</a>
     </li>
     
     <li>
