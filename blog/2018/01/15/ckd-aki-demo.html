@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - A software demo for modelling CKD and detecting AKI</title>
+  <title>Norman Poh - A Software Demo for Modelling CKD and Detecting AKI</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
   <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html" />
@@ -191,21 +191,32 @@ today = mm + '/' + dd + '/' + yyyy;
   </a>
 </p>
 
-<h1 class="title">A software demo for modelling CKD and detecting AKI</h1>
+<h1 class="title">A Software Demo for Modelling CKD and Detecting AKI</h1>
 
 <div id="post">
-  <h2 id="about-the-demo">About the demo</h2>
+  <ol>
+  <li><a href="#intro">About this demo</a></li>
+  <li><a href="#algo">The algorithms implemented</a></li>
+  <li><a href="#demo">Demo</a></li>
+  <li><a href="#usp">What makes the software unique?</a></li>
+  <li><a href="#whatnext">What’s next?</a></li>
+  <li><a href="#cite">Cite this blog</a></li>
+</ol>
+
+<h2 id="about-this-demo">About this demo</h2>
+<p><a name="intro"></a></p>
+
 <p>Within the context of the <a href="http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1">MRC Modelling CKD Progression project</a>, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).</p>
 
-<p>I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to <em>climate</em> whereas the short-term trend as akin to the <em>weather</em>. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.</p>
+<p>I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to <em>climate</em> whereas the short-term trend as akin to <em>weather</em>. Climate is a long-term overage of weather, the latter of which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simply dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to managing patients with CKD.</p>
 
 <p><img src="/assets/ckd/ckd_short_long_term.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p>The diagram above shows how the algorithm called <a href="/blog/2018/01/13/BRS2017-broken-stick-model.html"><em>probabilistic broken-stick model</em></a> can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.</p>
+<p>The diagram above shows how an algorithm called <a href="/blog/2018/01/13/BRS2017-broken-stick-model.html"><em>probabilistic broken-stick model</em></a> can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.</p>
 
 <h2 id="the-algorithms-implemented">The algorithms implemented</h2>
-
-<p>The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:</p>
+<p><a name="algo"></a>
+The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:</p>
 
 <ul>
   <li><strong>Probabilistic broken-stick model</strong>: <a href="/blog/2018/01/13/BRS2017-broken-stick-model.html">for modelling the long-term CKD progression</a></li>
@@ -228,13 +239,26 @@ today = mm + '/' + dd + '/' + yyyy;
 </ul>
 
 <h2 id="the-demo">The demo</h2>
+<p><a name="demo"></a></p>
 
 <p>Here’s a demo of the software.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;start=99" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
+<h2 id="what-makes-the-software-unique">What makes the software unique?</h2>
+<p><a name="usp"></a>
+The software can</p>
+
+<ul>
+  <li>model CKD and detect AKI at the same time, giving clinicians a complete view of the software</li>
+  <li>load the creatinine and convert the time series using different equations</li>
+  <li>load eGFR time series directly</li>
+  <li>process and annotate many patient records</li>
+</ul>
+
 <h2 id="whats-next">What’s next?</h2>
-<p>I haven’t got time to compile the binary and distribute it yet. However, do check out the <a href="/blog/2018/01/14/sakida.html">SAKIDA software</a> which is ready for download and installation.</p>
+<p><a name="whatnext"></a>
+I haven’t got time to compile the binary and distribute it yet. However, do check out the <a href="/blog/2018/01/14/sakida.html">SAKIDA software</a> which is ready for download and installation.</p>
 
 <p>The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
 
@@ -244,6 +268,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
   
 <H3> Cite this blog post </H3>
+<a name="cite"></a>
 <hr>
 
 <div class="w3-bar w3-black">
@@ -258,7 +283,7 @@ today = mm + '/' + dd + '/' + yyyy;
     
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_15_ckd-aki-demo,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> A software demo <span class="k">for</span> modelling CKD and detecting AKI <span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> A Software Demo <span class="k">for</span> Modelling CKD and Detecting AKI <span class="o">}</span>,
       <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
@@ -270,7 +295,7 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "A software demo for modelling CKD and detecting AKI". <i> Norman Poh's Github Blog</i>, 2018.
+      Poh, Norman. "A Software Demo for Modelling CKD and Detecting AKI". <i> Norman Poh's Github Blog</i>, 2018.
       <a href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html"> http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
@@ -280,7 +305,7 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "A software demo for modelling CKD and detecting AKI". <i> Norman Poh's Github Blog</i>, 
+      Poh, Norman (2018). "A Software Demo for Modelling CKD and Detecting AKI". <i> Norman Poh's Github Blog</i>, 
       <a href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html"> http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>

@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-16T11:11:38+00:00</updated>
+ <updated>2018-01-16T14:30:49+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -13,22 +13,33 @@
 
  
  <entry>
-   <title>A software demo for modelling CKD and detecting AKI</title>
+   <title>A Software Demo for Modelling CKD and Detecting AKI</title>
    <link href="http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo.html"/>
    <updated>2018-01-15T00:00:00+00:00</updated>
    <id>http://normanpoh.github.com/blog/2018/01/15/ckd-aki-demo</id>
-   <content type="html">&lt;h2 id=&quot;about-the-demo&quot;&gt;About the demo&lt;/h2&gt;
+   <content type="html">&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;About this demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#algo&quot;&gt;The algorithms implemented&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#demo&quot;&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#usp&quot;&gt;What makes the software unique?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#whatnext&quot;&gt;What’s next?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cite&quot;&gt;Cite this blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;about-this-demo&quot;&gt;About this demo&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;intro&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;Within the context of the &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;MRC Modelling CKD Progression project&lt;/a&gt;, I have developed a piece of software which attempts to model the long-term kidney function in terms of estimated Glomerular Filtration Rate (eGFR) as well as the short-term trend, specificaly for detecting Acute Kidney Injury (AKI).&lt;/p&gt;
 
-&lt;p&gt;I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to &lt;em&gt;climate&lt;/em&gt; whereas the short-term trend as akin to the &lt;em&gt;weather&lt;/em&gt;. Climate is a long-term overage of weather which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simpy dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to manage patients with CKD.&lt;/p&gt;
+&lt;p&gt;I like to describe the long-term Chronic Kidney Disease (CKD) trend as similar to &lt;em&gt;climate&lt;/em&gt; whereas the short-term trend as akin to &lt;em&gt;weather&lt;/em&gt;. Climate is a long-term overage of weather, the latter of which fluctates instantaneously. The fluctuation in kidney function can be due to food intake such as a high-protein meal, a patient recovering from a major event such as an amputation surgery, or simply dehydration which may disrupt the body’s ability to clear creatinine. Indeed, eGFR is a quantity that is estimated based on the amount of creatinine concentration; and is a surrogate marker for the actual Glomerular Filtration Rate (GFR). Being able to distinguish signals from noise, i.e, recognising the real kidney function despite the natural fluctuation, is key to managing patients with CKD.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/ckd_short_long_term.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The diagram above shows how the algorithm called &lt;a href=&quot;/blog/2018/01/13/BRS2017-broken-stick-model.html&quot;&gt;&lt;em&gt;probabilistic broken-stick model&lt;/em&gt;&lt;/a&gt; can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.&lt;/p&gt;
+&lt;p&gt;The diagram above shows how an algorithm called &lt;a href=&quot;/blog/2018/01/13/BRS2017-broken-stick-model.html&quot;&gt;&lt;em&gt;probabilistic broken-stick model&lt;/em&gt;&lt;/a&gt; can model both the short and long-term conditions. The short-term trend is parameterised by an observation window of 1 year, moving at a step-size of every 3 months whereas the long-term trend is parameterised by a window of 2 years, moving at a step-size of 1 year. These parameters can be changed as desired.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-algorithms-implemented&quot;&gt;The algorithms implemented&lt;/h2&gt;
-
-&lt;p&gt;The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;algo&quot;&gt;&lt;/a&gt;
+The software demo below demonstrates how CKD and AKI can both be detected. Three algorithms have been  implemented, namely:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Probabilistic broken-stick model&lt;/strong&gt;: &lt;a href=&quot;/blog/2018/01/13/BRS2017-broken-stick-model.html&quot;&gt;for modelling the long-term CKD progression&lt;/a&gt;&lt;/li&gt;
@@ -51,13 +62,26 @@
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;the-demo&quot;&gt;The demo&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;demo&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Here’s a demo of the software.&lt;/p&gt;
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ysQi5JDBeh4?rel=0&amp;amp;start=99&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
+&lt;h2 id=&quot;what-makes-the-software-unique&quot;&gt;What makes the software unique?&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;usp&quot;&gt;&lt;/a&gt;
+The software can&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;model CKD and detect AKI at the same time, giving clinicians a complete view of the software&lt;/li&gt;
+  &lt;li&gt;load the creatinine and convert the time series using different equations&lt;/li&gt;
+  &lt;li&gt;load eGFR time series directly&lt;/li&gt;
+  &lt;li&gt;process and annotate many patient records&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
-&lt;p&gt;I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;whatnext&quot;&gt;&lt;/a&gt;
+I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
 
 &lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
@@ -98,6 +122,26 @@
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/rtiTHT3LAWs?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-under-the-hood&quot;&gt;What’s under the hood?&lt;/h3&gt;
+&lt;p&gt;To find out more:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Read &lt;a href=&quot;/assets/papers/BRS2017_abstract_SAKIDA.pdf&quot;&gt;the abstract here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;See &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Find our more &lt;a href=&quot;http://epubs.surrey.ac.uk/812516/1/Norman_AKI_Detection.pdf&quot;&gt;about the algorithm as published in the 2016 IEEE Symposium Series on Computational Intelligence (SSCI)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Cite the article&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt; @inproceedings&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;tirunagari2016automatic,
+   &lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;Automatic detection of acute kidney injury episodes from primary care data&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;Tirunagari, Santosh and Bull, Simon C and Vehtari, Aki and Farmer, Christopher and de Lusignan, Simon and Poh,    Norman&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;booktitle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;Computational Intelligence &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SSCI&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;m&quot;&gt;2016&lt;/span&gt; IEEE Symposium Series on&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;pages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;1--6&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;2016&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
+   &lt;span class=&quot;nv&quot;&gt;organization&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;={&lt;/span&gt;IEEE&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 </content>
  </entry>
  
@@ -242,7 +286,7 @@
   &lt;li&gt;See &lt;a href=&quot;/assets/papers/BRS2017-poster-SAKIDA.pdf&quot;&gt;the poster here&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Play &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;a pre-recorded demo of the SAKIDA software here&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Simply &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;download the SAKIDA software&lt;/a&gt; and try it out yourself&lt;/li&gt;
-  &lt;li&gt;Find our more &lt;a href=&quot;http://epubs.surrey.ac.uk/812516/1/Norman_AKI_Detection.pdf&quot;&gt;about the algorithm as published the 2016 IEEE Symposium Series on Computational Intelligence (SSCI)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Find our more &lt;a href=&quot;http://epubs.surrey.ac.uk/812516/1/Norman_AKI_Detection.pdf&quot;&gt;about the algorithm as published in the 2016 IEEE Symposium Series on Computational Intelligence (SSCI)&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Cite the article&lt;/li&gt;
 &lt;/ul&gt;
 
