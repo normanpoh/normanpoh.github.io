@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norman Poh - Automatically Detecting AKI Events from Primary Care Records</title>
+  <meta name="author" content="Norman Poh" />
+  <meta name="description" content="The blog of Norman Poh" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="Norman Poh" href="http://normanpoh.github.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+   <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+
+<!-- header for today -->
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '/' + dd + '/' + yyyy;
+</script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1> </h1> 
+  <a href="/">
+    
+    <img src="/assets/norman_round.png" id="logo" alt="Norman's photo" width="200"/>
+    
+  </a>
+  <h2><a href="/">Norman Poh</a></h2>
+  <div id="bio">
+    <p>Senior lecturer, data scientist, consultant</p> 
+	<hr> 
+	<ul>
+	  <li><a href="http://www.snf.ch/en/funding/careers/postdoc-mobility">Swiss NSF Advanced Researcher Fellow</a></li>
+	  <li><a href="https://www.mrc.ac.uk/funding/how-we-fund-research/new-investigator-research-grant/">MRC NIRG Investigator</a> </li> 
+	  <li><a href="https://www.heacademy.ac.uk"> HEA Fellow</a></li>
+	  <li><a href="https://www.surrey.ac.uk"> Researcher of the year 2011, University of Surrey </a></li>
+	</ul>  
+	<p><a href="/blog/2017/12/24/me.html"> Short Bio </a></p>
+	<hr>   
+    <p>Ask me about <a href="/tag/biometrics.html"> biometrics</a>, <a href="/tag/healthcare.html"> healthcare</a>, <a href="/tag/kidney-research.html"> modelling of CKD progression</a> and predictive analytics or <a href="/tag/research.html">research</a></p>
+  </div>
+  <div id="social">
+    Follow me:
+<div id="stalker">
+  
+  <a title="normanpoh on Github" href="https://github.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+  <a title="normanpoh on gitlab" href="https://gitlab.com/normanpoh">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Norman Poh on LinkedIn" href="https://www.linkedin.com/in/normanpoh">
+    <i class="fa fa-linkedin-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+
+  </div>
+
+  <div id="tags">
+    <span >
+  
+  
+  
+    <a href="/tag/biometrics.html" rel="tag">
+      biometrics 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/healthcare.html" rel="tag">
+      healthcare 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/kidney-research.html" rel="tag">
+      kidney-research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/latex.html" rel="tag">
+      latex 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/research.html" rel="tag">
+      research 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/resume.html" rel="tag">
+      resume 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/tutorial.html" rel="tag">
+      tutorial 
+  
+    ,
+  
+    </a>
+  
+    <a href="/tag/virtual-machine.html" rel="tag">
+      virtual-machine 
+  
+    .
+    
+    </a>
+  
+
+</span>
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  January 13, 2018
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Automatically Detecting AKI Events from Primary Care Records</h1>
+
+<div id="post">
+  <p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+
+<h3 id="introduction">Introduction</h3>
+<p>Acute kidney injury (AKI) is characterised by a rapid deterioration in kidney function, and can be identified by examining the rate of change in a patient’s estimated glomerular filtration rate (eGFR). Due to the potentially irreversible nature of the damage AKI episodes cause to renal function, their detection can play a significant role in predicting a kidney’s effectiveness. Although algorithms for the detection of AKI are available for patients under constant monitoring, e.g. inpatients, their applicability to primary care settings is less clear as patients’ eGFR often contains large lapses in time between measurements. We therefore present two alternative automated approaches for detecting AKI: using the novel Surrey AKI detection algorithm (SAKIDA) and as the outlier points when using Gaussian process regression (GPR), as shown in the <a href="/assets/papers/BRS2017_abstract_SAKIDA.pdf">abstract</a> .</p>
+
+<h3 id="method">Method</h3>
+
+<p>The dataset used in this work contains the eGFR data of 488 patients (275 (56.4%) male and 213 (43.6%) female) treated at East Kent University Hospital, and was collected as part of a study seeking to understand the characteristics of acute kidney injury and its impact on chronic kidney disease. Each patient’s eGFR data was manually labelled by a nephrologist with the number of AKI episodes experienced: 0, 1, 2, 3 or 4. In order to obtain the right confidence intervals to detect the AKI episodes as outliers, we trained the GPR using those patients that have no AKI present. The GPR and SAKIDA algorithms were compared to the method developed by NHS England to provide real-time detection and diagnosis of AKI in patients across the National Health Service in England.</p>
+
+<h3 id="results">Results</h3>
+<p>SAKIDA was able to identify patients with no AKI episodes with an accuracy of 90.44%, while GPR achieved 83.82% and NHS England 73.53%. SAKIDA also detected no more than 4 AKI episodes per signal, in agreement with the expert’s classifications, while GPR and NHS England detected more in 67 and 99 patients respectively. Interestingly, despite performing worst when detecting 0, 1, 2 and 4 AKI episodes, NHS England method detected eGFR signals with 3 AKI episodes with a greater accuracy than that of the other methods tested (17.64%) (see Table 1).</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Unlike the constant monitoring of an inpatient, patients in primary care will likely have less frequent and more irregular eGFR measurements along with a greater variability in eGFR values due to weaker controls over pre-test conditions. The main conclusion that can be drawn from the results is that SAKIDA performs better than both GPR and the NHS England algorithms, not only due to the greater accuracy with which it identifies patients with no AKI episodes, but also because it better matches the expert’s classifications overall. This indicates that GPR and the NHS England algorithms are likely to be less suitable for retrospective identification of AKI episodes in primary care data, and are instead more suitable as real-time alert systems. Given that SAKIDA closely matches the expert’s predictions and can be used for both retrospective analysis and real-time alerts, we believe it should be the method of choice when identifying AKI episodes within primary care data.</p>
+
+<h3 id="whats-next">What’s next?</h3>
+
+<ul>
+  <li>Read <a href="/assets/papers/BRS2017_abstract_SAKIDA.pdf">the abstract here</a></li>
+  <li>See <a href="/assets/papers/BRS2017-poster-SAKIDA.pdf">the poster here</a></li>
+  <li>Play <a href="/blog/2018/01/14/sakida.html">a pre-recorded demo of the SAKIDA software here</a></li>
+  <li>Simply <a href="/blog/2018/01/14/sakida-download.html">download the SAKIDA software</a> and try it out yourself</li>
+  <li>Find our more <a href="http://epubs.surrey.ac.uk/812516/1/Norman_AKI_Detection.pdf">about the algorithm as published the 2016 IEEE Symposium Series on Computational Intelligence (SSCI)</a></li>
+  <li>Cite the article</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"> @inproceedings<span class="o">{</span>tirunagari2016automatic,
+   <span class="nv">title</span><span class="o">={</span>Automatic detection of acute kidney injury episodes from primary care data<span class="o">}</span>,
+   <span class="nv">author</span><span class="o">={</span>Tirunagari, Santosh and Bull, Simon C and Vehtari, Aki and Farmer, Christopher and de Lusignan, Simon and Poh,    Norman<span class="o">}</span>,
+   <span class="nv">booktitle</span><span class="o">={</span>Computational Intelligence <span class="o">(</span>SSCI<span class="o">)</span>, <span class="m">2016</span> IEEE Symposium Series on<span class="o">}</span>,
+   <span class="nv">pages</span><span class="o">={</span>1--6<span class="o">}</span>,
+   <span class="nv">year</span><span class="o">={</span>2016<span class="o">}</span>,
+   <span class="nv">organization</span><span class="o">={</span>IEEE<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+
+</div>
+
+<!--- begin adding the citation -->
+
+  
+<H3> Cite this blog post </H3>
+<hr>
+
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button tablink w3-red" onclick="openReference(event,'Bibtex')">Bibtex</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openReference(event,'MLA')">MLA</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openReference(event,'APA')">APA</button>
+</div>
+
+  <div id="Bibtex" class="w3-container w3-border bibref">
+      <h2>Bibtex</h2>
+
+    
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2018_01_13_BRS2017-sakida,
+      <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Automatically Detecting AKI Events from Primary Care Records <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html<span class="o">}</span>,
+      <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
+    <span class="o">}</span>
+    </code></pre></figure>
+
+
+  </div>
+
+  <div id="MLA" class="w3-container w3-border bibref" style="display:none">
+    <ul>
+      <li>
+      Poh, Norman. "Automatically Detecting AKI Events from Primary Care Records". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html </a>.  
+      Accessed <script type="text/javascript"> document.write(today); </script>.
+    </li>
+    <ul>
+  </div>
+
+  <div id="APA" class="w3-container w3-border bibref" style="display:none">
+    <ul>
+      <li>
+      Poh, Norman (2018). "Automatically Detecting AKI Events from Primary Care Records". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html"> http://normanpoh.github.com/blog/2018/01/13/BRS2017-sakida.html </a>. 
+      Accessed <script type="text/javascript"> document.write(today); </script>.
+    </li>
+    <ul>
+  </div> 
+
+<script>
+function openReference(evt, bibrefName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("bibref");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(bibrefName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+
+<script type="text/javascript"> 
+  window.onload = replace_today; 
+  function replace_today() { 
+    document.body.innerHTML = document.body.innerHTML.replace('___TODAY___', today);
+  }
+</script>
+<hr>
+
+
+<!--- end -->
+
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/ckd-aki-demo.html">A software demo for modelling CKD and detecting AKI</a>
+    </li>
+    
+    <li>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida.html">Surrey AKI Detection Algorithm (SAKIDA) - Introduction and Software Demo</a>
+    </li>
+    
+    <li>
+      <span>14 Jan 2018 &raquo;</span> <a href="/blog/2018/01/14/sakida-help.html">Surrey AKI Detection Algorithm (SAKIDA) - User Manual</a>
+    </li>
+    
+  </ul>
+
+  <h3>Tags :</h3>
+  <span>
+    
+      <a href="/tag/kidney-research.html" rel="tag"> 
+        kidney-research 
+        
+        ,
+        
+      </a>
+
+      <a href="/tag/healthcare.html" rel="tag"> 
+        healthcare 
+        
+        .
+        
+      </a>
+
+  </span>
+</div>
+
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © Norman Poh, 2018 &mdash; built with 
+<a href="http://jekyllrb.com/">Jekyll</a> using 
+<a href="https://github.com/swanson/lagom">Lagom theme </a> and 
+<a href="https://github.com/Khan/KaTeX"> Katex </a>
+  </p>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-111544249-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+
+$("script[type='math/tex']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<span class=\"inline-equation\">" + 
+           katex.renderToString(tex) +
+           "</span>";
+});
+
+$("script[type='math/tex; mode=display']").replaceWith(
+  function(){
+    var tex = $(this).text();
+    return "<div class=\"equation\">" + 
+           katex.renderToString("\\displaystyle "+tex) +
+           "</div>";
+});
+
+</script>
+
+
+</body>
+</html>
