@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-18T12:49:11+00:00</updated>
+ <updated>2018-01-18T14:21:26+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>A Case Study of using Machine Learning to Modelling the Progression of Chronic Kidney Disease</title>
+   <title>Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</title>
    <link href="http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html"/>
    <updated>2018-01-18T00:00:00+00:00</updated>
    <id>http://normanpoh.github.com/blog/2018/01/18/nhs-presentation</id>
@@ -36,8 +36,9 @@
 
 &lt;p&gt;Here, we pick chronic kidney disease, or CKD, as a case study and an example of a long term condition.&lt;/p&gt;
 
-&lt;p&gt;According to a 2012 kidney care study (published in Nephrology Dialysis Transplantation), CKD was estimated to cost £1.5 billion or 1.3% of all NHS spending in 2009-2010. More than half were spent on renal replacement therapy. So, preventive care, i.e., keeping CKD patients as healthy as possible is key to maintaining high quality of life-years. 
-The diagrams below show some results which were made possible thanks to a funding from the Medical Research Council awarded to me as a new investigator when I was with University of Surrey. The objective here is to find an innovative way to objectively measure progression.&lt;/p&gt;
+&lt;p&gt;According to a &lt;a href=&quot;https://academic.oup.com/ndt/article/27/suppl_3/iii73/1822662&quot;&gt;2012 kidney care study published in Nephrology Dialysis Transplantation&lt;/a&gt;, CKD was estimated to cost £1.5 billion or 1.3% of all NHS spending in 2009-2010. More than half were spent on renal replacement therapy. So, preventive care, i.e., keeping CKD patients as healthy as possible is key to maintaining high quality of life-years.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Acknowledgements&lt;/strong&gt;: The results reported in this blog are made possible thanks to a funding from the &lt;a href=&quot;http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1&quot;&gt;Medical Research Council awarded to Norman under its Investigator Research Grant scheme&lt;/a&gt; when he was with the University of Surrey. An overaching objective of this project was to find an innovative way to objectively measure CKD progression.&lt;/p&gt;
 
 &lt;h2 id=&quot;finding-patients-with-drastic-decline-in-ckd&quot;&gt;Finding Patients with Drastic Decline in CKD&lt;/h2&gt;
 &lt;p&gt;&lt;a name=&quot;find_clusters&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -74,9 +75,7 @@ The diagrams below show some results which were made possible thanks to a fundin
 
 &lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
 &lt;p&gt;&lt;a name=&quot;whatnext&quot;&gt;&lt;/a&gt;
-I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
-
-&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+Find out more about &lt;a href=&quot;/tag/kidney-research.html&quot;&gt;other kidney research blogs here&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  
