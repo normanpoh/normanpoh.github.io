@@ -4,13 +4,92 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-16T14:30:49+00:00</updated>
+ <updated>2018-01-18T12:49:11+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>A Case Study of using Machine Learning to Modelling the Progression of Chronic Kidney Disease</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html"/>
+   <updated>2018-01-18T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/18/nhs-presentation</id>
+   <content type="html">&lt;p&gt;This was part of my presentation made in Leeds, 2018. This blog provides more information about my slides.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#context&quot;&gt;Context&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#find_clusters&quot;&gt;Finding Patients with Drastic Decline in CKD&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#stratify&quot;&gt;Stratify Patients at Point of Care by Their CKD Stage and Progression&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ml-tasks&quot;&gt;Demonstrating Three Common Machine Learning Tasks: Automatic CKD Trend Classification and Patient Clustering
+&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#computer_vision&quot;&gt;Computer Vision - Machine Learning Applied to Imaging&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cite&quot;&gt;Cite this blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;context&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Like many domains, the healthcare resource utilisation is not evenly distributed; but follows the Pareto principle, also known as the “80/20 rule”. Unsurprisingly, the majority of healthcare resource utilisation are consumed by few. These patients often have multimorbidities such as diabetes, CVD, CKD, etc. If they have mental health conditions, then their outcome is almost invariably worse than those who don’t.&lt;/p&gt;
+
+&lt;p&gt;Here, we pick chronic kidney disease, or CKD, as a case study and an example of a long term condition.&lt;/p&gt;
+
+&lt;p&gt;According to a 2012 kidney care study (published in Nephrology Dialysis Transplantation), CKD was estimated to cost £1.5 billion or 1.3% of all NHS spending in 2009-2010. More than half were spent on renal replacement therapy. So, preventive care, i.e., keeping CKD patients as healthy as possible is key to maintaining high quality of life-years. 
+The diagrams below show some results which were made possible thanks to a funding from the Medical Research Council awarded to me as a new investigator when I was with University of Surrey. The objective here is to find an innovative way to objectively measure progression.&lt;/p&gt;
+
+&lt;h2 id=&quot;finding-patients-with-drastic-decline-in-ckd&quot;&gt;Finding Patients with Drastic Decline in CKD&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;find_clusters&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The figure above shows 2 contrasting clusters of eGFR trends. eGFR (the Y-axis) stands for estimated Glomerular Filtration Rate. It is a measure of the kidney efficiency. X is the age, so CKD patients are typically range from the age of 40 until 100. The above diagram is the result of a systematic anlaysis of the eGFR trend, produced by using a clustering algorithm. We have divided some 20,000 patients into 16 clusters with various degrees of CKD progression. We have shown here the trends of the first and last cluster of these CKD patients. It is obvious that the first cluster, as shown above is qualified to be labelled as drastic CKD progression. This is only possible if we have used advanced machine learning methods – the ones that are robust of local fluctuation, which is adapted to identifying signal from noise.&lt;/p&gt;
+
+&lt;h2 id=&quot;stratify-patients-at-point-of-care-by-their-ckd-stage-and-progression&quot;&gt;Stratify Patients at Point of Care by Their CKD Stage and Progression&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;stratify&quot;&gt;&lt;/a&gt;
+&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;eGFR is used by clinician to define disease stages, with lower being worse and higher being healthy. If we plot this on the X-axis and then plot the eGFR annual rate change, again estimated using regression in the Y-axis, then we can stratify patients now by not only their disease stage but also by their progression. Therefore, CKD can better be managed by using regression – a machine learning method.&lt;/p&gt;
+
+&lt;p&gt;The regression algorithm that we have used here is a state-of-the-art algorithm known as a probabilistic broken stick model; but this is not part of the scope of this talk.&lt;/p&gt;
+
+&lt;h2 id=&quot;demonstrating-three-common-machine-learning-tasks-automatic-ckd-trend-classification-and-patient-clustering&quot;&gt;Demonstrating Three Common Machine Learning Tasks: Automatic CKD Trend Classification and Patient Clustering&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;ml-tasks&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We have seen regression which is one of the most common machine learning tasks; the others are classification and clustering, as shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_classification_regression_clustering.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above left diagram, we show how trends can be classified into three different classes, namely, progressive linear, stable and progressive step-wise. If these are done by hands, labelling 2000 patients would take more than a day; but using machine learning, this can be done in a matter of minutes, with an accuracy comparable to human.&lt;/p&gt;
+
+&lt;p&gt;If we take all historical clinical medical records of CKD patients, and apply some feature extraction and dimensionality reduction algorithms, we can then start clustering patients by their trajectory, as shown on the right diagram above. This is different from the current established way for classifying patients by disease stages; because we are putting patients with similar “disease trajectory” together. This is a novel way of clustering patients, leading to potentially more tailored treatment regime and potentially even better estimation of the risk of progressive CKD.&lt;/p&gt;
+
+&lt;h2 id=&quot;computer-vision---machine-learning-applied-to-imaging&quot;&gt;Computer Vision - Machine Learning Applied to Imaging&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;computer_vision&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Last but not least, machine learning is also used to process images, a field known as computer vision. The figure below shows how we apply a modified algorithm of Dynamic Mode Decomposition, which was developed in the field of Computational Field Dynamics, to processing MRi images of kidney captured when the organ is under perfusion. Here, DMD was used to stablise an image. This used to be difficult problem but can be solved easily using DMD, without the need to annotate each image in the sequence, which is extremely time consuming. This is an illustration of how computer vision which relies on machine learning, can accelerate clinicians’ workflow from hours to minutes.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Oyj2utakNx8&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;whatnext&quot;&gt;&lt;/a&gt;
+I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
+
+&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Modelling the Progression of CKD - The MRC CKD project</title>
+   <link href="http://normanpoh.github.com/blog/2018/01/17/mrc-ckd-project.html"/>
+   <updated>2018-01-17T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/01/17/mrc-ckd-project</id>
+   <content type="html">&lt;h2 id=&quot;about-this-project&quot;&gt;About this project&lt;/h2&gt;
+
+&lt;h2 id=&quot;the-research&quot;&gt;The research&lt;/h2&gt;
+</content>
+ </entry>
  
  <entry>
    <title>A Software Demo for Modelling CKD and Detecting AKI</title>
@@ -448,7 +527,10 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quo
 
 &lt;p&gt;These factors limit us from modelling the disease progression accurately, thus impeding us from better understanding the disease progression and consequently from clinicians from managing CKD confidently.&lt;/p&gt;
 
-&lt;h3 id=&quot;what-kind-of-analytics-are-useful-for-ckd&quot;&gt;What kind of analytics are useful for CKD?&lt;/h3&gt;
+&lt;h3 id=&quot;what-kind-of-machine-learning-solutions-are-useful-for-ckd&quot;&gt;What kind of machine learning solutions are useful for CKD?&lt;/h3&gt;
+
+&lt;p&gt;Machine learning addresses three typical tasks, namely, regression, classification, and clustering.&lt;/p&gt;
+
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#parametric-modelling&quot;&gt;Parametric modelling of eGFR&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#classification&quot;&gt;Classification of eGFR trend&lt;/a&gt;&lt;/li&gt;
@@ -460,7 +542,7 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quo
   &lt;li&gt;&lt;a href=&quot;#computer-vision&quot;&gt;Computer vision&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h5 id=&quot;parametric-modelling-of-egfr&quot;&gt;1. Parametric modelling of eGFR&lt;/h5&gt;
+&lt;h5 id=&quot;parametric-modelling-of-egfr-using-hierarchical-regression&quot;&gt;1. Parametric modelling of eGFR using hierarchical regression&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;parametric-modelling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_hierarchical_modelling.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
@@ -498,6 +580,17 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quo
 &lt;p&gt;&lt;a name=&quot;computer-vision&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Oyj2utakNx8&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h3 id=&quot;bibliographical-notes&quot;&gt;Bibliographical notes&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;#classification&quot;&gt;classification of eGFR trend&lt;/a&gt;: Tirunagari, S, Bull, S and Poh, Norman (2016) &lt;a href=&quot;http://epubs.surrey.ac.uk/812518/1/AKI_paper.pdf&quot;&gt;Automatic Classification of Irregularly Sampled Time Series with Unequal Lengths: A Case Study on Estimated Glomerular Filtration Rate&lt;/a&gt;. In: 2016 IEEE International Workshop on Machine Learning for Signal Processing (MLSP 2016), 2016-09-13 - 2016-09-16, Salerno, Italy.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;xxx&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h4 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;/h4&gt;
 

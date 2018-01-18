@@ -1,5 +1,17 @@
 [
 
+{"date": "Thu, 18 Jan 2018 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["kidney-research","healthcare"],
+"title": "A Case Study of using Machine Learning to Modelling the Progression of Chronic Kidney Disease",
+"url": "/blog/2018/01/18/nhs-presentation.html"},
+
+{"date": "Wed, 17 Jan 2018 00:00:00 +0000",
+"categories": ["blog"],
+"tags": ["kidney-research","healthcare"],
+"title": "Modelling the Progression of CKD - The MRC CKD project",
+"url": "/blog/2018/01/17/mrc-ckd-project.html"},
+
 {"date": "Mon, 15 Jan 2018 00:00:00 +0000",
 "categories": ["blog"],
 "tags": ["kidney-research","healthcare"],
