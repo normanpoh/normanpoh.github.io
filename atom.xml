@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-18T15:05:59+00:00</updated>
+ <updated>2018-01-19T09:46:07+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -49,7 +49,7 @@
 
 &lt;h2 id=&quot;stratify-patients-at-point-of-care-by-their-ckd-stage-and-progression&quot;&gt;Stratify Patients at Point of Care by Their CKD Stage and Progression&lt;/h2&gt;
 &lt;p&gt;&lt;a name=&quot;stratify&quot;&gt;&lt;/a&gt;
-&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/ckd/refined_ckd_risk.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;eGFR is used by clinician to define disease stages, with lower being worse and higher being healthy. If we plot this on the X-axis and then plot the eGFR annual rate change, again estimated using regression in the Y-axis, then we can stratify patients now by not only their disease stage but also by their progression. Therefore, CKD can better be managed by using regression – a machine learning method.&lt;/p&gt;
 
