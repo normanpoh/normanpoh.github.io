@@ -233,7 +233,7 @@ The ratio between the number of genuine scores to the impostor ones is therefore
 
 <p>Let us continue from <a href="/blog/2017/12/29/generate-pairwise-fprint-scores.html">the previous tutorial</a> in which 1000 fingerprints have been extracted and are stored in the <code>features</code> directories. We first get the filenames using the code fraction below.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">c</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">c</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="k">for</span> <span class="n">u</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">200</span>
   <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
     <span class="n">c</span><span class="p">=</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
@@ -243,7 +243,7 @@ The ratio between the number of genuine scores to the impostor ones is therefore
 
 <p>Write two helper functions.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">);</span>
   <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;_&#39;</span><span class="p">);</span>
   <span class="n">out</span> <span class="p">=</span> <span class="n">str2double</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">1</span><span class="p">});</span>
@@ -257,18 +257,18 @@ The ratio between the number of genuine scores to the impostor ones is therefore
 
 <p>Get the user and session indices</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">user</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_user</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">user</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_user</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span>
 <span class="n">session</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_session</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span></code></pre></figure>
 
 <p>Write the query samples to a file.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">fid</span><span class="p">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#39;queries.tmp&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">fid</span><span class="p">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#39;queries.tmp&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">);</span>
 <span class="n">cellfun</span><span class="p">(@(</span><span class="n">x</span><span class="p">)</span> <span class="n">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span> <span class="s">&#39;%s\n&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">(</span><span class="n">session</span><span class="o">~=</span><span class="mi">1</span><span class="p">));</span>
 <span class="n">fclose</span><span class="p">(</span><span class="n">fid</span><span class="p">);</span></code></pre></figure>
 
 <p>The top rows of file <code>queries.tmp</code> contain the following lines.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">features/1_2.xyt
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>features/1_2.xyt
 features/1_3.xyt
 features/1_4.xyt
 features/1_5.xyt
@@ -282,7 +282,7 @@ features/3_3.xyt
 
 <p>We shall compare each of these query samples with a list of templates which be definition belong to session 1.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">features/1_1.xyt
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>features/1_1.xyt
 features/2_1.xyt
 features/3_1.xyt
 features/4_1.xyt
@@ -291,7 +291,7 @@ features/5_1.xyt
 
 <p>The following codes achieve this by invoking the NIST fingerprint matcher, <code>bozorth3</code> in order to obtain the score matrix <code>scores</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">templates</span> <span class="p">=</span> <span class="n">fname</span><span class="p">(</span><span class="n">session</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">templates</span> <span class="p">=</span> <span class="n">fname</span><span class="p">(</span><span class="n">session</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">scores</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">templates</span><span class="p">),</span> <span class="n">sum</span><span class="p">(</span><span class="n">session</span><span class="o">~=</span><span class="mi">1</span><span class="p">));</span>
 
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">templates</span><span class="p">)</span>
@@ -306,7 +306,7 @@ features/5_1.xyt
 
 <p>We now generate the genuine score mask by using the meta-data <code>user</code> and <code>session</code> which are associated with the list of query samples.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">user_list_in_query</span> <span class="p">=</span> <span class="n">user</span><span class="p">(</span><span class="n">session</span><span class="o">~=</span><span class="mi">1</span><span class="p">);</span> <span class="c">% get session 2,3,4,5</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">user_list_in_query</span> <span class="p">=</span> <span class="n">user</span><span class="p">(</span><span class="n">session</span><span class="o">~=</span><span class="mi">1</span><span class="p">);</span> <span class="c">% get session 2,3,4,5</span>
 <span class="n">mask_gen</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">scores</span><span class="p">));</span>
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
   <span class="n">selected_column</span> <span class="p">=</span> <span class="n">user_list_in_query</span><span class="o">==</span><span class="nb">i</span><span class="p">;</span>
@@ -316,7 +316,7 @@ features/5_1.xyt
 
 <p>Let us see how the genuine score matrix look by zooming into the top 20 rows (corresponding to the top 20 unique fingers).</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">imagesc</span><span class="p">(</span><span class="n">scores</span> <span class="o">.*</span> <span class="n">mask_gen</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">imagesc</span><span class="p">(</span><span class="n">scores</span> <span class="o">.*</span> <span class="n">mask_gen</span><span class="p">);</span>
 <span class="n">colorbar</span><span class="p">;</span>
 <span class="n">axis</span><span class="p">([</span><span class="mf">0.5</span> <span class="mi">80</span> <span class="mf">0.5</span> <span class="mi">20</span><span class="p">])</span></code></pre></figure>
 
@@ -326,7 +326,7 @@ features/5_1.xyt
 
 <p>Let us plot the masks for the genine and impostor scores, as well as their corresponding score matrices.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">mask_gen</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">mask_imp</span><span class="p">);</span>
@@ -343,7 +343,7 @@ features/5_1.xyt
 
 <p>To simply the process, we shall create two helper functions so that you can reuse them in the future. The first one, <code>generate_mask</code> will generate the mask and the second one, <code>get_scores</code> will get the scores given the mask:</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>mask_gen <span class="p">=</span><span class="w"> </span><span class="nf">generate_mask</span><span class="p">(</span>scores, user, session<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>mask_gen <span class="p">=</span><span class="w"> </span><span class="nf">generate_mask</span><span class="p">(</span>scores, user, session<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">user_list_in_query</span> <span class="p">=</span> <span class="n">user</span><span class="p">(</span><span class="n">session</span><span class="o">~=</span><span class="mi">1</span><span class="p">);</span>
   <span class="n">mask_gen</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">scores</span><span class="p">));</span>
   <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">user</span><span class="p">))</span>
@@ -360,7 +360,7 @@ features/5_1.xyt
 
 <p>Apply the two functions and plot the various curves using <code>wer</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">mask_gen</span> <span class="p">=</span> <span class="n">generate_mask</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">session</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">mask_gen</span> <span class="p">=</span> <span class="n">generate_mask</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">session</span><span class="p">);</span>
 <span class="p">[</span><span class="n">imp_scores</span><span class="p">,</span> <span class="n">gen_scores</span><span class="p">]</span> <span class="p">=</span> <span class="n">get_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">mask_gen</span><span class="p">);</span>
 
 <span class="c">%% plot the error rate curve</span>
@@ -374,7 +374,7 @@ features/5_1.xyt
 
 <p>Again, we can do the same using <code>logit_transform</code>, defined below.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>output<span class="p">=</span><span class="w"> </span><span class="nf">logit_transform</span><span class="p">(</span>scores, max_scores<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>output<span class="p">=</span><span class="w"> </span><span class="nf">logit_transform</span><span class="p">(</span>scores, max_scores<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">2</span>
     <span class="n">max_scores</span> <span class="p">=</span> <span class="mi">400</span><span class="p">;</span>
   <span class="k">end</span>
@@ -383,7 +383,7 @@ features/5_1.xyt
 
 <p>Apply <code>logit_transform</code> to the scores so that the distributions becomes more visible before plotting the curves.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">eer</span> <span class="p">=</span> <span class="n">wer</span><span class="p">(</span><span class="n">logit_transform</span><span class="p">(</span><span class="n">imp_scores</span><span class="p">(:)),</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">gen_scores</span><span class="p">(:)),[],</span><span class="mi">1</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">eer</span> <span class="p">=</span> <span class="n">wer</span><span class="p">(</span><span class="n">logit_transform</span><span class="p">(</span><span class="n">imp_scores</span><span class="p">(:)),</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">gen_scores</span><span class="p">(:)),[],</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">fprintf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39; Equal Error Rate is %1.2f percent\n&#39;</span><span class="p">,</span> <span class="n">eer</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span></code></pre></figure>
 
 <p><img src="/assets/2017-12-29-generate--pairwise-fprint-scores/wer_subset_logit.png" alt="wer" style="width: 100%;" /></p>
@@ -427,7 +427,7 @@ number of comparisons which is significantly smaller.</p>
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2017_12_31_alternative-biometric-protocol,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2017_12_31_alternative-biometric-protocol,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
       <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: An alternative biometric experimental protocol <span class="o">}</span>,
       <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/31/alternative-biometric-protocol.html<span class="o">}</span>,
@@ -492,15 +492,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
+    </li>
+    
+    <li>
       <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
     <li>
       <span>17 Jan 2018 &raquo;</span> <a href="/blog/2018/01/17/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
-    </li>
-    
-    <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/ckd-aki-demo.html">A Software Demo for Modelling CKD and Detecting AKI</a>
     </li>
     
   </ul>

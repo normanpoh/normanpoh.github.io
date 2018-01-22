@@ -208,7 +208,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
 <h5 id="back-up-the-original-features-directory">1. Back up the original <code>features</code> directory.</h5>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c1"># In bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="c1"># In bash</span>
 mv features features_original
 mkdir features</code></pre></figure>
 
@@ -216,20 +216,20 @@ mkdir features</code></pre></figure>
 
 <p>Let’s take a look at an <code>xyt</code> file using <code>head features_original/100_1.xyt</code> in bash, which gives the following output:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="m">167</span> <span class="m">246</span> <span class="m">34</span> 13
-<span class="m">172</span> <span class="m">191</span> <span class="m">214</span> 12
-<span class="m">177</span> <span class="m">219</span> <span class="m">236</span> 6
-<span class="m">178</span> <span class="m">228</span> <span class="m">45</span> 13
-<span class="m">178</span> <span class="m">209</span> <span class="m">225</span> 6
-<span class="m">184</span> <span class="m">206</span> <span class="m">45</span> 29
-<span class="m">187</span> <span class="m">273</span> <span class="m">304</span> 14
-<span class="m">195</span> <span class="m">290</span> <span class="m">191</span> 14
-<span class="m">196</span> <span class="m">318</span> <span class="m">214</span> 32
-<span class="m">198</span> <span class="m">264</span> <span class="m">34</span> 32</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="m">167</span> <span class="m">246</span> <span class="m">34</span> <span class="m">13</span>
+<span class="m">172</span> <span class="m">191</span> <span class="m">214</span> <span class="m">12</span>
+<span class="m">177</span> <span class="m">219</span> <span class="m">236</span> <span class="m">6</span>
+<span class="m">178</span> <span class="m">228</span> <span class="m">45</span> <span class="m">13</span>
+<span class="m">178</span> <span class="m">209</span> <span class="m">225</span> <span class="m">6</span>
+<span class="m">184</span> <span class="m">206</span> <span class="m">45</span> <span class="m">29</span>
+<span class="m">187</span> <span class="m">273</span> <span class="m">304</span> <span class="m">14</span>
+<span class="m">195</span> <span class="m">290</span> <span class="m">191</span> <span class="m">14</span>
+<span class="m">196</span> <span class="m">318</span> <span class="m">214</span> <span class="m">32</span>
+<span class="m">198</span> <span class="m">264</span> <span class="m">34</span> <span class="m">32</span></code></pre></figure>
 
 <p>The first column shows the row and column of minutiae and the third column shows the orientation. The last column is what we are interested in; it shows the quality of the minuatiae. The code below will filter out the minutiae with low quality by using a threshold of <code>20</code> and then writing the feature files back to the <code>features</code> directory.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">quality_thrd</span> <span class="p">=</span> <span class="mi">20</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">quality_thrd</span> <span class="p">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
   <span class="n">original_fname</span> <span class="p">=</span> <span class="n">strrep</span><span class="p">(</span><span class="n">fname</span><span class="p">{</span><span class="nb">i</span><span class="p">},</span> <span class="s">&#39;features&#39;</span><span class="p">,</span> <span class="s">&#39;features_original&#39;</span><span class="p">);</span>
   <span class="n">tmplt</span> <span class="p">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="n">original_fname</span><span class="p">);</span>
@@ -239,7 +239,7 @@ mkdir features</code></pre></figure>
 
 <h5 id="generate-the-score-matrix">3. Generate the score matrix</h5>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">scores</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
 
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
   <span class="n">cmd</span> <span class="p">=</span> <span class="n">sprintf</span><span class="p">(</span>&quot;<span class="n">bozorth3</span> <span class="o">-</span><span class="n">o</span> <span class="n">out</span><span class="p">.</span><span class="n">scores</span> <span class="o">-</span><span class="n">p</span> <span class="c">%s -G filelist_xyt.txt&quot;, fname{i});</span>
@@ -257,14 +257,14 @@ mkdir features</code></pre></figure>
 
 <p>First, we load the scores produced in the previous <a href="/blog/2017/12/29/generate-pairwise-fprint-scores.html">tutorial</a>; and call it <code>scores</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">out</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&#39;scores.mat&#39;</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">out</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&#39;scores.mat&#39;</span><span class="p">);</span>
 <span class="n">scores</span> <span class="p">=</span> <span class="n">out</span><span class="p">.</span><span class="n">scores</span><span class="p">;</span>
 <span class="n">out</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&#39;scores_20.mat&#39;</span><span class="p">);</span>
 <span class="n">scores20</span> <span class="p">=</span> <span class="n">out</span><span class="p">.</span><span class="n">scores</span><span class="p">;</span> <span class="c">%scores produced in this tutorial</span></code></pre></figure>
 
 <p>Next, we get the genuine and impostor scores, reusing the variable <code>user</code> created in the previous tutorial.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">idlist</span> <span class="p">=</span> <span class="n">user</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">idlist</span> <span class="p">=</span> <span class="n">user</span><span class="p">;</span>
 
 <span class="c">% get the scores</span>
 <span class="n">sym_scores</span> <span class="p">=</span> <span class="n">get_symmetric_scores</span><span class="p">(</span><span class="n">scores20</span><span class="p">,</span> <span class="n">idlist</span><span class="p">);</span>
@@ -304,7 +304,7 @@ mkdir features</code></pre></figure>
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2017_12_29_optimize-fprint-minutiae-quality,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2017_12_29_optimize-fprint-minutiae-quality,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
       <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: Optimize fingerprint minutiae quality <span class="o">}</span>,
       <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/29/optimize-fprint-minutiae-quality.html<span class="o">}</span>,
@@ -369,15 +369,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
+    </li>
+    
+    <li>
       <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
     <li>
       <span>17 Jan 2018 &raquo;</span> <a href="/blog/2018/01/17/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
-    </li>
-    
-    <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/ckd-aki-demo.html">A Software Demo for Modelling CKD and Detecting AKI</a>
     </li>
     
   </ul>

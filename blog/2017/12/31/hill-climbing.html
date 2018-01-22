@@ -220,10 +220,10 @@ today = mm + '/' + dd + '/' + yyyy;
 
 <p>A text file named <code>filelist_xyt.txt</code> contains all the processed files in  <code>.xyt</code>  format. This file list serves as a gallery of zero-effort attack from which potential wolves can be identified. There are 200 unique fingers each containing 5 impressions, so making a total of 1000 samples. The 1000 fingerprint templates in the <code>*.xyt</code> format are stored in the <code>features</code> directory. The following Octave code generates the content of the file <code>filelist_xyt.txt</code>.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">% In Octave
-<span class="nv">c</span> <span class="o">=</span> 0<span class="p">;</span>
-<span class="k">for</span> <span class="nv">u</span><span class="o">=</span>1:200 %there are <span class="m">200</span> unique fingers
-  <span class="k">for</span> <span class="nv">i</span><span class="o">=</span>1:5 %each having <span class="m">5</span> fingerprint impressions
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>% In Octave
+<span class="nv">c</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="nv">u</span><span class="o">=</span><span class="m">1</span>:200 %there are <span class="m">200</span> unique fingers
+  <span class="k">for</span> <span class="nv">i</span><span class="o">=</span><span class="m">1</span>:5 %each having <span class="m">5</span> fingerprint impressions
     <span class="nv">c</span><span class="o">=</span>c+1<span class="p">;</span>
     fname<span class="o">{</span>c<span class="o">}</span> <span class="o">=</span> sprintf<span class="o">(</span><span class="s1">&#39;features/%d_%d.xyt&#39;</span>, u, i<span class="o">)</span><span class="p">;</span>
   end
@@ -236,26 +236,26 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>Let us now prepare the fingerprint to be attacked by extracting the <code>.xyt</code> features using NIST’s <code>mindtct</code> command line tool below. You should replace <code>fingerprint2attack.jpg</code> with your own file name. In practice, of course, an attacker would not have access to this raw data or its corresponding feature file in <code>.xyt</code> format.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%extract the feature</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">%extract the feature</span>
 <span class="n">msg</span> <span class="p">=</span> <span class="n">unix</span><span class="p">(</span><span class="s">&#39;mindtct fingerprint2attack.jpg file2attack&#39;</span><span class="p">)</span></code></pre></figure>
 
 <p>The above command outputs <code>file2attack.xyt</code> among other auxiliary files (which we won’t need).</p>
 
 <p>We shall now use invokes <code>bozorth3</code> to match the target file <code>file2attack.xyt</code> against the gallery of templates in <code>filelist_xyt.txt</code>; the result of which is stored in <code>file2attack.scores</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">% Matlab or Ocatave</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">% Matlab or Ocatave</span>
 <span class="n">cmd</span> <span class="p">=</span> <span class="s">&#39;bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt&#39;</span><span class="p">;</span>
 <span class="n">unix</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span></code></pre></figure>
 
 <p>We could have run the command in <code>bash</code> directly.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>bozorth3 -o file2attack.scores -p file2attack.xyt -G filelist_xyt.txt</code></pre></figure>
 
 <p>As you might have guessed, the command <code>unix</code> gives you access to shell environment where you can execute a <code>bash</code> command.</p>
 
 <p>The next lines of codes below then load the scores, sort them and plot the sorted scores.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
 <span class="n">wolf_scores</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">);</span>
 <span class="n">filelist</span> <span class="p">=</span> <span class="n">textread</span><span class="p">(</span>&quot;<span class="n">filelist_xyt</span><span class="p">.</span><span class="n">txt</span>&quot;<span class="p">,</span> &quot;<span class="c">%s&quot;);</span>
 
@@ -276,7 +276,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 <h5 id="visualize-the-fingerprint-that-is-closest-to-the-target-template">2. Visualize the fingerprint that is closest to the target template</h5>
 <p>How does the wolf fingerprint, i.e., the fingerprint that is closest to the target template look like? To answer this question, I have written a function <code>display_xyt</code> to display the minutiae. Because it is an image, we have to reverse the x-axis; and this custom function does this for you.  This function also takes in the magnitude variable, <code>mag</code>, which controls the length of the arrow of each minutia for visualisation purpose only.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span><span class="nf">display_xyt</span><span class="p">(</span>xyt, mag, img<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span><span class="nf">display_xyt</span><span class="p">(</span>xyt, mag, img<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">||</span><span class="nb">isempty</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
     <span class="n">mag</span><span class="p">=</span><span class="mi">10</span><span class="p">;</span>
   <span class="n">endif</span>
@@ -303,13 +303,13 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>The code below finds the closest template.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">% Find the wolf template</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">% Find the wolf template</span>
 <span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
 <span class="n">best_xyt</span> <span class="p">=</span> <span class="n">filelist</span><span class="p">{</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)}</span></code></pre></figure>
 
 <p>We now get the filename of the original fingerprint in <code>.png</code> format. f you want to copy and paste the code below, you should replace the variable <code>original_png_folder</code> with the folder where your original folder where the fingerprint images in <code>.png</code> are stored.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%Now let&#39;s load the original png file</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">%Now let&#39;s load the original png file</span>
 <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">best_xyt</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">);</span>
 <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;.&#39;</span><span class="p">);</span>
 <span class="n">original_png_folder</span> <span class="p">=</span> <span class="s">&#39;/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/TrainingItaldataLive&#39;</span><span class="p">;</span>
@@ -319,7 +319,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>Finally, having loaded the image and xyt file, we are ready to call the <code>display_xyt</code> function.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">display_xyt</span><span class="p">(</span><span class="n">xyt</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span><span class="mi">20</span><span class="p">,</span> <span class="n">img</span><span class="p">);</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">display_xyt</span><span class="p">(</span><span class="n">xyt</span><span class="p">(</span><span class="n">ii</span><span class="p">,:),</span><span class="mi">20</span><span class="p">,</span> <span class="n">img</span><span class="p">);</span></code></pre></figure>
 
 <p>This produces an output similar to the one below:
 <img src="/assets/hill-climb/fprint.png" alt="Fs ingeprint with minutiae overlayed" style="width: 100%;" /></p>
@@ -330,7 +330,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>The function below, <code>evolve_sample</code> below simply produces 30 novel fingerprint templates, each of which differs by simultaneous change in the row and column of a minutiae. Note that this is just one of the many possible ways to <em>evolve</em> novel fingerprint templates. You can add or remove a minutia or change the orientation of the minutia. This is left as a hands-on exercise.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>[scores, samples] <span class="p">=</span><span class="w"> </span><span class="nf">evolve_sample</span><span class="p">(</span>xyt, pertube, temperature<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>[scores, samples] <span class="p">=</span><span class="w"> </span><span class="nf">evolve_sample</span><span class="p">(</span>xyt, pertube, temperature<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">noise</span> <span class="p">=</span> <span class="n">randi</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pertube</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">xyt</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">pertube</span><span class="p">;</span>
 
   <span class="n">samples</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">xyt</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
@@ -370,12 +370,12 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <h5 id="allocate-memory-to-hold-the-output-of-100-generations">1. Allocate memory to hold the output of 100 generations</h5>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">xyt_generation</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">xyt_generation</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">fitness</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span></code></pre></figure>
 
 <h5 id="select-the-top-3-wolf-templates-as-ancestors-to-first-generation-of-fingerprint-candidates">2. Select the top 3 wolf templates as ancestors to first generation of fingerprint candidates.</h5>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
 <span class="n">filelist</span> <span class="p">=</span> <span class="n">textread</span><span class="p">(</span>&quot;<span class="n">filelist_xyt</span><span class="p">.</span><span class="n">txt</span>&quot;<span class="p">,</span> &quot;<span class="c">%s&quot;);</span>
 
 <span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
@@ -392,7 +392,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>At the beginning of the loop, the algorithm takes all the candidates of current generation and evaluates their fitness in terms of  similirity score. Once the fitness values are evaluated, only the top 500 candidates are kept, to be ready for next round of evolution; and the process repeats this way until the desired number of generations is reached (100 in this case). Below is the code fragments that implement this idea.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">pertube</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">pertube</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="n">temperature</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="k">for</span> <span class="n">g</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
@@ -429,7 +429,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>We shall analyse the number of (capped) candidates in each generation.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">count</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fitness</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">count</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fitness</span><span class="p">)</span>
 
 <span class="n">max_iter</span> <span class="p">=</span>  <span class="n">min</span><span class="p">(</span><span class="nb">find</span><span class="p">(</span><span class="n">count</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
 <span class="n">maxfit</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">max_iter</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
@@ -440,7 +440,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>Then, plot the best scores along with the wolf scores for comparison.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">close</span> <span class="n">all</span><span class="p">;</span> <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">close</span> <span class="n">all</span><span class="p">;</span> <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">wolf_scores</span><span class="p">),</span> <span class="nb">numel</span><span class="p">(</span><span class="n">wolf_scores</span><span class="p">)</span><span class="o">+</span><span class="n">cumsum</span><span class="p">(</span><span class="n">count</span><span class="o">&#39;</span><span class="p">)],</span> <span class="p">[</span><span class="n">wolf_scores</span><span class="p">;</span> <span class="n">maxfit</span><span class="p">]);</span>
 <span class="n">axis_</span> <span class="p">=</span> <span class="n">axis</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">([</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">axis_</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">),</span> <span class="s">&#39;k--&#39;</span><span class="p">);</span>
@@ -457,7 +457,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>We can also plot the top candidate from one generation to another.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">close</span> <span class="n">all</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">close</span> <span class="n">all</span><span class="p">;</span>
 <span class="k">for</span> <span class="n">g</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">max_iter</span>
   <span class="p">[</span><span class="o">~</span><span class="p">,</span> <span class="n">index</span><span class="p">]=</span><span class="n">sort</span><span class="p">(</span><span class="n">fitness</span><span class="p">{</span><span class="n">g</span><span class="p">},</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
   <span class="n">xyt</span> <span class="p">=</span> <span class="n">xyt_generation</span><span class="p">{</span><span class="n">g</span><span class="p">}{</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)};</span>
@@ -489,7 +489,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2017_12_31_hill-climbing,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2017_12_31_hill-climbing,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
       <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: Applying wolf and hill climbing attacks to fingerprint recognition <span class="o">}</span>,
       <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/31/hill-climbing.html<span class="o">}</span>,
@@ -554,15 +554,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
+    </li>
+    
+    <li>
       <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
     <li>
       <span>17 Jan 2018 &raquo;</span> <a href="/blog/2018/01/17/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
-    </li>
-    
-    <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/ckd-aki-demo.html">A Software Demo for Modelling CKD and Detecting AKI</a>
     </li>
     
   </ul>

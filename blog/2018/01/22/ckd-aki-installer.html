@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</title>
+  <title>Norman Poh - Installing the Software Demo for Modelling CKD and Detecting AKI</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/22/ckd-aki-installer.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,74 +185,81 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 18, 2018
+  January 22, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</h1>
+<h1 class="title">Installing the Software Demo for Modelling CKD and Detecting AKI</h1>
 
 <div id="post">
-  <p>This was part of my presentation made in Leeds, 2018. This blog provides more information about my slides.</p>
+  <p>This software can model the progression of Chronic Kidney Disease (CKD) and also detect Acute Kidney Injury producing a figure such as the one below.
+<a name="ckd-aki"></a>
+<img src="/assets/ckd/ckd_progression_cum_aki_detection.png" alt="CKD progression with AKI" style="width: 100%;" /></p>
+
+<p>Before installing the software, you may want to <a href="/blog/2018/01/15/ckd-aki-demo.html">find out more about the demo first</a>.</p>
 
 <ol>
-  <li><a href="#context">Context</a></li>
-  <li><a href="#find_clusters">Finding Patients with Drastic Decline in CKD</a></li>
-  <li><a href="#stratify">Stratify Patients at Point of Care by Their CKD Stage and Progression</a></li>
-  <li><a href="#ml-tasks">Demonstrating Three Common Machine Learning Tasks: Automatic CKD Trend Classification and Patient Clustering
-</a></li>
-  <li><a href="#computer_vision">Computer Vision - Machine Learning Applied to Imaging</a></li>
+  <li><a href="#how2use">How to use the software?</a></li>
+  <li><a href="#how2install">How to install the software?</a></li>
+  <li><a href="#whatnext">What’s next</a></li>
   <li><a href="#cite">Cite this blog</a></li>
 </ol>
 
-<h2 id="context">Context</h2>
-<p><a name="context"></a></p>
+<h2 id="how-to-use-the-software">How to use the software?</h2>
+<p><a name="how2use"></a></p>
 
-<p>Like many domains, the healthcare resource utilisation is not evenly distributed; but follows the Pareto principle, also known as the “80/20 rule”. Unsurprisingly, the majority of healthcare resource utilisation are consumed by few. These patients often have multimorbidities such as diabetes, CVD, CKD, etc. If they have mental health conditions, then their outcome is almost invariably worse than those who don’t.</p>
+<p>Watch the video below which has been annotated. Note that it does not have any sound.</p>
 
-<p>Here, we pick chronic kidney disease, or CKD, as a case study and an example of a long term condition.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XIvbQBGofHA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
-<p>According to a <a href="https://academic.oup.com/ndt/article/27/suppl_3/iii73/1822662">2012 kidney care study published in Nephrology Dialysis Transplantation</a>, CKD was estimated to cost £1.5 billion or 1.3% of all NHS spending in 2009-2010. More than half were spent on renal replacement therapy. So, preventive care, i.e., keeping CKD patients as healthy as possible is key to maintaining high quality of life-years.</p>
+<h2 id="how-to-install-the-software">How to install the software?</h2>
+<p><a name="how2install"></a></p>
 
-<p><strong>Acknowledgements</strong>: The results reported in this blog are made possible thanks to a funding from the <a href="http://gtr.rcuk.ac.uk/projects?ref=MR%2FM023281%2F1">Medical Research Council awarded to Norman under its Investigator Research Grant scheme</a> when he was with the University of Surrey. An overaching objective of this project was to find an innovative way to objectively measure CKD progression.</p>
+<h5 id="download-the-installation-fileassetsckd-aki-demockdakiinstallerfileszip">1. Download <a href="/assets/ckd-aki-demo/ckd_aki_installer_files.zip">the installation file</a></h5>
+<p>Unzip the <code>ckd_aki_installer_files.zip</code> file and then click <code>MyAppInstaller_web.exe</code>.</p>
 
-<h2 id="finding-patients-with-drastic-decline-in-ckd">Finding Patients with Drastic Decline in CKD</h2>
-<p><a name="find_clusters"></a></p>
+<h5 id="follow-the-following-screenshots">2. Follow the following screenshots</h5>
 
-<p><img src="/assets/ckd/eGFR_drastic_decline.png" alt="eGFR hierarchical modelling" style="width: 100%;" /></p>
+<p><img src="/assets/ckd-aki-demo/image001.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p>The figure above shows 2 contrasting clusters of eGFR trends. eGFR (the Y-axis) stands for estimated Glomerular Filtration Rate. It is a measure of the kidney efficiency. X is the age, so CKD patients are typically range from the age of 40 until 100. The above diagram is the result of a systematic anlaysis of the eGFR trend, produced by using a clustering algorithm. We have divided some 20,000 patients into 16 clusters with various degrees of CKD progression. We have shown here the trends of the first and last cluster of these CKD patients. It is obvious that the first cluster, as shown above is qualified to be labelled as drastic CKD progression. This is only possible if we have used advanced machine learning methods – the ones that are robust of local fluctuation, which is adapted to identifying signal from noise.</p>
+<p>Click next.</p>
 
-<h2 id="stratify-patients-at-point-of-care-by-their-ckd-stage-and-progression">Stratify Patients at Point of Care by Their CKD Stage and Progression</h2>
-<p><a name="stratify"></a>
-<img src="/assets/ckd/refined_ckd_risk.png" alt="eGFR hierarchical modelling" style="width: 100%;" /></p>
+<p><img src="/assets/ckd-aki-demo/image003.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p>eGFR is used by clinician to define disease stages, with lower being worse and higher being healthy. If we plot this on the X-axis and then plot the eGFR annual rate change, again estimated using regression in the Y-axis, then we can stratify patients now by not only their disease stage but also by their progression. Therefore, CKD can better be managed by using regression – a machine learning method.</p>
+<p>Add a shortcut if you want.</p>
 
-<p>The regression algorithm that we have used here is a state-of-the-art algorithm known as a probabilistic broken stick model; but this is not part of the scope of this talk.</p>
+<p><img src="/assets/ckd-aki-demo/image005.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<h2 id="demonstrating-three-common-machine-learning-tasks-automatic-ckd-trend-classification-and-patient-clustering">Demonstrating Three Common Machine Learning Tasks: Automatic CKD Trend Classification and Patient Clustering</h2>
-<p><a name="ml-tasks"></a></p>
+<p>You will need to install the Matlab Runtime environment. This will take the most time.</p>
 
-<p>We have seen regression which is one of the most common machine learning tasks; the others are classification and clustering, as shown below.</p>
+<p><img src="/assets/ckd-aki-demo/image007.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p><img src="/assets/ckd/eGFR_classification_regression_clustering.png" alt="eGFR hierarchical modelling" style="width: 100%;" /></p>
+<p>Check ‘Yes’ and then click ‘Next’.</p>
 
-<p>In the above left diagram, we show how trends can be classified into three different classes, namely, progressive linear, stable and progressive step-wise. If these are done by hands, labelling 2000 patients would take more than a day; but using machine learning, this can be done in a matter of minutes, with an accuracy comparable to human.</p>
+<p><img src="/assets/ckd-aki-demo/image009.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p>If we take all historical clinical medical records of CKD patients, and apply some feature extraction and dimensionality reduction algorithms, we can then start clustering patients by their trajectory, as shown on the right diagram above. This is different from the current established way for classifying patients by disease stages; because we are putting patients with similar “disease trajectory” together. This is a novel way of clustering patients, leading to potentially more tailored treatment regime and potentially even better estimation of the risk of progressive CKD.</p>
+<p>Click ‘Install’.</p>
 
-<h2 id="computer-vision---machine-learning-applied-to-imaging">Computer Vision - Machine Learning Applied to Imaging</h2>
-<p><a name="computer_vision"></a></p>
+<p><img src="/assets/ckd-aki-demo/image011.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
 
-<p>Last but not least, machine learning is also used to process images, a field known as computer vision. The figure below shows how we apply a modified algorithm of Dynamic Mode Decomposition, which was developed in the field of Computational Field Dynamics, to processing MRi images of kidney captured when the organ is under perfusion. Here, DMD was used to stablise an image. This used to be difficult problem but can be solved easily using DMD, without the need to annotate each image in the sequence, which is extremely time consuming. This is an illustration of how computer vision which relies on machine learning, can accelerate clinicians’ workflow from hours to minutes.</p>
+<p>I recommend that you take a coffee and come back in 10-20 minutes’ time.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Oyj2utakNx8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+<p>Once done, navigate to the default installation location which is <code>C:\Program Files\CKD_and_AKI_demo_probabilistic_broken_stick_model</code>.</p>
+
+<p><img src="/assets/ckd-aki-demo/image013.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
+
+<p>Click the executable file.</p>
+
+<p><img src="/assets/ckd-aki-demo/image022.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
+
+<p>Choose the example file to load and then you can follow the <a href="#how2use">YouTube video here</a>.</p>
 
 <h2 id="whats-next">What’s next?</h2>
-<p><a name="whatnext"></a>
-Find out more about <a href="/tag/kidney-research.html">other kidney research blogs here</a>.</p>
+<p><a name="whatnext"></a></p>
+
+<p>The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
 
 </div>
 
@@ -273,10 +280,10 @@ Find out more about <a href="/tag/kidney-research.html">other kidney research bl
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2018_01_18_nhs-presentation,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2018_01_22_ckd-aki-installer,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Installing the Software Demo <span class="k">for</span> Modelling CKD and Detecting AKI <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/22/ckd-aki-installer.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -287,8 +294,8 @@ Find out more about <a href="/tag/kidney-research.html">other kidney research bl
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html"> http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html </a>.  
+      Poh, Norman. "Installing the Software Demo for Modelling CKD and Detecting AKI". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/22/ckd-aki-installer.html"> http://normanpoh.github.com/blog/2018/01/22/ckd-aki-installer.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -297,8 +304,8 @@ Find out more about <a href="/tag/kidney-research.html">other kidney research bl
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html"> http://normanpoh.github.com/blog/2018/01/18/nhs-presentation.html </a>. 
+      Poh, Norman (2018). "Installing the Software Demo for Modelling CKD and Detecting AKI". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/22/ckd-aki-installer.html"> http://normanpoh.github.com/blog/2018/01/22/ckd-aki-installer.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -338,7 +345,7 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
-      <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
+      <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
     <li>

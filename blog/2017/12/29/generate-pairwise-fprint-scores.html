@@ -223,7 +223,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
 <p>You should replace <code>fdir</code> (which contains fingerprint images) and <code>outdir</code> which is the output (where fingerprint features will be stored) with your appropriate directories.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c1"># In bash:</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="c1"># In bash:</span>
 
 <span class="c1"># Set the input file directory where all the fingerprint images in .png format are stored. In my case, they are stored in; yours will certainly be different</span>
 <span class="nv">fdir</span><span class="o">=</span>/mnt/hgfs/C/Users/np0004/Documents/LivDET/data/2011/TrainingItaldataLive
@@ -235,31 +235,31 @@ today = mm + '/' + dd + '/' + yyyy;
 <span class="nv">flist</span><span class="o">=</span>filelist.txt
 
 <span class="c1"># List all the files and store them in $file</span>
-ls <span class="nv">$fd</span>ir &gt; filelist.txt <span class="c1">#List all the files</span>
+ls <span class="nv">$fdir</span> &gt; filelist.txt <span class="c1">#List all the files</span>
 
 <span class="c1"># Create the output directory</span>
-mkdir $outdir</code></pre></figure>
+mkdir <span class="nv">$outdir</span></code></pre></figure>
 
 <h5 id="extract-the-features">2.Extract the features</h5>
 <p>To extract the features, below I assume that the fingerprint images are stored in <code>.png</code> format; so the command <code>convert</code> is used to convert the images to <code>.wsq</code>. The code below simply loops through all the files and extract the fingerprint features using NIST’s <code>mindtct</code> program.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c1"># In bash:</span>
-<span class="nv">c</span><span class="o">=</span>0
-<span class="nv">tot</span><span class="o">=</span><span class="sb">`</span>wc -l <span class="nv">$f</span>list<span class="sb">`</span>
-<span class="k">for</span> m in <span class="sb">`</span>cat <span class="nv">$f</span>list<span class="sb">`</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="c1"># In bash:</span>
+<span class="nv">c</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">tot</span><span class="o">=</span><span class="sb">`</span>wc -l <span class="nv">$flist</span><span class="sb">`</span>
+<span class="k">for</span> m in <span class="sb">`</span>cat <span class="nv">$flist</span><span class="sb">`</span>
 <span class="k">do</span>
   <span class="o">((</span>c++<span class="o">))</span>
-  <span class="nv">fname</span><span class="o">=</span><span class="sb">`</span>basename $m .png<span class="sb">`</span>
-  <span class="nb">echo</span> <span class="s2">&quot;Processing file no </span><span class="nv">$c</span><span class="s2"> of </span>$<span class="s2">tot: </span><span class="nv">$f</span><span class="s2">name&quot;</span>
-  convert <span class="nv">$fd</span>ir/$m out.wsq
-  mindtct out.wsq $outdir/<span class="nv">$f</span>name
+  <span class="nv">fname</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$m</span> .png<span class="sb">`</span>
+  <span class="nb">echo</span> <span class="s2">&quot;Processing file no </span><span class="nv">$c</span><span class="s2"> of </span><span class="nv">$tot</span><span class="s2">: </span><span class="nv">$fname</span><span class="s2">&quot;</span>
+  convert <span class="nv">$fdir</span>/<span class="nv">$m</span> out.wsq
+  mindtct out.wsq <span class="nv">$outdir</span>/<span class="nv">$fname</span>
 <span class="k">done</span></code></pre></figure>
 
 <p>All the features can now be found in the directory <code>$outdir</code> (i.e., <code>features</code> in the example above).</p>
 
 <p>To check the output, type <code>ls features/*.xyt | head</code>. The database contains <code>&lt;user-id&gt;_&lt;attempt-id&gt;.png</code>; so the processed output contains <code>&lt;finger-id&gt;_&lt;attempt-id&gt;.xyt</code>. There are 200 unique fingers and for each finger, there are 5 attempts; so thare are a total of 1000 fingerprint images.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">features/100_1.xyt
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>features/100_1.xyt
 features/100_2.xyt
 features/100_3.xyt
 features/100_4.xyt
@@ -273,7 +273,7 @@ features/101_5.xyt</code></pre></figure>
 <h5 id="generate-the-score-matrix-in-octave">3. Generate the score matrix in Octave</h5>
 <p>We could use <code>ls features/*.xyt &gt; filelist_xyt.txt</code> but then the output is not ordered. So, instead, we shall manually create the list of filenames in Octave, as follows.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">% In Octave</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">% In Octave</span>
 <span class="n">c</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="k">for</span> <span class="n">u</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">200</span> <span class="c">%there are 200 unique fingers</span>
   <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="c">%each having 5 fingerprint impressions</span>
@@ -293,7 +293,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Recall that each role in the <code>filelist_xyt.txt</code> has the following format: <code>features/</code><user-id>`_`<attempt-id>`.xyt`, e.g., `features/100_1.xyt` so to extract the user (unique finger) id, we split the string into two parts by '/' to get the second part `100_1.xyt` and then furtther split this string by `_` to get to the first part of the string, i.e., `100`.</attempt-id></user-id></p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%% Let&#39;s process the user</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">%% Let&#39;s process the user</span>
 <span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">);</span>
   <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;_&#39;</span><span class="p">);</span>
@@ -302,7 +302,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Using the same methodology, we create the <code>get_session</code> function.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_session</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>out <span class="p">=</span><span class="w"> </span><span class="nf">get_session</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">);</span>
   <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;_&#39;</span><span class="p">);</span>
   <span class="n">out_</span> <span class="p">=</span> <span class="n">strsplit</span><span class="p">(</span><span class="n">out_</span><span class="p">{</span><span class="mi">2</span><span class="p">},</span> <span class="s">&#39;.&#39;</span><span class="p">);</span>
@@ -311,20 +311,20 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Here’s how you apply the function.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
   <span class="n">user</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">fname</span><span class="p">{</span><span class="nb">i</span><span class="p">})</span>
 <span class="k">end</span></code></pre></figure>
 
 <p>Writing the <code>for</code> loop is not usually a very efficient way of doing this. Since the variable fname is a <code>cell</code> type, we can use the <code>cellfun</code> and then further define an <em>annonymous function</em> applied to each cell. In our case, this function is <code>@(x) get_user(x)</code> which reads, <code>apply each cell </code>x<code> using the function </code>get_user`’.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">user</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_user</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">user</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_user</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span>
 <span class="n">session</span> <span class="p">=</span> <span class="n">cellfun</span><span class="p">(</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">get_session</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> &quot;<span class="n">UniformOutput</span>&quot;<span class="p">,</span> <span class="n">true</span><span class="p">);</span></code></pre></figure>
 
 <p>The variable <code>user</code> will be used later to distinguish between genuine and impostor scores.</p>
 
 <p>Next, we use <code>bozorth3</code> to compare a template with a list of gallery images. Since we are perform exhausitve pair-wise comparisons, we take each of the image in the list and compare it with the list of gallery images. This process is repeated for each fingerprint template in the list.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">scores</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
 
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
   <span class="n">cmd</span> <span class="p">=</span> <span class="n">sprintf</span><span class="p">(</span>&quot;<span class="n">bozorth3</span> <span class="o">-</span><span class="n">o</span> <span class="n">out</span><span class="p">.</span><span class="n">scores</span> <span class="o">-</span><span class="n">p</span> <span class="c">%s -G filelist_xyt.txt&quot;, fname{i});</span>
@@ -343,7 +343,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Let us now plot the score matrix of 100x100 out of 1000x1000 so we can see in details how the scores look like.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%% load scores</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">%% load scores</span>
 <span class="n">load</span> <span class="n">scores</span><span class="p">.</span><span class="n">mat</span> <span class="n">scores</span>
 <span class="n">axis</span><span class="p">([</span><span class="mf">0.5</span> <span class="mf">100.5</span> <span class="mf">0.5</span> <span class="mf">100.5</span><span class="p">])</span> <span class="c">%Just to plot the first 100x100 matrix out of 1000x1000</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span></code></pre></figure>
@@ -354,7 +354,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Since the diagonal of the matrix are comparisons due to the same image, we should ignore them by setting them to zero. The code below does this by using a mask.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">mask</span> <span class="p">=</span> <span class="mi">1</span><span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">));</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">mask</span> <span class="p">=</span> <span class="mi">1</span><span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">));</span>
 <span class="n">scores1</span> <span class="p">=</span> <span class="n">scores</span> <span class="o">.*</span> <span class="n">mask</span><span class="p">;</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span>
 <span class="n">axis</span><span class="p">([</span><span class="mf">0.5</span> <span class="mf">100.5</span> <span class="mf">0.5</span> <span class="mf">100.5</span><span class="p">]);</span></code></pre></figure>
@@ -363,7 +363,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Minutiae-based similarity scores are <strong>not symmetrical</strong> but really they should since comparing samples A and B should be the same as comparing B and A. To enforece this property, we can use codes below, which take the upper triangular matrix of the scores and add it to the <strong>transposed version</strong> of the lower triangular matrix, and then take the average of the two.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">scores_sym</span> <span class="p">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="nb">triu</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tril</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span><span class="o">&#39;</span><span class="p">);</span> 
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">scores_sym</span> <span class="p">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="nb">triu</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tril</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span><span class="o">&#39;</span><span class="p">);</span> 
 
 <span class="c">% now display</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">scores_sym</span><span class="p">)</span>
@@ -375,7 +375,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>We can create a function <code>get_symmetric_scores</code> to do this.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>scores_sym <span class="p">=</span><span class="w"> </span><span class="nf">get_symmetric_scores</span><span class="p">(</span>scores, idlist<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>scores_sym <span class="p">=</span><span class="w"> </span><span class="nf">get_symmetric_scores</span><span class="p">(</span>scores, idlist<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="n">mask</span> <span class="p">=</span> <span class="mi">1</span><span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">idlist</span><span class="p">));</span>
   <span class="n">scores1</span> <span class="p">=</span> <span class="n">scores</span> <span class="o">.*</span> <span class="n">mask</span><span class="p">;</span>
   <span class="n">scores_sym</span> <span class="p">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="nb">triu</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tril</span><span class="p">(</span><span class="n">scores1</span><span class="p">));</span>
@@ -383,7 +383,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Now, we create the mask for the genuine scores.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">idlist</span> <span class="p">=</span> <span class="n">user</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">idlist</span> <span class="p">=</span> <span class="n">user</span><span class="p">;</span>
 
 <span class="n">mask_gen</span><span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">scores</span><span class="p">));</span>
 <span class="k">for</span> <span class="n">id</span><span class="p">=</span><span class="n">unique</span><span class="p">(</span><span class="n">idlist</span><span class="p">),</span>
@@ -400,7 +400,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Do the same for the impostor score mask.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">mask_imp</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">mask_gen</span><span class="p">))</span> <span class="o">-</span> <span class="n">mask_gen</span> <span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">));</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">mask_imp</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">mask_gen</span><span class="p">))</span> <span class="o">-</span> <span class="n">mask_gen</span> <span class="o">-</span> <span class="nb">eye</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">fname</span><span class="p">));</span>
 <span class="n">mask_imp</span> <span class="p">=</span> <span class="nb">triu</span><span class="p">(</span><span class="n">mask_imp</span><span class="p">);</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">mask_imp</span><span class="p">)</span>
 <span class="n">axis</span><span class="p">([</span><span class="mf">0.5</span> <span class="mf">100.5</span> <span class="mf">0.5</span> <span class="mf">100.5</span><span class="p">]);</span></code></pre></figure>
@@ -409,7 +409,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>We can observe that the genuine scores and impostor scores are occupying different parts of the original score matrix. Next we shall use the masks created to get the <code>imp_scores</code> and <code>gen_scores</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%% get the genuine scores</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">%% get the genuine scores</span>
 <span class="n">imagesc</span><span class="p">(</span><span class="n">mask_gen</span> <span class="o">.*</span> <span class="n">scores_sym</span><span class="p">)</span>
 
 <span class="c">%% get the impostor scores mask</span>
@@ -421,7 +421,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Since we are going to apply a series of masks to get to the <code>imp_scores</code> and <code>gen_scores</code>, we might as well write a function for this. Let’s call this <code>get_scores</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>[imp_scores, gen_scores] <span class="p">=</span><span class="w"> </span><span class="nf">get_scores</span><span class="p">(</span>scores, idlist<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>[imp_scores, gen_scores] <span class="p">=</span><span class="w"> </span><span class="nf">get_scores</span><span class="p">(</span>scores, idlist<span class="p">)</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">mask_gen</span><span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">scores</span><span class="p">));</span>
   <span class="k">for</span> <span class="n">id</span><span class="p">=</span><span class="n">unique</span><span class="p">(</span><span class="n">idlist</span><span class="p">),</span>
@@ -454,7 +454,7 @@ features/101_5.xyt</code></pre></figure>
 
 <p>Having obtained the genuine and impostor score vectors, we can now plot the performance using the <code>wer</code> function, which gives us the equal error rate (EER) of the system.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="c">%% plot the error rate curve</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">%% plot the error rate curve</span>
 <span class="n">addpath</span> <span class="p">.</span><span class="o">./</span><span class="n">Lib</span><span class="o">/</span><span class="n">DETconf</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span>
 <span class="n">pkg</span> <span class="n">load</span> <span class="n">statistics</span> <span class="n">optim</span> <span class="n">econometrics</span>
 
@@ -491,7 +491,7 @@ may result in -Inf due to <script type="math/tex"> \log  ( 0 ) </script>; and th
 
 <p>It is implemented using the function below <code>logit_transform</code> function below.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span><span class="w"> </span>output<span class="p">=</span><span class="w"> </span><span class="nf">logit_transform</span><span class="p">(</span>scores, max_scores<span class="p">)</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span>output<span class="p">=</span><span class="w"> </span><span class="nf">logit_transform</span><span class="p">(</span>scores, max_scores<span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span> <span class="n">nargin</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">max_scores</span><span class="p">=</span><span class="mi">400</span><span class="p">;</span>
   <span class="k">end</span>
@@ -501,7 +501,7 @@ may result in -Inf due to <script type="math/tex"> \log  ( 0 ) </script>; and th
 <p>where <script type="math/tex">  \max(y) </script>
 is the maximum value the fingerprint similarity score $y$. We can set this to be slightly larger than the maximal observable score, which is 400 in this case. We then apply the function to the genine and impostor scores and then replot the performance curves using <code>wer</code>.</p>
 
-<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="n">imp_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">imp_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">imp_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">imp_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
 <span class="n">gen_logit</span> <span class="p">=</span> <span class="o">-</span> <span class="n">logit_transform</span><span class="p">(</span><span class="n">gen_scores</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
 
 <span class="n">tic</span><span class="p">;</span>
@@ -547,7 +547,7 @@ is the maximum value the fingerprint similarity score $y$. We can set this to be
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    @misc<span class="o">{</span> poh_2017_12_29_generate-pairwise-fprint-scores,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2017_12_29_generate-pairwise-fprint-scores,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
       <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Tutorial: Using NIST Fingerprint software to generate a pairwise comparison score matrix <span class="o">}</span>,
       <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2017/12/29/generate-pairwise-fprint-scores.html<span class="o">}</span>,
@@ -612,15 +612,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
+    </li>
+    
+    <li>
       <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
     <li>
       <span>17 Jan 2018 &raquo;</span> <a href="/blog/2018/01/17/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
-    </li>
-    
-    <li>
-      <span>15 Jan 2018 &raquo;</span> <a href="/blog/2018/01/15/ckd-aki-demo.html">A Software Demo for Modelling CKD and Detecting AKI</a>
     </li>
     
   </ul>
