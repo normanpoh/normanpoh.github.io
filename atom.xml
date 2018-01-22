@@ -4,7 +4,7 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-22T19:45:49+00:00</updated>
+ <updated>2018-01-22T19:55:06+00:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
@@ -235,9 +235,9 @@ The software can&lt;/p&gt;
   &lt;li&gt;process and annotate many patient records&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
+&lt;h2 id=&quot;download-and-install-the-software&quot;&gt;Download and install the software&lt;/h2&gt;
 &lt;p&gt;&lt;a name=&quot;whatnext&quot;&gt;&lt;/a&gt;
-I haven’t got time to compile the binary and distribute it yet. However, do check out the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software&lt;/a&gt; which is ready for download and installation.&lt;/p&gt;
+To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.html&quot;&gt;go to this page&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
