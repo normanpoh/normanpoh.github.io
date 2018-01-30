@@ -6,10 +6,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Norman Poh - Surrey AKI Detection Algorithm (SAKIDA) - Software Download</title>
+  <title>Norman Poh - Biometrics-enabled age verification systems: legal and technological considerations</title>
   <meta name="author" content="Norman Poh" />
   <meta name="description" content="The blog of Norman Poh" />
-  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html" />
+  <link rel="canonical" href="http://normanpoh.github.com/blog/2018/01/30/biometrics-age-verification.html" />
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
@@ -185,41 +185,51 @@ today = mm + '/' + dd + '/' + yyyy;
 
     <div class="eleven columns content">
       <p class="meta">
-  January 14, 2018
+  January 30, 2018
   <a href="/">
     <i class="home fa fa-home"></i>
   </a>
 </p>
 
-<h1 class="title">Surrey AKI Detection Algorithm (SAKIDA) - Software Download</h1>
+<h1 class="title">Biometrics-enabled age verification systems: legal and technological considerations</h1>
 
 <div id="post">
-  <h2 id="about-sakida">About SAKIDA</h2>
-<p>This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. Find out more <a href="/blog/2018/01/14/sakida.html">about the SAKIDA software here</a> and <a href="/blog/2018/01/14/sakida-help.html">the help page here</a>. This page provides the instructions for you to download and install the software.</p>
+  <h2 id="purpose">Purpose</h2>
+<p>In this blog, I explore various options for age verification for legal purposes, e.g., only people above 18 years old can buy alcohol. Here, I consider the legal aspects and in light of these, what technological solutions are readily available.</p>
 
-<p>Our software was developed and compiled using Matlab R2017a so you will have to download the Matlab runtime R2017a (9.2).</p>
+<h2 id="principle-of-proportionality-with-regards-to-the-use-of-biometrics">Principle of proportionality with regards to the use of biometrics</h2>
 
-<h5 id="first-install-matlab-runtime">1. First, install Matlab runtime:</h5>
-<p>Go to https://uk.mathworks.com/products/compiler/mcr.html and download Matlab runtime R2017a (9.2). This will take a while to download and install it.</p>
+<p>Principle of proportionality sets out a guideline to limit the use of evaluating, processing, and storing biometrics unless there is a clear necessity. By necessity, it should be understood as (1) when the security outweighs a possible interference with human rights and (2) other less intrusive techniques do not suffice.</p>
 
-<h5 id="next-download-our-software-herehttpssitesgooglecomsiteakidetectiondownloadforredistributionfilesonlyzipattredirects0d1">2. Next, <a href="https://sites.google.com/site/akidetection/download/for_redistribution_files_only.zip?attredirects=0&amp;d=1">download our software here</a>.</h5>
+<p>Refer: <a href="https://www.sciencedirect.com/science/article/pii/S0267364916300279">The principle of proportionality applied to biometrics in France: Review of ten years of CNIL’s deliberations</a></p>
 
-<p>Note that if your browser suggests that the software is ‘dangerous’ because it is an EXE file. Please indicate that you want to keep the software.</p>
+<p>The principle of proportionality was originated from the need to protect sensitive data; and this applies in certain member EU states where biometrics data is considered sensitive data.</p>
 
-<p><img src="/assets/sakida/sakida-exe_dangerous.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
+<p>Refer: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2281108">EU Data Protection Legislation and Case-Law with Regard to Biometric Applications</a></p>
 
-<h5 id="unzip-the-file-and-click-sakidaexe">3. Unzip the file and click SAKIDA.exe.</h5>
+<p>Brexit may or may not change this view. Rather than being speculative, the status quo is generally preferred.</p>
 
-<p><img src="/assets/sakida/sakida-explorer_exe.png" alt="A scatter plot of eGFR versus eGFR slope" style="width: 100%;" /></p>
+<h2 id="technological-considerations">Technological considerations</h2>
 
-<p>Run the software for the first time. You might be warned by Windows that the software is not safe. Please be reassured that it is.</p>
+<p>Let us pick the scenario of the retail where only adults above 18 can purchase alcohol. This is verification of credential, i.e., the right to do something. Let’s consider various solutions:</p>
 
-<p><img src="/assets/sakida/screenshot_sakida.png" alt="SAKIDA screenshot" style="width: 100%;" /></p>
+<h4 id="document-identity-verification">1.	Document identity verification.</h4>
 
-<h5 id="need-help">Need help?</h5>
-<p>Find out more <a href="/blog/2018/01/14/sakida.html">about the SAKIDA software here</a> and <a href="/blog/2018/01/14/sakida-help.html">the help page here</a>.</p>
+<p>The vendor can verify the identity of the person via a national identity document which contains the date of birth of the person, from which the age can be derived. Countries without a unified national identity scheme (e.g, national identity card) will need alternative documents such as driving licence or other documents which can be easily forged. National identity documents often have some form tamper-proofed security to avoid forgery such as holograms, smart cards containing digital credentials, etc.</p>
 
-<p>If you want to use the software for your research or to run it on a large database of patients, please do get in touch with <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#110;&#111;&#114;&#109;&#097;&#110;&#046;&#112;&#111;&#104;&#064;&#098;&#106;&#115;&#115;&#046;&#099;&#111;&#109;&#063;&#115;&#117;&#098;&#106;&#101;&#099;&#116;&#061;&#069;&#120;&#112;&#114;&#101;&#115;&#115;&#105;&#111;&#110;&#037;&#050;&#048;&#111;&#102;&#037;&#050;&#048;&#073;&#110;&#116;&#101;&#114;&#101;&#115;&#116;&#037;&#050;&#048;&#105;&#110;&#037;&#050;&#048;&#067;&#075;&#068;&#045;&#065;&#075;&#073;&#037;&#050;&#048;&#083;&#111;&#102;&#116;&#119;&#097;&#114;&#101;">me</a>. I will be thrilled to hear from you.</p>
+<h4 id="biometrics--as-in-person-identity-verification">2. Biometrics – as in person identity verification.</h4>
+
+<p>Biometrics can certainly solve this problem; but the identity must be associated with the demographic information, stored digitally. Simply verifying John is John is not sufficient; we must know the age of John.</p>
+
+<p>This implies putting in place a system, or else piggybacking on an existing national system where biometrics data has already been adopted and use. Unfortunately, this is not the case in the UK. Other developing nations such as India, Malaysia have already adopted biometrics-enabled documents which allows different commercial sectors such as banking to use them as identity verification, as a standardized means of proof of identity. However, age verification is trivial; the vendor can check the national identity document and check against the facial photo.</p>
+
+<h4 id="biometrics-as-age-estimator">3.	Biometrics as age estimator.</h4>
+
+<p>With deep learning, and other methods, it is now possible to estimate the age of a person from just facial image. There are plenty of literature here, and the accuracy of the system has reached a point that it is sufficient to give an approximate perceived age for the purpose of analysing advertising campaign. For example, it is often necessary to find out who has viewed a campaign by breaking down into age, gender, and ethnicity. With appropriate labelled training data, deep learning neural network models can now be easily created, hence delivering a classifier system that is optimised for a specific demographic segment.</p>
+
+<h2 id="summary-and-open-questions">Summary and open questions</h2>
+<p>In light of the above, in countries where national identity documents are not well established, biometrics as an age estimator is more likely to be adopted from the technological perspective. The technology for age verification is readily available and can be improved upon to create USPs that are attractive to certain retailers. There are, however, open-questions: Are they willing to pay for this solution? Does the USP outweigh the cost? How to quantify this ‘cost savings’? These are, in my opinion, some of the questions worth exploring further.</p>
+
 
 </div>
 
@@ -240,10 +250,10 @@ today = mm + '/' + dd + '/' + yyyy;
       <h2>Bibtex</h2>
 
     
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2018_01_14_sakida-download,
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>    @misc<span class="o">{</span> poh_2018_01_30_biometrics-age-verification,
       <span class="nv">author</span> <span class="o">=</span> <span class="o">{</span>Norman Poh<span class="o">}</span>,
-      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Surrey AKI Detection Algorithm <span class="o">(</span>SAKIDA<span class="o">)</span> - Software Download <span class="o">}</span>,
-      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html<span class="o">}</span>,
+      <span class="nv">title</span> <span class="o">=</span> <span class="o">{</span> Biometrics-enabled age verification systems: legal and technological considerations <span class="o">}</span>,
+      <span class="nv">howpublished</span> <span class="o">=</span> <span class="o">{</span><span class="se">\u</span>rl<span class="o">{</span> http://normanpoh.github.com/blog/2018/01/30/biometrics-age-verification.html<span class="o">}</span>,
       <span class="nv">note</span> <span class="o">=</span> <span class="s2">&quot;Accessed: ___TODAY___&quot;</span>
     <span class="o">}</span>
     </code></pre></figure>
@@ -254,8 +264,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="MLA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman. "Surrey AKI Detection Algorithm (SAKIDA) - Software Download". <i> Norman Poh's Github Blog</i>, 2018.
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html </a>.  
+      Poh, Norman. "Biometrics-enabled age verification systems: legal and technological considerations". <i> Norman Poh's Github Blog</i>, 2018.
+      <a href="http://normanpoh.github.com/blog/2018/01/30/biometrics-age-verification.html"> http://normanpoh.github.com/blog/2018/01/30/biometrics-age-verification.html </a>.  
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -264,8 +274,8 @@ today = mm + '/' + dd + '/' + yyyy;
   <div id="APA" class="w3-container w3-border bibref" style="display:none">
     <ul>
       <li>
-      Poh, Norman (2018). "Surrey AKI Detection Algorithm (SAKIDA) - Software Download". <i> Norman Poh's Github Blog</i>, 
-      <a href="http://normanpoh.github.com/blog/2018/01/14/sakida-download.html"> http://normanpoh.github.com/blog/2018/01/14/sakida-download.html </a>. 
+      Poh, Norman (2018). "Biometrics-enabled age verification systems: legal and technological considerations". <i> Norman Poh's Github Blog</i>, 
+      <a href="http://normanpoh.github.com/blog/2018/01/30/biometrics-age-verification.html"> http://normanpoh.github.com/blog/2018/01/30/biometrics-age-verification.html </a>. 
       Accessed <script type="text/javascript"> document.write(today); </script>.
     </li>
     <ul>
@@ -305,10 +315,6 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
-      <span>30 Jan 2018 &raquo;</span> <a href="/blog/2018/01/30/biometrics-age-verification.html">Biometrics-enabled age verification systems: legal and technological considerations</a>
-    </li>
-    
-    <li>
       <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
     </li>
     
@@ -316,20 +322,17 @@ function openReference(evt, bibrefName) {
       <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
+    <li>
+      <span>17 Jan 2018 &raquo;</span> <a href="/blog/2018/01/17/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
+    </li>
+    
   </ul>
 
   <h3>Tags :</h3>
   <span>
     
-      <a href="/tag/kidney-research.html" rel="tag"> 
-        kidney-research 
-        
-        ,
-        
-      </a>
-
-      <a href="/tag/healthcare.html" rel="tag"> 
-        healthcare 
+      <a href="/tag/biometrics.html" rel="tag"> 
+        biometrics 
         
         .
         
