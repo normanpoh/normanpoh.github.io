@@ -4,13 +4,75 @@
  <title>The blog of Norman Poh</title>
  <link href="http://normanpoh.github.com/atom.xml" rel="self"/>
  <link href="http://normanpoh.github.com"/>
- <updated>2018-01-30T10:05:06+00:00</updated>
+ <updated>2019-09-15T16:42:09+01:00</updated>
  <id>http://normanpoh.github.com</id>
  <author>
    <name>Norman Poh</name>
    <email>normanpoh@ieee.org</email>
  </author>
 
+ 
+ <entry>
+   <title>My miscellaneous notes on "coaching for performance"</title>
+   <link href="http://normanpoh.github.com/blog/2018/02/01/coaching4perf.html"/>
+   <updated>2018-02-01T00:00:00+00:00</updated>
+   <id>http://normanpoh.github.com/blog/2018/02/01/coaching4perf</id>
+   <content type="html">&lt;p&gt;Below is my personal notes after reading &lt;a href=&quot;https://www.performanceconsultants.com/coaching-for-performance-book&quot;&gt;“Coaching for Performance” by Sir John Whitmore&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;chap-19-measurable-benefits-of-coaching&quot;&gt;Chap 19: Measurable benefits of coaching&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Improved performance and productivity&lt;/li&gt;
+  &lt;li&gt;Improved career development&lt;/li&gt;
+  &lt;li&gt;Improved relationships and engagement&lt;/li&gt;
+  &lt;li&gt;Improved job satisfaction and retention&lt;/li&gt;
+  &lt;li&gt;More time for the leader&lt;/li&gt;
+  &lt;li&gt;Increased innovation&lt;/li&gt;
+  &lt;li&gt;Beter use of people and knowledge&lt;/li&gt;
+  &lt;li&gt;People who will go the extra mile&lt;/li&gt;
+  &lt;li&gt;Greater agility and adaptability&lt;/li&gt;
+  &lt;li&gt;High-performance culture&lt;/li&gt;
+  &lt;li&gt;Life skill&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;chap-20-how-to-effect-cultural-change&quot;&gt;Chap 20: How to effect cultural change?&lt;/h3&gt;
+
+&lt;p&gt;Leadership is at he heart of the living system, consisting of&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;People (social and behavioural elements)&lt;/li&gt;
+  &lt;li&gt;Process&lt;/li&gt;
+  &lt;li&gt;Systems&lt;/li&gt;
+  &lt;li&gt;Organisational structure&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ask the right questions.&lt;/p&gt;
+
+&lt;p&gt;WHY&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Why are we making this change?&lt;/li&gt;
+  &lt;li&gt;What are the internal and external drivers?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;WHAT&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What are we changing into?&lt;/li&gt;
+  &lt;li&gt;What needs to change and what needs to remain?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HOW&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How will we design and deliver the change?&lt;/li&gt;
+  &lt;li&gt;Who will do what?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;chap-21-the-quality-of-leadership&quot;&gt;Chap 21: The quality of leadership&lt;/h3&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Biometrics-enabled age verification systems: legal and technological considerations</title>
@@ -32,21 +94,21 @@
 
 &lt;p&gt;Brexit may or may not change this view. Rather than being speculative, the status quo is generally preferred.&lt;/p&gt;
 
-&lt;h2 id=&quot;technological-considerations&quot;&gt;Technological considerations&lt;/h2&gt;
+&lt;p&gt;##Technological considerations&lt;/p&gt;
 
 &lt;p&gt;Let us pick the scenario of the retail where only adults above 18 can purchase alcohol. This is verification of credential, i.e., the right to do something. Let’s consider various solutions:&lt;/p&gt;
 
-&lt;h4 id=&quot;document-identity-verification&quot;&gt;1.	Document identity verification.&lt;/h4&gt;
+&lt;h4 id=&quot;1-document-identity-verification&quot;&gt;1.	Document identity verification.&lt;/h4&gt;
 
 &lt;p&gt;The vendor can verify the identity of the person via a national identity document which contains the date of birth of the person, from which the age can be derived. Countries without a unified national identity scheme (e.g, national identity card) will need alternative documents such as driving licence or other documents which can be easily forged. National identity documents often have some form tamper-proofed security to avoid forgery such as holograms, smart cards containing digital credentials, etc.&lt;/p&gt;
 
-&lt;h4 id=&quot;biometrics--as-in-person-identity-verification&quot;&gt;2. Biometrics – as in person identity verification.&lt;/h4&gt;
+&lt;h4 id=&quot;2-biometrics--as-in-person-identity-verification&quot;&gt;2. Biometrics – as in person identity verification.&lt;/h4&gt;
 
 &lt;p&gt;Biometrics can certainly solve this problem; but the identity must be associated with the demographic information, stored digitally. Simply verifying John is John is not sufficient; we must know the age of John.&lt;/p&gt;
 
 &lt;p&gt;This implies putting in place a system, or else piggybacking on an existing national system where biometrics data has already been adopted and use. Unfortunately, this is not the case in the UK. Other developing nations such as India, Malaysia have already adopted biometrics-enabled documents which allows different commercial sectors such as banking to use them as identity verification, as a standardized means of proof of identity. However, age verification is trivial; the vendor can check the national identity document and check against the facial photo.&lt;/p&gt;
 
-&lt;h4 id=&quot;biometrics-as-age-estimator&quot;&gt;3.	Biometrics as age estimator.&lt;/h4&gt;
+&lt;h4 id=&quot;3-biometrics-as-age-estimator&quot;&gt;3.	Biometrics as age estimator.&lt;/h4&gt;
 
 &lt;p&gt;With deep learning, and other methods, it is now possible to estimate the age of a person from just facial image. There are plenty of literature here, and the accuracy of the system has reached a point that it is sufficient to give an approximate perceived age for the purpose of analysing advertising campaign. For example, it is often necessary to find out who has viewed a campaign by breaking down into age, gender, and ethnicity. With appropriate labelled training data, deep learning neural network models can now be easily created, hence delivering a classifier system that is optimised for a specific demographic segment.&lt;/p&gt;
 
@@ -84,10 +146,10 @@
 &lt;h2 id=&quot;how-to-install-the-software&quot;&gt;How to install the software?&lt;/h2&gt;
 &lt;p&gt;&lt;a name=&quot;how2install&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;download-the-installation-fileassetsckd-aki-demockdakiinstallerfileszip&quot;&gt;1. Download &lt;a href=&quot;/assets/ckd-aki-demo/ckd_aki_installer_files.zip&quot;&gt;the installation file&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;1-download-the-installation-file&quot;&gt;1. Download &lt;a href=&quot;/assets/ckd-aki-demo/ckd_aki_installer_files.zip&quot;&gt;the installation file&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;Unzip the &lt;code&gt;ckd_aki_installer_files.zip&lt;/code&gt; file and then click &lt;code&gt;MyAppInstaller_web.exe&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h5 id=&quot;follow-the-following-screenshots&quot;&gt;2. Follow the following screenshots&lt;/h5&gt;
+&lt;h5 id=&quot;2-follow-the-following-screenshots&quot;&gt;2. Follow the following screenshots&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd-aki-demo/image001.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
@@ -126,7 +188,7 @@
 &lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
 &lt;p&gt;&lt;a name=&quot;whatnext&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;mailto:norman.poh@bjss.com?subject=Expression%20of%20Interest%20in%20CKD-AKI%20Software&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
  </entry>
  
@@ -283,7 +345,7 @@ The software can&lt;/p&gt;
 &lt;p&gt;&lt;a name=&quot;whatnext&quot;&gt;&lt;/a&gt;
 To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.html&quot;&gt;go to this page&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+&lt;p&gt;The software here is in ‘demo-mode’ and is meant for your own use. If you look to deploy it, for example,  on a large database of patients, please do get in touch with &lt;a href=&quot;mailto:norman.poh@bjss.com?subject=Expression%20of%20Interest%20in%20CKD-AKI%20Software&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
  </entry>
  
@@ -321,7 +383,7 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/rtiTHT3LAWs?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;mailto:norman.poh@bjss.com?subject=Expression%20of%20Interest%20in%20CKD-AKI%20Software&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 
 &lt;h3 id=&quot;whats-under-the-hood&quot;&gt;What’s under the hood?&lt;/h3&gt;
 &lt;p&gt;To find out more:&lt;/p&gt;
@@ -353,12 +415,12 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
    <content type="html">&lt;h2 id=&quot;about-sakida&quot;&gt;About SAKIDA&lt;/h2&gt;
 &lt;p&gt;This webpage is set up to provide some support for you to use the Surrey Acute Kidney Injury Detection Software (SAKIDS) which is based on the SAKIDA algorithm. You should read the &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;SAKIDA software introduction&lt;/a&gt; before continuing to read this page which serves as the &lt;em&gt;user manual&lt;/em&gt;. To download the SAKIDA software, &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;visit this page&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;get-familiar-with-the-interface&quot;&gt;1. Get familiar with the interface&lt;/h2&gt;
+&lt;h2 id=&quot;1-get-familiar-with-the-interface&quot;&gt;1. Get familiar with the interface&lt;/h2&gt;
 &lt;p&gt;First, get to know the way your interact with the software in five steps. Don’t forget to press F1 any time to get to this help website.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-help.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;choose-your-file-format&quot;&gt;1) Choose your file format&lt;/h2&gt;
+&lt;h2 id=&quot;1-choose-your-file-format&quot;&gt;1) Choose your file format&lt;/h2&gt;
 
 &lt;p&gt;There are four file formats. Please choose the right option. If you are not sure, please choose the first option, which loads serum creatinine in mg/dL and then computes eGFR using the CKD-EPI equation as our software can figure out automatically the correct formula to used. If you want to use the MDRD equation, then you should choose the third option.&lt;/p&gt;
 
@@ -395,20 +457,20 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
 
 &lt;p&gt;Note that we don’t need the gender, ethnicity fields, etc.&lt;/p&gt;
 
-&lt;h3 id=&quot;import-the-file&quot;&gt;2) Import the file&lt;/h3&gt;
+&lt;h3 id=&quot;2-import-the-file&quot;&gt;2) Import the file&lt;/h3&gt;
 &lt;p&gt;Next, import the file.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-file_selector.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;choose-a-patient&quot;&gt;3) Choose a patient&lt;/h3&gt;
+&lt;h3 id=&quot;3-choose-a-patient&quot;&gt;3) Choose a patient&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-click_id.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;choose-an-aki-detection-algorithm&quot;&gt;4) Choose an AKI detection algorithm&lt;/h3&gt;
+&lt;h3 id=&quot;4-choose-an-aki-detection-algorithm&quot;&gt;4) Choose an AKI detection algorithm&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-clikc_aki.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;save-the-output&quot;&gt;5) Save the output&lt;/h3&gt;
+&lt;h3 id=&quot;5-save-the-output&quot;&gt;5) Save the output&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-click_output.png&quot; alt=&quot;SAKIDA screenshot&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
@@ -420,7 +482,7 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
 
 &lt;p&gt;If you haven’t downloaded the SAKIDA software, do this &lt;a href=&quot;/blog/2018/01/14/sakida-download.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;mailto:norman.poh@bjss.com?subject=Expression%20of%20Interest%20in%20CKD-AKI%20Software&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
  </entry>
  
@@ -434,16 +496,16 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
 
 &lt;p&gt;Our software was developed and compiled using Matlab R2017a so you will have to download the Matlab runtime R2017a (9.2).&lt;/p&gt;
 
-&lt;h5 id=&quot;first-install-matlab-runtime&quot;&gt;1. First, install Matlab runtime:&lt;/h5&gt;
+&lt;h5 id=&quot;1-first-install-matlab-runtime&quot;&gt;1. First, install Matlab runtime:&lt;/h5&gt;
 &lt;p&gt;Go to https://uk.mathworks.com/products/compiler/mcr.html and download Matlab runtime R2017a (9.2). This will take a while to download and install it.&lt;/p&gt;
 
-&lt;h5 id=&quot;next-download-our-software-herehttpssitesgooglecomsiteakidetectiondownloadforredistributionfilesonlyzipattredirects0d1&quot;&gt;2. Next, &lt;a href=&quot;https://sites.google.com/site/akidetection/download/for_redistribution_files_only.zip?attredirects=0&amp;amp;d=1&quot;&gt;download our software here&lt;/a&gt;.&lt;/h5&gt;
+&lt;h5 id=&quot;2-next-download-our-software-here&quot;&gt;2. Next, &lt;a href=&quot;https://sites.google.com/site/akidetection/download/for_redistribution_files_only.zip?attredirects=0&amp;amp;d=1&quot;&gt;download our software here&lt;/a&gt;.&lt;/h5&gt;
 
 &lt;p&gt;Note that if your browser suggests that the software is ‘dangerous’ because it is an EXE file. Please indicate that you want to keep the software.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-exe_dangerous.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;unzip-the-file-and-click-sakidaexe&quot;&gt;3. Unzip the file and click SAKIDA.exe.&lt;/h5&gt;
+&lt;h5 id=&quot;3-unzip-the-file-and-click-sakidaexe&quot;&gt;3. Unzip the file and click SAKIDA.exe.&lt;/h5&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/sakida/sakida-explorer_exe.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
@@ -454,7 +516,7 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
 &lt;h5 id=&quot;need-help&quot;&gt;Need help?&lt;/h5&gt;
 &lt;p&gt;Find out more &lt;a href=&quot;/blog/2018/01/14/sakida.html&quot;&gt;about the SAKIDA software here&lt;/a&gt; and &lt;a href=&quot;/blog/2018/01/14/sakida-help.html&quot;&gt;the help page here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#110;&amp;#111;&amp;#114;&amp;#109;&amp;#097;&amp;#110;&amp;#046;&amp;#112;&amp;#111;&amp;#104;&amp;#064;&amp;#098;&amp;#106;&amp;#115;&amp;#115;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&amp;#063;&amp;#115;&amp;#117;&amp;#098;&amp;#106;&amp;#101;&amp;#099;&amp;#116;&amp;#061;&amp;#069;&amp;#120;&amp;#112;&amp;#114;&amp;#101;&amp;#115;&amp;#115;&amp;#105;&amp;#111;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#111;&amp;#102;&amp;#037;&amp;#050;&amp;#048;&amp;#073;&amp;#110;&amp;#116;&amp;#101;&amp;#114;&amp;#101;&amp;#115;&amp;#116;&amp;#037;&amp;#050;&amp;#048;&amp;#105;&amp;#110;&amp;#037;&amp;#050;&amp;#048;&amp;#067;&amp;#075;&amp;#068;&amp;#045;&amp;#065;&amp;#075;&amp;#073;&amp;#037;&amp;#050;&amp;#048;&amp;#083;&amp;#111;&amp;#102;&amp;#116;&amp;#119;&amp;#097;&amp;#114;&amp;#101;&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
+&lt;p&gt;If you want to use the software for your research or to run it on a large database of patients, please do get in touch with &lt;a href=&quot;mailto:norman.poh@bjss.com?subject=Expression%20of%20Interest%20in%20CKD-AKI%20Software&quot;&gt;me&lt;/a&gt;. I will be thrilled to hear from you.&lt;/p&gt;
 </content>
  </entry>
  
@@ -507,9 +569,9 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
    <link href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-progressive-ckd.html"/>
    <updated>2018-01-13T00:00:00+00:00</updated>
    <id>http://normanpoh.github.com/blog/2018/01/13/BRS2017-progressive-ckd</id>
-   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
+   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
 
-&lt;h5 id=&quot;figure-a-a-namefigure-aa&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;figure-a-&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_trend_16cat.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt;
@@ -524,7 +586,7 @@ To download the software, &lt;a href=&quot;/blog/2018/01/22/ckd-aki-installer.ht
 &lt;h3 id=&quot;initial-descriptive-observations&quot;&gt;Initial descriptive observations&lt;/h3&gt;
 &lt;p&gt;The longitudinal observational data was divided into equal groups of approximately 600 patients. In 9 out of 16 groups (see &lt;a href=&quot;#figure-a&quot;&gt;figure a&lt;/a&gt;) we found that there was a deterioration in eGFR, one group was equivocal and six groups showed improvement. &lt;a href=&quot;#figure-b&quot;&gt;Figure b&lt;/a&gt; below compares the eGFR trends of the first group with the last group, group 16. It is clear that the first group of patients have very drastic decline in CKD. Understanding the factors that contributing to or even distinguish them from the other groups is the important step.&lt;/p&gt;
 
-&lt;h5 id=&quot;figure-b-a-namefigure-ba&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;figure-b-&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h3&gt;
@@ -557,10 +619,10 @@ where the window function &lt;script type=&quot;math/tex&quot;&gt; p(t|w) &lt;/s
 
 &lt;p&gt;In addition to using the broken-stick model to determine CKD stages, it is possible to both stage and stratify patients according to the trajectory that their condition is taking. From &lt;a href=&quot;#figure-a&quot;&gt;figure a&lt;/a&gt; we can see that using expected eGFR slope enables both the staging and trajectory of a patient’s eGFR measurements to be taken into account, and allows us to stratify patients into categories dependent on their current eGFR and the expected trajectory of it. The broken-stick model also enables the calculation of the expected CKD stage posterior, as shown in &lt;a href=&quot;#figure-b&quot;&gt;figure b&lt;/a&gt;. Gaps found between the KDIGO guideline stage (dashed vertical lines) and the boundary between expected CKD stages can be interpreted as indicative of systemic variation in recording of patient data compared to what would be expected.&lt;/p&gt;
 
-&lt;h5 id=&quot;figure-a-a-namefigure-aa&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;figure-a-&quot;&gt;Figure a &lt;a name=&quot;figure-a&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/refined_ckd_risk.png&quot; alt=&quot;eGFR Stratification&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;figure-b-a-namefigure-ba&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;figure-b-&quot;&gt;Figure b &lt;a name=&quot;figure-b&quot;&gt;&lt;/a&gt;&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_staging.png&quot; alt=&quot;eGFR staging&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
@@ -589,7 +651,7 @@ where the window function &lt;script type=&quot;math/tex&quot;&gt; p(t|w) &lt;/s
    <link href="http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification.html"/>
    <updated>2018-01-13T00:00:00+00:00</updated>
    <id>http://normanpoh.github.com/blog/2018/01/13/BRS2017-bayesian-justification</id>
-   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017httpsbritishrenalorgeventbrs-conference-2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
+   <content type="html">&lt;h2 id=&quot;an-absract-published-in-the-british-renal-society-2017-brs2017&quot;&gt;An absract published in the &lt;a href=&quot;https://britishrenal.org/event/brs-conference-2017&quot;&gt;British Renal Society 2017 (BRS2017)&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;One of the key challenges in understanding CKD progression is its multifaceted aetiology. This is evident as it is commonly observed that hypertension, heart disease and diabetes are common co-morbidities of CKD. In other words, the existence of co-morbidities can potentially alter the risk of CKD progression, e.g. from stage 3 to 5. Unfortunately, “flat” risk models such as logistic regression, e.g. as implemented by the QKidney score and many similar risk models, are not designed to extract the rich structure induced by a multitude of co-morbidities, the state of which are often captured in routinely collected patient data.&lt;/p&gt;
@@ -663,41 +725,41 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quo
   &lt;li&gt;&lt;a href=&quot;#computer-vision&quot;&gt;Computer vision&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h5 id=&quot;parametric-modelling-of-egfr-using-hierarchical-regression&quot;&gt;1. Parametric modelling of eGFR using hierarchical regression&lt;/h5&gt;
+&lt;h5 id=&quot;1-parametric-modelling-of-egfr-using-hierarchical-regression&quot;&gt;1. Parametric modelling of eGFR using hierarchical regression&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;parametric-modelling&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_hierarchical_modelling.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;classification-of-egfr-trend&quot;&gt;2. Classification of eGFR trend&lt;/h5&gt;
+&lt;h5 id=&quot;2-classification-of-egfr-trend&quot;&gt;2. Classification of eGFR trend&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;classification&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_trend_classification.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;identifying-signal-from-noise-in-egfr&quot;&gt;3. Identifying signal from noise in eGFR&lt;/h5&gt;
+&lt;h5 id=&quot;3-identifying-signal-from-noise-in-egfr&quot;&gt;3. Identifying signal from noise in eGFR&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;regression&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/prob_broken_stick_model.png&quot; alt=&quot;eGFR hierarchical modelling&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;clustering-trend-to-identify-patients-with-drastic-decline-in-renal-function&quot;&gt;4. Clustering trend to identify patients with drastic decline in renal function&lt;/h5&gt;
+&lt;h5 id=&quot;4-clustering-trend-to-identify-patients-with-drastic-decline-in-renal-function&quot;&gt;4. Clustering trend to identify patients with drastic decline in renal function&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;clustering&quot;&gt;&lt;/a&gt;
 &lt;img src=&quot;/assets/ckd/eGFR_drastic_decline.png&quot; alt=&quot;Trends showing drastic decline&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;clustering-medical-records-better-ckd-staging&quot;&gt;5. Clustering medical records Better CKD staging&lt;/h5&gt;
+&lt;h5 id=&quot;5-clustering-medical-records-better-ckd-staging&quot;&gt;5. Clustering medical records Better CKD staging&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;clustering-records&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/ckd_tsne.png&quot; alt=&quot;CKD Clustering using t-SNE algorithm&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;better-ckd-staging&quot;&gt;6. Better CKD staging&lt;/h5&gt;
+&lt;h5 id=&quot;6-better-ckd-staging&quot;&gt;6. Better CKD staging&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;ckd-staging&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/eGFR_staging.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;more-refined-ckd-risk-stratification-using-egfr-slope&quot;&gt;7. More refined CKD risk stratification using eGFR slope&lt;/h5&gt;
+&lt;h5 id=&quot;7-more-refined-ckd-risk-stratification-using-egfr-slope&quot;&gt;7. More refined CKD risk stratification using eGFR slope&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;risk-stratification&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/ckd/refined_ckd_risk.png&quot; alt=&quot;A scatter plot of eGFR versus eGFR slope&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;computer-vision-for-stablising-kidney-image-sequence&quot;&gt;8. Computer vision for stablising kidney image sequence&lt;/h5&gt;
+&lt;h5 id=&quot;8-computer-vision-for-stablising-kidney-image-sequence&quot;&gt;8. Computer vision for stablising kidney image sequence&lt;/h5&gt;
 &lt;p&gt;&lt;a name=&quot;computer-vision&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Oyj2utakNx8&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
@@ -736,12 +798,12 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quo
    <id>http://normanpoh.github.com/blog/2018/01/09/kick-start-latex</id>
    <content type="html">&lt;p&gt;Getting started with Latex nowadays is significantly more straightforward now than ever. You just need to know where to start. Here’s a simple tip that can get you started under 20 minutes.&lt;/p&gt;
 
-&lt;h4 id=&quot;register-your-account-at-overleafcomhttpoverleafcom&quot;&gt;1. Register your account at &lt;a href=&quot;http://overleaf.com&quot;&gt;overleaf.com&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1-register-your-account-at-overleafcom&quot;&gt;1. Register your account at &lt;a href=&quot;http://overleaf.com&quot;&gt;overleaf.com&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;The advantage of using overleaf is that you don’t have to install Miktex or Latex or any packages locally on your machine. The downside is that you have to work online. To overcome this limitation, Overleaf supports git so you can &lt;code&gt;git clone&lt;/code&gt; the directory to your local folder and work on it offline before committing and pushing the changes back to Overleaf’s repository.&lt;/p&gt;
 
 &lt;p&gt;Overleaf also provides a number of templates that you can start with. Tempaltes for common proceedings like ACM, IEEE, and Elsevier are available. Just search for the Latex templates on Overleaf.&lt;/p&gt;
 
-&lt;h4 id=&quot;how-to-draw-tables-write-equations-and-more&quot;&gt;2. How to draw tables, write equations and more?&lt;/h4&gt;
+&lt;h4 id=&quot;2-how-to-draw-tables-write-equations-and-more&quot;&gt;2. How to draw tables, write equations and more?&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;To write an equation use Latex online equation editors such as &lt;a href=&quot;http://www.hostmath.com/&quot;&gt;hostmath&lt;/a&gt;, &lt;a href=&quot;https://www.codecogs.com/latex/eqneditor.php&quot;&gt;codecogs&lt;/a&gt; or &lt;a href=&quot;http://www.sciweavers.org/free-online-latex-equation-editor&quot;&gt;Sciweaver’s free online editor&lt;/a&gt;.&lt;/p&gt;
@@ -755,7 +817,7 @@ and &lt;a href=&quot;/assets/papers/BRS2017-poster-BayesianJustification.pdf&quo
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;what-about-working-in-latex-offline&quot;&gt;3. What about working in Latex offline?&lt;/h4&gt;
+&lt;h4 id=&quot;3-what-about-working-in-latex-offline&quot;&gt;3. What about working in Latex offline?&lt;/h4&gt;
 &lt;p&gt;Last but not least, if you want to work offline, instead of online using Overleaf, you can install Latex and all the associated packages using &lt;code&gt;apt-get install&lt;/code&gt; in Ubuntu. Also, don’t forget to install &lt;code&gt;xpdf&lt;/code&gt; so that you can view the generated pdf file.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install texlive-full
@@ -910,7 +972,7 @@ How you choose to word your abstract is really important as it affects how easil
 
 &lt;p&gt;Why three top closest templates and why capping top 500 candidates per generation? The reason is that we want to keep the computation to a minimum while ensuring some diversities. These numbers are parameters that you can optimise.&lt;/p&gt;
 
-&lt;h5 id=&quot;mount-a-wolf-attack&quot;&gt;1. Mount a wolf attack.&lt;/h5&gt;
+&lt;h5 id=&quot;1-mount-a-wolf-attack&quot;&gt;1. Mount a wolf attack.&lt;/h5&gt;
 &lt;p&gt;We shall continue from a previous &lt;a href=&quot;/blog/2017/12/29/generate-pairwise-fprint-scores.html&quot;&gt;post&lt;/a&gt; in which a database of fingerprint &lt;code&gt;features&lt;/code&gt; have been prepared using NIST’s fingerprint matcher &lt;code&gt;mindct&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;A text file named &lt;code&gt;filelist_xyt.txt&lt;/code&gt; contains all the processed files in  &lt;code&gt;.xyt&lt;/code&gt;  format. This file list serves as a gallery of zero-effort attack from which potential wolves can be identified. There are 200 unique fingers each containing 5 impressions, so making a total of 1000 samples. The 1000 fingerprint templates in the &lt;code&gt;*.xyt&lt;/code&gt; format are stored in the &lt;code&gt;features&lt;/code&gt; directory. The following Octave code generates the content of the file &lt;code&gt;filelist_xyt.txt&lt;/code&gt;.&lt;/p&gt;
@@ -968,7 +1030,7 @@ fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&qu
 
 &lt;p&gt;&lt;img src=&quot;/assets/hill-climb/wolf_attack.png&quot; alt=&quot;hill climbing output scores&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;visualize-the-fingerprint-that-is-closest-to-the-target-template&quot;&gt;2. Visualize the fingerprint that is closest to the target template&lt;/h5&gt;
+&lt;h5 id=&quot;2-visualize-the-fingerprint-that-is-closest-to-the-target-template&quot;&gt;2. Visualize the fingerprint that is closest to the target template&lt;/h5&gt;
 &lt;p&gt;How does the wolf fingerprint, i.e., the fingerprint that is closest to the target template look like? To answer this question, I have written a function &lt;code&gt;display_xyt&lt;/code&gt; to display the minutiae. Because it is an image, we have to reverse the x-axis; and this custom function does this for you.  This function also takes in the magnitude variable, &lt;code&gt;mag&lt;/code&gt;, which controls the length of the arrow of each minutia for visualisation purpose only.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;display_xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;xyt, mag, img&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
@@ -1019,7 +1081,7 @@ fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&qu
 &lt;p&gt;This produces an output similar to the one below:
 &lt;img src=&quot;/assets/hill-climb/fprint.png&quot; alt=&quot;Fs ingeprint with minutiae overlayed&quot; style=&quot;width: 100%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;carrying-out-the-hill-climbing-attack&quot;&gt;3. Carrying out the hill climbing attack&lt;/h5&gt;
+&lt;h5 id=&quot;3-carrying-out-the-hill-climbing-attack&quot;&gt;3. Carrying out the hill climbing attack&lt;/h5&gt;
 
 &lt;p&gt;In order to carry out the hill-climbing attack, we shall define a supporting function which interfaces with NIST’s &lt;code&gt;bozorth3&lt;/code&gt; matcher. This function takes in a fingerprint template in &lt;code&gt;.xyt&lt;/code&gt; which has four features per minutiae, namely row, column, orientation and quality and then outputs a &lt;em&gt;set&lt;/em&gt; of slightly modified templates with some pertubation as controlled by &lt;code&gt;pertube&lt;/code&gt;.&lt;/p&gt;
 
@@ -1063,12 +1125,12 @@ fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&qu
 
 &lt;p&gt;The steps taken are as follow:&lt;/p&gt;
 
-&lt;h5 id=&quot;allocate-memory-to-hold-the-output-of-100-generations&quot;&gt;1. Allocate memory to hold the output of 100 generations&lt;/h5&gt;
+&lt;h5 id=&quot;1-allocate-memory-to-hold-the-output-of-100-generations&quot;&gt;1. Allocate memory to hold the output of 100 generations&lt;/h5&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xyt_generation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;fitness&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;select-the-top-3-wolf-templates-as-ancestors-to-first-generation-of-fingerprint-candidates&quot;&gt;2. Select the top 3 wolf templates as ancestors to first generation of fingerprint candidates.&lt;/h5&gt;
+&lt;h5 id=&quot;2-select-the-top-3-wolf-templates-as-ancestors-to-first-generation-of-fingerprint-candidates&quot;&gt;2. Select the top 3 wolf templates as ancestors to first generation of fingerprint candidates.&lt;/h5&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&amp;quot;&lt;span class=&quot;n&quot;&gt;file2attack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&amp;quot;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;filelist&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&amp;quot;&lt;span class=&quot;n&quot;&gt;filelist_xyt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;txt&lt;/span&gt;&amp;quot;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &amp;quot;&lt;span class=&quot;c&quot;&gt;%s&amp;quot;);&lt;/span&gt;
@@ -1083,7 +1145,7 @@ fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&qu
 
 &lt;span class=&quot;n&quot;&gt;scores_prev&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;begin-the-evolution&quot;&gt;3. Begin the evolution&lt;/h5&gt;
+&lt;h5 id=&quot;3-begin-the-evolution&quot;&gt;3. Begin the evolution&lt;/h5&gt;
 
 &lt;p&gt;At the beginning of the loop, the algorithm takes all the candidates of current generation and evaluates their fitness in terms of  similirity score. Once the fitness values are evaluated, only the top 500 candidates are kept, to be ready for next round of evolution; and the process repeats this way until the desired number of generations is reached (100 in this case). Below is the code fragments that implement this idea.&lt;/p&gt;
 
@@ -1120,7 +1182,7 @@ fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&qu
 
 &lt;p&gt;The last statement saves the key variables. &lt;code&gt;xyt_genration&lt;/code&gt; stores all the top candidates (up to 500) whereas &lt;code&gt;fitness&lt;/code&gt; stores the candidates’ fitness value.&lt;/p&gt;
 
-&lt;h5 id=&quot;analyse-the-score-evolution&quot;&gt;4. Analyse the score evolution&lt;/h5&gt;
+&lt;h5 id=&quot;4-analyse-the-score-evolution&quot;&gt;4. Analyse the score evolution&lt;/h5&gt;
 
 &lt;p&gt;We shall analyse the number of (capped) candidates in each generation.&lt;/p&gt;
 
@@ -1148,7 +1210,7 @@ fclose&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fid&lt;span class=&quot;o&qu
 
 &lt;p&gt;So, what improvements can we make here?&lt;/p&gt;
 
-&lt;h5 id=&quot;visualize-the-best-candidates-in-each-generation&quot;&gt;5. Visualize the best candidates in each generation&lt;/h5&gt;
+&lt;h5 id=&quot;5-visualize-the-best-candidates-in-each-generation&quot;&gt;5. Visualize the best candidates in each generation&lt;/h5&gt;
 
 &lt;p&gt;We can also plot the top candidate from one generation to another.&lt;/p&gt;
 
@@ -1393,17 +1455,17 @@ number of comparisons which is significantly smaller.&lt;/p&gt;
    <link href="http://normanpoh.github.com/blog/2017/12/29/vmware-tools-update.html"/>
    <updated>2017-12-29T00:00:00+00:00</updated>
    <id>http://normanpoh.github.com/blog/2017/12/29/vmware-tools-update</id>
-   <content type="html">&lt;h3 id=&quot;installing-vmware-workstation-in-windows-host-os&quot;&gt;Installing VMWare Workstation in Windows’ host OS&lt;/h3&gt;
-&lt;p&gt;First, download the latest version of VMWare Workstation from the &lt;a href=&quot;https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1410|product_downloads&quot;&gt;link&lt;/a&gt;. The latest version is “VMWare Workstation Player 14”.&lt;/p&gt;
+   <content type="html">&lt;p&gt;###Installing VMWare Workstation in Windows’ host OS
+First, download the latest version of VMWare Workstation from the &lt;a href=&quot;https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1410|product_downloads&quot;&gt;link&lt;/a&gt;. The latest version is “VMWare Workstation Player 14”.&lt;/p&gt;
 
 &lt;p&gt;Then, install it in your host machine&lt;/p&gt;
 
-&lt;h3 id=&quot;updating-your-vmware-workstation-with-the-latest-vmware-tools&quot;&gt;Updating your VMWare Workstation with the latest VMWare Tools&lt;/h3&gt;
-&lt;p&gt;For training, I normally prepare the VMWare Ubuntu image. If you have prepared this yourself, you may want to update your image with the latest VMWare Tools. These tools allow you to resize your screen in a window’s host machine and to access to your local drive mount point which is &lt;code&gt;/mnt/hgfs/C&lt;/code&gt; if you share your C drive.&lt;/p&gt;
+&lt;p&gt;###Updating your VMWare Workstation with the latest VMWare Tools
+For training, I normally prepare the VMWare Ubuntu image. If you have prepared this yourself, you may want to update your image with the latest VMWare Tools. These tools allow you to resize your screen in a window’s host machine and to access to your local drive mount point which is &lt;code&gt;/mnt/hgfs/C&lt;/code&gt; if you share your C drive.&lt;/p&gt;
 
 &lt;p&gt;In preparing this guide, I have followed the VMware Doc on &lt;a href=&quot;https://docs.vmware.com/en/VMware-Workstation-Player-for-Windows/14.0/com.vmware.player.win.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html&quot;&gt;Manually Installing VMware Tools on a Linux Virtual Machine&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&quot;procedure&quot;&gt;Procedure&lt;/h4&gt;
+&lt;p&gt;####Procedure&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;On the host, from the Workstation Player menu bar, select Player &amp;gt; Manage &amp;gt; Install VMware Tools. If an earlier version of VMware Tools is installed, the menu item is Update VMware Tools.&lt;/li&gt;
   &lt;li&gt;In the virtual machine, open a terminal window.  Type the following commands&lt;/li&gt;
@@ -1439,13 +1501,13 @@ rm -rvf /media/user/VMware&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Tools&
 
 &lt;h3 id=&quot;procedures&quot;&gt;Procedures&lt;/h3&gt;
 
-&lt;h5 id=&quot;back-up-the-original-features-directory&quot;&gt;1. Back up the original &lt;code&gt;features&lt;/code&gt; directory.&lt;/h5&gt;
+&lt;h5 id=&quot;1-back-up-the-original-features-directory&quot;&gt;1. Back up the original &lt;code&gt;features&lt;/code&gt; directory.&lt;/h5&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# In bash&lt;/span&gt;
 mv features features_original
 mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;create-a-new-copy-of-the-features-directory-which-contains-fingerprint-templates-with-only-sufficiently-high-quality-minutiae&quot;&gt;2. Create a new copy of the &lt;code&gt;features&lt;/code&gt; directory which contains fingerprint templates with only sufficiently high quality minutiae.&lt;/h5&gt;
+&lt;h5 id=&quot;2-create-a-new-copy-of-the-features-directory-which-contains-fingerprint-templates-with-only-sufficiently-high-quality-minutiae&quot;&gt;2. Create a new copy of the &lt;code&gt;features&lt;/code&gt; directory which contains fingerprint templates with only sufficiently high quality minutiae.&lt;/h5&gt;
 
 &lt;p&gt;Let’s take a look at an &lt;code&gt;xyt&lt;/code&gt; file using &lt;code&gt;head features_original/100_1.xyt&lt;/code&gt; in bash, which gives the following output:&lt;/p&gt;
 
@@ -1470,7 +1532,7 @@ mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
   &lt;span class=&quot;n&quot;&gt;dlmwrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmplt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selected_row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;generate-the-score-matrix&quot;&gt;3. Generate the score matrix&lt;/h5&gt;
+&lt;h5 id=&quot;3-generate-the-score-matrix&quot;&gt;3. Generate the score matrix&lt;/h5&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
@@ -1486,7 +1548,7 @@ mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;span class=&quot;n&quot;&gt;save&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores_20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scores&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;analyse-the-scores&quot;&gt;4. Analyse the scores&lt;/h5&gt;
+&lt;h5 id=&quot;4-analyse-the-scores&quot;&gt;4. Analyse the scores&lt;/h5&gt;
 
 &lt;p&gt;First, we load the scores produced in the previous &lt;a href=&quot;/blog/2017/12/29/generate-pairwise-fprint-scores.html&quot;&gt;tutorial&lt;/a&gt;; and call it &lt;code&gt;scores&lt;/code&gt;.&lt;/p&gt;
 
@@ -1550,7 +1612,7 @@ mkdir features&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
   &lt;li&gt;NIST’s fingerprint software has been installed properly and all the binary execution files are configured in the file &lt;code&gt;.bashrc&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h5 id=&quot;configure-the-directories&quot;&gt;1.Configure the directories.&lt;/h5&gt;
+&lt;h5 id=&quot;1configure-the-directories&quot;&gt;1.Configure the directories.&lt;/h5&gt;
 
 &lt;p&gt;You should replace &lt;code&gt;fdir&lt;/code&gt; (which contains fingerprint images) and &lt;code&gt;outdir&lt;/code&gt; which is the output (where fingerprint features will be stored) with your appropriate directories.&lt;/p&gt;
 
@@ -1571,7 +1633,7 @@ ls &lt;span class=&quot;nv&quot;&gt;$fdir&lt;/span&gt; &amp;gt; filelist.txt &lt
 &lt;span class=&quot;c1&quot;&gt;# Create the output directory&lt;/span&gt;
 mkdir &lt;span class=&quot;nv&quot;&gt;$outdir&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;extract-the-features&quot;&gt;2.Extract the features&lt;/h5&gt;
+&lt;h5 id=&quot;2extract-the-features&quot;&gt;2.Extract the features&lt;/h5&gt;
 &lt;p&gt;To extract the features, below I assume that the fingerprint images are stored in &lt;code&gt;.png&lt;/code&gt; format; so the command &lt;code&gt;convert&lt;/code&gt; is used to convert the images to &lt;code&gt;.wsq&lt;/code&gt;. The code below simply loops through all the files and extract the fingerprint features using NIST’s &lt;code&gt;mindtct&lt;/code&gt; program.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# In bash:&lt;/span&gt;
@@ -1601,7 +1663,7 @@ features/101_3.xyt
 features/101_4.xyt
 features/101_5.xyt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h5 id=&quot;generate-the-score-matrix-in-octave&quot;&gt;3. Generate the score matrix in Octave&lt;/h5&gt;
+&lt;h5 id=&quot;3-generate-the-score-matrix-in-octave&quot;&gt;3. Generate the score matrix in Octave&lt;/h5&gt;
 &lt;p&gt;We could use &lt;code&gt;ls features/*.xyt &amp;gt; filelist_xyt.txt&lt;/code&gt; but then the output is not ordered. So, instead, we shall manually create the list of filenames in Octave, as follows.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;% In Octave&lt;/span&gt;
@@ -1622,7 +1684,7 @@ features/101_5.xyt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;In order to extract the information, I have chosen to achieve this by processing the filenames in order to illustrate how you can use text processing in Octave. In practice, you should modify the scripts to suite your needs.&lt;/p&gt;
 
-&lt;p&gt;Recall that each role in the &lt;code&gt;filelist_xyt.txt&lt;/code&gt; has the following format: &lt;code&gt;features/&lt;/code&gt;&lt;user-id&gt;`_`&lt;attempt-id&gt;`.xyt`, e.g., `features/100_1.xyt` so to extract the user (unique finger) id, we split the string into two parts by &#39;/&#39; to get the second part `100_1.xyt` and then furtther split this string by `_` to get to the first part of the string, i.e., `100`.&lt;/attempt-id&gt;&lt;/user-id&gt;&lt;/p&gt;
+&lt;p&gt;Recall that each role in the &lt;code&gt;filelist_xyt.txt&lt;/code&gt; has the following format: &lt;code&gt;features/&lt;/code&gt;&lt;user-id&gt;`_`&lt;attempt-id&gt;`.xyt`, e.g., `features/100_1.xyt` so to extract the user (unique finger) id, we split the string into two parts by '/' to get the second part `100_1.xyt` and then furtther split this string by `_` to get to the first part of the string, i.e., `100`.&lt;/attempt-id&gt;&lt;/user-id&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-matlab&quot; data-lang=&quot;matlab&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%% Let&amp;#39;s process the user&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;out &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;x&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;&lt;/span&gt;
@@ -1804,7 +1866,7 @@ WER(\Delta) = \frac 1 2 (FAR(\Delta) + FRR(\Delta) )
 
 &lt;p&gt;In order to visualize the score distributions, we can use generalised linear transform; which is defined as:
 &lt;script type=&quot;math/tex; mode=display&quot;&gt; 
-y&#39; = \log \left( \frac { y -  y_{lb}  } { y_{ub}-y } \right)
+y' = \log \left( \frac { y -  y_{lb}  } { y_{ub}-y } \right)
 &lt;/script&gt;
 where
 &lt;script type=&quot;math/tex&quot;&gt; y_{lb} &lt;/script&gt; and
@@ -1812,7 +1874,7 @@ where
 
 &lt;p&gt;We see that the generalised logit transform as computed below
 &lt;script type=&quot;math/tex; mode=display&quot;&gt; 
-y&#39; = \log ( y -  y_{lb} ) - \log  ( y_{ub}-y )
+y' = \log ( y -  y_{lb} ) - \log  ( y_{ub}-y )
 &lt;/script&gt;
 may result in -Inf due to &lt;script type=&quot;math/tex&quot;&gt; \log  ( 0 ) &lt;/script&gt;; and this happens when 
 &lt;script type=&quot;math/tex&quot;&gt; y=y_{lb} &lt;/script&gt; or 

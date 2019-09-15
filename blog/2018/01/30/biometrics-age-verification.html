@@ -148,6 +148,13 @@ today = mm + '/' + dd + '/' + yyyy;
   
     </a>
   
+    <a href="/tag/misc.html" rel="tag">
+      misc 
+  
+    ,
+  
+    </a>
+  
     <a href="/tag/research.html" rel="tag">
       research 
   
@@ -209,21 +216,21 @@ today = mm + '/' + dd + '/' + yyyy;
 
 <p>Brexit may or may not change this view. Rather than being speculative, the status quo is generally preferred.</p>
 
-<h2 id="technological-considerations">Technological considerations</h2>
+<p>##Technological considerations</p>
 
 <p>Let us pick the scenario of the retail where only adults above 18 can purchase alcohol. This is verification of credential, i.e., the right to do something. Let’s consider various solutions:</p>
 
-<h4 id="document-identity-verification">1.	Document identity verification.</h4>
+<h4 id="1-document-identity-verification">1.	Document identity verification.</h4>
 
 <p>The vendor can verify the identity of the person via a national identity document which contains the date of birth of the person, from which the age can be derived. Countries without a unified national identity scheme (e.g, national identity card) will need alternative documents such as driving licence or other documents which can be easily forged. National identity documents often have some form tamper-proofed security to avoid forgery such as holograms, smart cards containing digital credentials, etc.</p>
 
-<h4 id="biometrics--as-in-person-identity-verification">2. Biometrics – as in person identity verification.</h4>
+<h4 id="2-biometrics--as-in-person-identity-verification">2. Biometrics – as in person identity verification.</h4>
 
 <p>Biometrics can certainly solve this problem; but the identity must be associated with the demographic information, stored digitally. Simply verifying John is John is not sufficient; we must know the age of John.</p>
 
 <p>This implies putting in place a system, or else piggybacking on an existing national system where biometrics data has already been adopted and use. Unfortunately, this is not the case in the UK. Other developing nations such as India, Malaysia have already adopted biometrics-enabled documents which allows different commercial sectors such as banking to use them as identity verification, as a standardized means of proof of identity. However, age verification is trivial; the vendor can check the national identity document and check against the facial photo.</p>
 
-<h4 id="biometrics-as-age-estimator">3.	Biometrics as age estimator.</h4>
+<h4 id="3-biometrics-as-age-estimator">3.	Biometrics as age estimator.</h4>
 
 <p>With deep learning, and other methods, it is now possible to estimate the age of a person from just facial image. There are plenty of literature here, and the accuracy of the system has reached a point that it is sufficient to give an approximate perceived age for the purpose of analysing advertising campaign. For example, it is often necessary to find out who has viewed a campaign by breaking down into age, gender, and ethnicity. With appropriate labelled training data, deep learning neural network models can now be easily created, hence delivering a classifier system that is optimised for a specific demographic segment.</p>
 
@@ -315,15 +322,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>01 Feb 2018 &raquo;</span> <a href="/blog/2018/02/01/coaching4perf.html">My miscellaneous notes on "coaching for performance"</a>
+    </li>
+    
+    <li>
       <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
     </li>
     
     <li>
       <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
-    </li>
-    
-    <li>
-      <span>17 Jan 2018 &raquo;</span> <a href="/blog/2018/01/17/mrc-ckd-project.html">Modelling the Progression of CKD - The MRC CKD project</a>
     </li>
     
   </ul>
@@ -353,7 +360,7 @@ function openReference(evt, bibrefName) {
   
 
   <p>
-    © Norman Poh, 2018 &mdash; built with 
+    © Norman Poh, 2019 &mdash; built with 
 <a href="http://jekyllrb.com/">Jekyll</a> using 
 <a href="https://github.com/swanson/lagom">Lagom theme </a> and 
 <a href="https://github.com/Khan/KaTeX"> Katex </a>

@@ -148,6 +148,13 @@ today = mm + '/' + dd + '/' + yyyy;
   
     </a>
   
+    <a href="/tag/misc.html" rel="tag">
+      misc 
+  
+    ,
+  
+    </a>
+  
     <a href="/tag/research.html" rel="tag">
       research 
   
@@ -215,7 +222,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
 <p>Why three top closest templates and why capping top 500 candidates per generation? The reason is that we want to keep the computation to a minimum while ensuring some diversities. These numbers are parameters that you can optimise.</p>
 
-<h5 id="mount-a-wolf-attack">1. Mount a wolf attack.</h5>
+<h5 id="1-mount-a-wolf-attack">1. Mount a wolf attack.</h5>
 <p>We shall continue from a previous <a href="/blog/2017/12/29/generate-pairwise-fprint-scores.html">post</a> in which a database of fingerprint <code>features</code> have been prepared using NIST’s fingerprint matcher <code>mindct</code>.</p>
 
 <p>A text file named <code>filelist_xyt.txt</code> contains all the processed files in  <code>.xyt</code>  format. This file list serves as a gallery of zero-effort attack from which potential wolves can be identified. There are 200 unique fingers each containing 5 impressions, so making a total of 1000 samples. The 1000 fingerprint templates in the <code>*.xyt</code> format are stored in the <code>features</code> directory. The following Octave code generates the content of the file <code>filelist_xyt.txt</code>.</p>
@@ -273,7 +280,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p><img src="/assets/hill-climb/wolf_attack.png" alt="hill climbing output scores" style="width: 100%;" /></p>
 
-<h5 id="visualize-the-fingerprint-that-is-closest-to-the-target-template">2. Visualize the fingerprint that is closest to the target template</h5>
+<h5 id="2-visualize-the-fingerprint-that-is-closest-to-the-target-template">2. Visualize the fingerprint that is closest to the target template</h5>
 <p>How does the wolf fingerprint, i.e., the fingerprint that is closest to the target template look like? To answer this question, I have written a function <code>display_xyt</code> to display the minutiae. Because it is an image, we have to reverse the x-axis; and this custom function does this for you.  This function also takes in the magnitude variable, <code>mag</code>, which controls the length of the arrow of each minutia for visualisation purpose only.</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="k">function</span><span class="w"> </span><span class="nf">display_xyt</span><span class="p">(</span>xyt, mag, img<span class="p">)</span><span class="w"></span>
@@ -324,7 +331,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 <p>This produces an output similar to the one below:
 <img src="/assets/hill-climb/fprint.png" alt="Fs ingeprint with minutiae overlayed" style="width: 100%;" /></p>
 
-<h5 id="carrying-out-the-hill-climbing-attack">3. Carrying out the hill climbing attack</h5>
+<h5 id="3-carrying-out-the-hill-climbing-attack">3. Carrying out the hill climbing attack</h5>
 
 <p>In order to carry out the hill-climbing attack, we shall define a supporting function which interfaces with NIST’s <code>bozorth3</code> matcher. This function takes in a fingerprint template in <code>.xyt</code> which has four features per minutiae, namely row, column, orientation and quality and then outputs a <em>set</em> of slightly modified templates with some pertubation as controlled by <code>pertube</code>.</p>
 
@@ -368,12 +375,12 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>The steps taken are as follow:</p>
 
-<h5 id="allocate-memory-to-hold-the-output-of-100-generations">1. Allocate memory to hold the output of 100 generations</h5>
+<h5 id="1-allocate-memory-to-hold-the-output-of-100-generations">1. Allocate memory to hold the output of 100 generations</h5>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">xyt_generation</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">fitness</span> <span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span></code></pre></figure>
 
-<h5 id="select-the-top-3-wolf-templates-as-ancestors-to-first-generation-of-fingerprint-candidates">2. Select the top 3 wolf templates as ancestors to first generation of fingerprint candidates.</h5>
+<h5 id="2-select-the-top-3-wolf-templates-as-ancestors-to-first-generation-of-fingerprint-candidates">2. Select the top 3 wolf templates as ancestors to first generation of fingerprint candidates.</h5>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="n">scores</span> <span class="p">=</span> <span class="n">load</span><span class="p">(</span>&quot;<span class="n">file2attack</span><span class="p">.</span><span class="n">scores</span>&quot;<span class="p">);</span>
 <span class="n">filelist</span> <span class="p">=</span> <span class="n">textread</span><span class="p">(</span>&quot;<span class="n">filelist_xyt</span><span class="p">.</span><span class="n">txt</span>&quot;<span class="p">,</span> &quot;<span class="c">%s&quot;);</span>
@@ -388,7 +395,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <span class="n">scores_prev</span> <span class="p">=</span> <span class="n">scores</span><span class="p">(</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">));</span></code></pre></figure>
 
-<h5 id="begin-the-evolution">3. Begin the evolution</h5>
+<h5 id="3-begin-the-evolution">3. Begin the evolution</h5>
 
 <p>At the beginning of the loop, the algorithm takes all the candidates of current generation and evaluates their fitness in terms of  similirity score. Once the fitness values are evaluated, only the top 500 candidates are kept, to be ready for next round of evolution; and the process repeats this way until the desired number of generations is reached (100 in this case). Below is the code fragments that implement this idea.</p>
 
@@ -425,7 +432,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>The last statement saves the key variables. <code>xyt_genration</code> stores all the top candidates (up to 500) whereas <code>fitness</code> stores the candidates’ fitness value.</p>
 
-<h5 id="analyse-the-score-evolution">4. Analyse the score evolution</h5>
+<h5 id="4-analyse-the-score-evolution">4. Analyse the score evolution</h5>
 
 <p>We shall analyse the number of (capped) candidates in each generation.</p>
 
@@ -453,7 +460,7 @@ fclose<span class="o">(</span>fid<span class="o">)</span><span class="p">;</span
 
 <p>So, what improvements can we make here?</p>
 
-<h5 id="visualize-the-best-candidates-in-each-generation">5. Visualize the best candidates in each generation</h5>
+<h5 id="5-visualize-the-best-candidates-in-each-generation">5. Visualize the best candidates in each generation</h5>
 
 <p>We can also plot the top candidate from one generation to another.</p>
 
@@ -554,15 +561,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>01 Feb 2018 &raquo;</span> <a href="/blog/2018/02/01/coaching4perf.html">My miscellaneous notes on "coaching for performance"</a>
+    </li>
+    
+    <li>
       <span>30 Jan 2018 &raquo;</span> <a href="/blog/2018/01/30/biometrics-age-verification.html">Biometrics-enabled age verification systems: legal and technological considerations</a>
     </li>
     
     <li>
       <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
-    </li>
-    
-    <li>
-      <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
   </ul>
@@ -599,7 +606,7 @@ function openReference(evt, bibrefName) {
   
 
   <p>
-    © Norman Poh, 2018 &mdash; built with 
+    © Norman Poh, 2019 &mdash; built with 
 <a href="http://jekyllrb.com/">Jekyll</a> using 
 <a href="https://github.com/swanson/lagom">Lagom theme </a> and 
 <a href="https://github.com/Khan/KaTeX"> Katex </a>

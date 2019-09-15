@@ -148,6 +148,13 @@ today = mm + '/' + dd + '/' + yyyy;
   
     </a>
   
+    <a href="/tag/misc.html" rel="tag">
+      misc 
+  
+    ,
+  
+    </a>
+  
     <a href="/tag/research.html" rel="tag">
       research 
   
@@ -219,7 +226,7 @@ today = mm + '/' + dd + '/' + yyyy;
   <li>NIST’s fingerprint software has been installed properly and all the binary execution files are configured in the file <code>.bashrc</code>.</li>
 </ol>
 
-<h5 id="configure-the-directories">1.Configure the directories.</h5>
+<h5 id="1configure-the-directories">1.Configure the directories.</h5>
 
 <p>You should replace <code>fdir</code> (which contains fingerprint images) and <code>outdir</code> which is the output (where fingerprint features will be stored) with your appropriate directories.</p>
 
@@ -240,7 +247,7 @@ ls <span class="nv">$fdir</span> &gt; filelist.txt <span class="c1">#List all th
 <span class="c1"># Create the output directory</span>
 mkdir <span class="nv">$outdir</span></code></pre></figure>
 
-<h5 id="extract-the-features">2.Extract the features</h5>
+<h5 id="2extract-the-features">2.Extract the features</h5>
 <p>To extract the features, below I assume that the fingerprint images are stored in <code>.png</code> format; so the command <code>convert</code> is used to convert the images to <code>.wsq</code>. The code below simply loops through all the files and extract the fingerprint features using NIST’s <code>mindtct</code> program.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="c1"># In bash:</span>
@@ -270,7 +277,7 @@ features/101_3.xyt
 features/101_4.xyt
 features/101_5.xyt</code></pre></figure>
 
-<h5 id="generate-the-score-matrix-in-octave">3. Generate the score matrix in Octave</h5>
+<h5 id="3-generate-the-score-matrix-in-octave">3. Generate the score matrix in Octave</h5>
 <p>We could use <code>ls features/*.xyt &gt; filelist_xyt.txt</code> but then the output is not ordered. So, instead, we shall manually create the list of filenames in Octave, as follows.</p>
 
 <figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span></span><span class="c">% In Octave</span>
@@ -612,15 +619,15 @@ function openReference(evt, bibrefName) {
   <ul class="posts">
     
     <li>
+      <span>01 Feb 2018 &raquo;</span> <a href="/blog/2018/02/01/coaching4perf.html">My miscellaneous notes on "coaching for performance"</a>
+    </li>
+    
+    <li>
       <span>30 Jan 2018 &raquo;</span> <a href="/blog/2018/01/30/biometrics-age-verification.html">Biometrics-enabled age verification systems: legal and technological considerations</a>
     </li>
     
     <li>
       <span>22 Jan 2018 &raquo;</span> <a href="/blog/2018/01/22/ckd-aki-installer.html">Installing the Software Demo for Modelling CKD and Detecting AKI</a>
-    </li>
-    
-    <li>
-      <span>18 Jan 2018 &raquo;</span> <a href="/blog/2018/01/18/nhs-presentation.html">Using Machine Learning to Model the Progression of Chronic Kidney Disease: A Case Study</a>
     </li>
     
   </ul>
@@ -657,7 +664,7 @@ function openReference(evt, bibrefName) {
   
 
   <p>
-    © Norman Poh, 2018 &mdash; built with 
+    © Norman Poh, 2019 &mdash; built with 
 <a href="http://jekyllrb.com/">Jekyll</a> using 
 <a href="https://github.com/swanson/lagom">Lagom theme </a> and 
 <a href="https://github.com/Khan/KaTeX"> Katex </a>
